@@ -6,16 +6,63 @@
 //
 
 import SwiftUI
+
+
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.black)
+            .padding()
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        modifier(Title())
+    }
+}
+
+
 struct ContentView: View {
     
     @State private var showingScore = false
     @State private var scoreTitle = ""
     @State private var userScore = 0
     @State private var worngAnswers = 0
+    
+    @State private var counterX = 1
+    @State private var alertButtontext = "Continue"
+
 
 
     @State var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State var correctAnswer = Int.random(in: 0...2)
+    
+    
+    
+    
+    struct FlagImage: View{
+        
+        var flag: String
+        
+        var body: some View {
+            Image(flag)
+                .renderingMode(.original)
+                .clipShape(RoundedRectangle(cornerRadius: 15, style:.circular))
+                .shadow(radius: 15)
+            
+            }
+        
+    }
+    
+   
+    
+
+    
+    
+
     
     
     var body: some View {
@@ -33,8 +80,9 @@ struct ContentView: View {
             VStack{
                 Spacer()
                 Text("Guess the Flag")
-                        .font(.largeTitle.weight(.bold))
-                        .foregroundColor(.black)
+                    .titleStyle()
+//                        .font(.largeTitle.weight(.bold))
+//                        .foregroundColor(.black)
                 
             VStack(spacing:15){
                 VStack{
@@ -52,12 +100,17 @@ struct ContentView: View {
                     Button{
                         //flag was tapped
                         flagTapped(number)
+                        counterX = counterX+1
                     } label: {
-                        Image(countries[number]).renderingMode(.original)
-                            .clipShape(Capsule())
-                            .shadow(radius: 15)
+                        
+                        FlagImage(flag: self.countries[number])
+                        
+//                        Image(countries[number]).renderingMode(.original)
+//                            .clipShape(Capsule())
+//                            .shadow(radius: 15)
+                        
                     }
-                }
+                } // for each end
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical,20)
@@ -73,34 +126,61 @@ struct ContentView: View {
                 Text("Worng Answers: \(worngAnswers)")
                     .font(.title.bold())
                 
+                
+                Text("Counter: \(counterX)")
+                    .font(.title.bold())
+                
             }.padding()
         }
         .alert(scoreTitle,isPresented: $showingScore){
-            Button("Continue",action: askQ)
+            Button("\(alertButtontext)",action: askQ)
         } message: {
-            Text("Your Score is \(userScore)")
+            Text("Your Score is: \(userScore)")
         }
         
     }
     
     func flagTapped (_ number: Int){
-        if number == correctAnswer{
-            scoreTitle = "Correct"
-            userScore = userScore+1
+        
+        if counterX == 8{
+            scoreTitle = "Finished"
+            alertButtontext = "Reset Game"
+            showingScore = true
+            counterX = 1
+
         }else{
-            scoreTitle = "Worng This is actually the flag of \(countries[number])"
-            worngAnswers = worngAnswers+1
+            if number == correctAnswer{
+                scoreTitle = "Correct"
+                userScore = userScore+1
+            }else{
+                scoreTitle = "Worng This is actually the flag of \(countries[number])"
+                worngAnswers = worngAnswers+1
+                
+                if worngAnswers == 3{
+                    scoreTitle = "Worng!! This is actually the flag of \(countries[number]) - You failed 3 times"
+                    alertButtontext = "Reset Game"
+                    showingScore = true
+                }
+                
+            }
+            showingScore = true
+
         }
-        showingScore = true
     }
     
     
     func askQ(){
-        countries.shuffle()
-        correctAnswer = Int.random(in: 0...2)
+        if alertButtontext == "Reset Game"{
+            userScore = 0
+            worngAnswers = 0
+            counterX = 1
+            alertButtontext = "Continue"
+        }else{
+            alertButtontext = "Continue"
+            countries.shuffle()
+            correctAnswer = Int.random(in: 0...2)
+        }
     }
-    
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

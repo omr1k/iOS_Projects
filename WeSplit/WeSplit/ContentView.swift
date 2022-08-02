@@ -13,11 +13,13 @@ struct ContentView: View {
     @State private var numberOfPeopleV2 = 1
     @State private var tipPercentage = 20
     @FocusState private var amountIsFocused: Bool
+    @State private var useRedText = false
 
 
     let tipPercentages = [0,10, 15, 20, 25]
     
     var totalPerPerson: Double {
+
         let peopleCount = Double(numberOfPeople + 2)
         let peopleCount2 = Double (numberOfPeopleV2)
         let tipSelection = Double(tipPercentage)
@@ -25,14 +27,14 @@ struct ContentView: View {
         let tipValue = checkAmount / 100 * tipSelection
         let grandTotal = checkAmount + tipValue
         let amountPerPerson = grandTotal / peopleCount2
-
+        
         return amountPerPerson
     }
+    
 
     var body: some View {
         NavigationView {
             Form {
-                
                 Section {
                     TextField("Amount", value: $checkAmount, format:
                                     .currency(code: Locale.current.currencyCode ?? "USD"))
@@ -52,6 +54,7 @@ struct ContentView: View {
                 
                 
                 }
+
                 Section {
                     Picker("Tip percentage", selection: $tipPercentage) {
                         ForEach(tipPercentages, id: \.self) {
@@ -65,7 +68,8 @@ struct ContentView: View {
                 
                 
                 Section {
-                       Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                        .foregroundColor(tipPercentage == 0 ? .red : .blue)
                    }
                 
                 
