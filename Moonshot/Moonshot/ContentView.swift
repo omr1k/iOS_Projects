@@ -7,71 +7,45 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
-    let missions: [Mission] = Bundle.main.decode("missions.json")
 
+struct ContentView: View {
+
+    @State var toggleView = false
+    @State private var scale = 1.0
     
-    let columns = [
-        GridItem(.adaptive(minimum: 150))
-    ]
-    
+
     var body: some View {
         NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns) {
-                    ForEach(missions) { mission in
-                        NavigationLink {
-                            VStack{
-                                Image(mission.image)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 300, height: 300)
-                                    .padding()
-                                Text("Detail view for \(mission.displayName)")
-                                    .font(.largeTitle)
-                                    .foregroundColor(.white)
-                                    .padding()
-                                Text("\(mission.description)")
-                                    .padding()
-                                    .font(.subheadline)
-                            }
-                            
-                        } label: {
-                            VStack {
-                                Image(mission.image)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 100, height: 100)
-                                    .padding()
-
-                                VStack {
-                                    Text(mission.displayName)
-                                        .font(.headline)
-                                        .foregroundColor(.white)
-                                    Text(mission.formattedLaunchDate)
-                                        .font(.caption)
-                                        .foregroundColor(.white.opacity(0.5))
-                                }
-                                .padding(.vertical)
-                                .frame(maxWidth: .infinity)
-                                .background(.lightBackground)
-                            }
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .stroke(.lightBackground)
-                            )
-                        }
-                    }
-                    
+            
+            ZStack{
+                if toggleView {
+                    NativeGridView()
+                } else {
+                    ListView()
                 }
-                .padding([.horizontal, .bottom])
             }
+            .transition(.identity)
+            .animation(Animation.easeInOut(duration: 0.5), value: toggleView)
+//            .animation(.easeInOut)
+          
+            
+            
             .navigationTitle("Moonshot")
             .background(.darkBackground)
             .preferredColorScheme(.dark)
+            
+            .toolbar {
+                    Button("Change View") {
+
+                            toggleView.toggle()
+                              
+                        
+                    }
+                
+            }
+            
         }
+        
     }
 }
 
@@ -80,3 +54,16 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+
+
+
+//            Group {
+//                if toggleView {
+//                    NativeGridView()
+//                } else {
+//                    ListView()
+//                }
+//            }
+
