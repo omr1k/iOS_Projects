@@ -16,6 +16,7 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
+            
             List {
                 ForEach(0..<habits.items.count, id: \.self) { index in
                     NavigationLink(destination: DetailsScreen(habit: self.$habits.items[index])) {
@@ -34,7 +35,7 @@ struct ContentView: View {
                             .padding(40)
                             .frame(maxWidth: .infinity)
                             .background(.thinMaterial)
-                            .background(.green)
+                            .background(Color(0xE94560))
                             .clipShape(RoundedRectangle(cornerRadius: 15))
                     } // link end
                 } // foreach end

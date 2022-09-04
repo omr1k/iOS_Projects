@@ -58,6 +58,7 @@ struct DetailsScreen: View {
                 .buttonStyle(RoundedRectangleWithShadowedLabelButtonStyle())
                 .padding()
             }
+            Spacer()
         }
         .padding()
         .navigationTitle(habit.title)
@@ -72,7 +73,7 @@ struct RoundedRectangleWithShadowedLabelButtonStyle: ButtonStyle {
             Spacer()
             configuration.label.foregroundColor(.white)
                 .shadow(
-                    color: configuration.isPressed ? Color.red : Color.red,
+                    color: configuration.isPressed ? Color(0xE94560) : Color.white,
                     radius: 4, x: 0, y: 5
                 )
             Spacer()

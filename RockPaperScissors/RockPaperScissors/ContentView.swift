@@ -73,6 +73,11 @@ struct ContentView: View {
                   .padding()
                   .multilineTextAlignment(.center)
               
+              Image(moveSlection)
+                  .resizable()
+                  .aspectRatio(contentMode: .fit)
+                  .frame(width: 250)
+                  
               Text("Let Him \(winOrLoseSlection)")
                     .font(.system(.largeTitle, design: .rounded))
                     .padding()
@@ -80,29 +85,36 @@ struct ContentView: View {
               
               HStack{
               
-              Button(action: {
-                  playerSlection = "Rock"
-                  pikRand()
-                      }) {
-                          Image("r")
-                              .renderingMode(.original).resizable()
-                      }.buttonStyle(GrowingButton())
-              
-              Button(action: {
-                  playerSlection = "Paper"
-                  pikRand()
-                      }) {
-                          Image("p")
-                              .renderingMode(.original).resizable()
-                      }.buttonStyle(GrowingButton())
-              
-              Button(action: {
-                  playerSlection = "Scissors"
-                  pikRand()
-                      }) {
-                          Image("s")
-                              .renderingMode(.original).resizable()
-                      }.buttonStyle(GrowingButton())
+                  Button(action: {
+                      playerSlection = "Rock"
+                      pikRand()
+                  }) {
+                      Image("Rock")
+                          .resizable()
+                          .aspectRatio(contentMode: .fit)
+                          .frame(width: 100)
+
+                  }.buttonStyle(GrowingButton())
+                  
+                  Button(action: {
+                      playerSlection = "Paper"
+                      pikRand()
+                  }) {
+                      Image("Paper")
+                          .resizable()
+                          .aspectRatio(contentMode: .fit)
+                          .frame(width: 100)
+                  }.buttonStyle(GrowingButton())
+                  
+                  Button(action: {
+                      playerSlection = "Scissors"
+                      pikRand()
+                  }) {
+                      Image("Scissors")
+                          .resizable()
+                          .aspectRatio(contentMode: .fit)
+                          .frame(width: 100)
+                  }.buttonStyle(GrowingButton())
               }
 //            Button(
 //              "Rock 🪨",
