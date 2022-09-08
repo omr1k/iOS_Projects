@@ -55,6 +55,10 @@ struct DetailView: View {
                         .foregroundColor(.secondary)
                     Spacer()
                 }
+                
+                Divider()
+                RatingView(rating: .constant(Int(book.rating)))
+                    .font(.largeTitle)
                
                     
                 Divider()
@@ -66,11 +70,7 @@ struct DetailView: View {
                 Text(book.review ?? "No review")
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    
-                Divider()
-                RatingView(rating: .constant(Int(book.rating)))
-                    .font(.largeTitle)
+                
                 Divider()
                 Text("Record Created on \(self.formatedDate())")
                     .foregroundColor(.secondary)
