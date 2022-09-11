@@ -32,6 +32,11 @@ struct ContentView: View {
                     ))
                     .edgesIgnoringSafeArea(.all)
                 
+                
+                VStack{
+                    Text("")
+                        .frame(width: 0, height: 0, alignment: .center)
+                        .foregroundColor(.clear)
                 List {
                     ForEach(books) { book in
                         NavigationLink {
@@ -53,14 +58,15 @@ struct ContentView: View {
                         }
                     }.onDelete(perform: deleteBooks)
                         .listRowBackground(Color.clear)
-                        .listRowSeparator(.hidden)
+//                        .listRowSeparator(.hidden)
                 }.onAppear(){
                     UITableView.appearance().backgroundColor = UIColor.clear
                     UITableViewCell.appearance().backgroundColor = UIColor.clear
                 }
+                }
             }// zstak end
             .preferredColorScheme(.light)
-            .navigationAppearance(backgroundColor: .purple, foregroundColor: .black, tintColor: .black, hideSeparator: true)
+//            .navigationAppearance(backgroundColor: .clear, foregroundColor: .black, tintColor: .black, hideSeparator: true)
             .navigationTitle("Bookworm")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -77,7 +83,8 @@ struct ContentView: View {
             .sheet(isPresented: $showingAddScreen) {
                 AddBookView()
             }
-        }
+        }.accentColor(.black)
+    
     }
     
     func deleteBooks(at offsets: IndexSet) {

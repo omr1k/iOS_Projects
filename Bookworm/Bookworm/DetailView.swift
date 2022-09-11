@@ -28,6 +28,10 @@ struct DetailView: View {
                     endPoint: .init(x: 1.00, y: 0.50)
                 ))
                 .edgesIgnoringSafeArea(.all)
+            VStack{
+                Text("")
+                    .frame(width: 0, height: 0, alignment: .center)
+                    .foregroundColor(.clear)
             ScrollView {
                 ZStack(alignment: .bottomTrailing) {
                     Image(book.genre ?? "Fantasy")
@@ -77,6 +81,7 @@ struct DetailView: View {
                     .fontWeight(.bold)
                     .multilineTextAlignment(.center)
                 
+            }
             }
             .navigationTitle(book.title ?? "Unknown Book")
             .navigationBarTitleDisplayMode(.inline)
