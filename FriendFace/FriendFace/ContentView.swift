@@ -32,8 +32,7 @@ struct ContentView: View {
       
           
           VStack{
-              Image(systemName: "person.fill")
-                  .resizable()
+              Text("")
                   .frame(width: 0, height: 0, alignment: .center)
                   .foregroundColor(.clear)
               
