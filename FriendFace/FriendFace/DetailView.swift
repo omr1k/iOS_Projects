@@ -20,7 +20,29 @@ struct DetailView: View {
         Image(systemName: "circle.fill")
             .foregroundColor(userToShow.isActive ? .green : .red)
         
+        
     }
+    
+    
+//    func formatedDate(registeredDate: String) -> String {
+//        let str = registeredDate
+//        let formatter = ISO8601DateFormatter()
+//        formatter.formatOptions = [.withFullDate, .withFullTime, .withTimeZone]
+//        let date = formatter.date(from: str)
+//        var sd = formatter.string(from: Date.now)
+//        return sd
+//
+////        let dateFormatter = DateFormatter()
+////
+////        dateFormatter.dateFormat = "yyyy-MM-dd"
+////
+////        let updatedAtStr = registeredDate
+////        let updatedAt = dateFormatter.date(from: updatedAtStr)
+////        return updatedAtStr
+//    }
+    
+        
+    
 }
 
 //struct DetailView_Previews: PreviewProvider {

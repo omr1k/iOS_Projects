@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26828A7028CE219F0053FD00 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26828A6F28CE219F0053FD00 /* Data.swift */; };
 		26B2788328CD187B003DE534 /* FriendFaceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2788228CD187B003DE534 /* FriendFaceApp.swift */; };
 		26B2788528CD187B003DE534 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B2788428CD187B003DE534 /* ContentView.swift */; };
 		26B2788728CD187C003DE534 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26B2788628CD187C003DE534 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26828A6F28CE219F0053FD00 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		26B2787F28CD187B003DE534 /* FriendFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B2788228CD187B003DE534 /* FriendFaceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendFaceApp.swift; sourceTree = "<group>"; };
 		26B2788428CD187B003DE534 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 				26B2788228CD187B003DE534 /* FriendFaceApp.swift */,
 				26B2788428CD187B003DE534 /* ContentView.swift */,
 				26BB22F628CD92580097DFD7 /* DetailView.swift */,
+				26828A6F28CE219F0053FD00 /* Data.swift */,
 				26BB22F428CD82500097DFD7 /* URLSessionExtension.swift */,
 				26B2788628CD187C003DE534 /* Assets.xcassets */,
 				26B2788828CD187C003DE534 /* Preview Content */,
@@ -144,6 +147,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26BB22F528CD82510097DFD7 /* URLSessionExtension.swift in Sources */,
+				26828A7028CE219F0053FD00 /* Data.swift in Sources */,
 				26BB22F728CD92580097DFD7 /* DetailView.swift in Sources */,
 				26B2788528CD187B003DE534 /* ContentView.swift in Sources */,
 				26B2788328CD187B003DE534 /* FriendFaceApp.swift in Sources */,

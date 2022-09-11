@@ -40,6 +40,9 @@ struct ContentView: View {
             NavigationLink(destination: DetailView(userToShow: item)){
             HStack() {
                 Image(systemName: "person.crop.circle.fill")
+                    .resizable()
+                    .frame(width: 32.0, height: 32.0)
+                Spacer()
                 VStack(alignment: .leading){
                     Text(item.name)
                         .font(.headline)
@@ -48,12 +51,17 @@ struct ContentView: View {
                 Spacer()
                 Image(systemName: "circle.fill")
                     .foregroundColor(item.isActive ? .green : .red)
-                
-            }
+            }.padding(.vertical)
         }
         }
         .task{
-            await loadData()
+            if users.isEmpty{
+                await loadData()
+                
+            }else{
+                print("data are alreadey loded")
+            }
+            
         }
         .navigationTitle("Friend Face")
         }
