@@ -30,13 +30,19 @@ struct ContentView: View {
                   ))
                 .edgesIgnoringSafeArea(.all)
       
+          
+          VStack{
+              Image(systemName: "person.fill")
+                  .resizable()
+                  .frame(width: 0, height: 0, alignment: .center)
+                  .foregroundColor(.clear)
+              
       List(users) { user in
-
         NavigationLink(destination: DetailView(userToShow: user)) {
           HStack {
             Image(systemName: "person.crop.circle.fill")
               .resizable()
-              .frame(width: 32.0, height: 32.0)
+              .frame(width: 40, height: 40)
               
             VStack(alignment: .leading) {
               Text(user.name)
@@ -58,14 +64,17 @@ struct ContentView: View {
 //        .background(Color.clear)
         
       }.task {
+          print("before parsing \(users.count)")
           if let retrievedUsers = await loadData() {
               users = retrievedUsers
+              print("After parsing \(users.count)")
           }
       }
       .onAppear(){
           UITableView.appearance().backgroundColor = UIColor.clear
           UITableViewCell.appearance().backgroundColor = UIColor.clear
       }
+      }// parent vstack end
       
   }// zend
       .preferredColorScheme(.dark)
