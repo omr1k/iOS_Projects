@@ -15,8 +15,24 @@ Like this 👇🏼
   var wrappedName: String {name ?? "Unknown"}
 ```
 
-8) Create “DataController” class (The container name is your CoreDate model name)
+8) Create “DataController” class (The container name is your CoreDate model name)...DataController code below
 
+```swift
+import Foundation
+import CoreData
+
+class DataController: ObservableObject {
+    let container = NSPersistentContainer(name: "{$your_data_modle_name}")
+    
+    init() {
+        container.loadPersistentStores { description, error in
+            if let error = error {
+                print("Error loading data \(error.localizedDescription)")
+            }
+        }
+    }
+}
+```
 9) Initialize the data controller, to do that go to your **“{AppName}App.swift”** file and add following lines
 
 add this line before body 
