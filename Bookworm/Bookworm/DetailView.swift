@@ -19,6 +19,8 @@ struct DetailView: View {
     @Environment(\.dismiss) var dismiss
     @State private var showingDeleteAlert = false
     
+
+    
     var body: some View {
         ZStack{
             Rectangle()

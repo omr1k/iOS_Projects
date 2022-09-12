@@ -19,7 +19,6 @@ struct ContentView: View {
     static let color1 = Color(red: 0/255, green: 209/255, blue: 255/255);
     let gradient = Gradient(colors: [color0, color1]);
     
-    
     var body: some View {
         
         NavigationView {
@@ -49,7 +48,7 @@ struct ContentView: View {
                                 
                                 VStack(alignment: .leading) {
                                     Text(book.title ?? "Unknown Title")
-                                        .font(.headline)
+                                        .font(Font.custom("Gaegu-Bold", size: 30))
                                         .foregroundColor(book.rating < 2 ? .yellow : .black)
                                     Text(book.author ?? "Unknown Author")
                                         .foregroundColor(.secondary)
@@ -85,6 +84,14 @@ struct ContentView: View {
             }
         }.accentColor(.black)
     
+    }
+    init(){
+            for family: String in UIFont.familyNames {
+                print(family)
+                for names: String in UIFont.fontNames(forFamilyName: family) {
+                    print("== \(names)")
+                }
+            }
     }
     
     func deleteBooks(at offsets: IndexSet) {

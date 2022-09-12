@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		260A8F1328CED1FA008C2EA2 /* Gaegu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 260A8F1228CED1FA008C2EA2 /* Gaegu-Bold.ttf */; };
 		261FB72E28C73D16000789D6 /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FB72D28C73D16000789D6 /* AddBookView.swift */; };
 		261FB73028C74492000789D6 /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FB72F28C74492000789D6 /* RatingView.swift */; };
 		261FB73228C74D4E000789D6 /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261FB73128C74D4E000789D6 /* EmojiRatingView.swift */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		260A8F1228CED1FA008C2EA2 /* Gaegu-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gaegu-Bold.ttf"; sourceTree = "<group>"; };
+		260A8F1428CED2D7008C2EA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		261FB72D28C73D16000789D6 /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		261FB72F28C74492000789D6 /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
 		261FB73128C74D4E000789D6 /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 		26F309CE28C5F116001CC7EA /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
+				260A8F1428CED2D7008C2EA2 /* Info.plist */,
 				26F309CF28C5F116001CC7EA /* BookwormApp.swift */,
 				26F309D128C5F116001CC7EA /* ContentView.swift */,
 				261FB72F28C74492000789D6 /* RatingView.swift */,
@@ -73,6 +77,7 @@
 				265DD70C28C7E11B00F1F62B /* DetailView.swift */,
 				26F309E028C5FA7C001CC7EA /* DataController.swift */,
 				265DD70E28C7E86900F1F62B /* NavAppearanceModifier.swift */,
+				260A8F1228CED1FA008C2EA2 /* Gaegu-Bold.ttf */,
 				26F309E228C5FAE1001CC7EA /* Bookworm.xcdatamodeld */,
 				26F309D328C5F118001CC7EA /* Assets.xcassets */,
 				26F309D528C5F118001CC7EA /* Preview Content */,
@@ -147,6 +152,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26F309D728C5F118001CC7EA /* Preview Assets.xcassets in Resources */,
+				260A8F1328CED1FA008C2EA2 /* Gaegu-Bold.ttf in Resources */,
 				26F309D428C5F118001CC7EA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,6 +304,7 @@
 				DEVELOPMENT_TEAM = 2CWZ37P538;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bookworm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -327,6 +334,7 @@
 				DEVELOPMENT_TEAM = 2CWZ37P538;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Bookworm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
