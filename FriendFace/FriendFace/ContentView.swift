@@ -8,103 +8,139 @@
 import SwiftUI
 
 struct ContentView: View {
-  var apiUrl = "https://www.hackingwithswift.com/samples/friendface.json"
-  var api2forTesting = "https://itunes.apple.com/search?term=taylor+swift&entity=song"
-
-  @State private var users = [User]()
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var cachedUsers: FetchedResults<CashedUser>
     
-    static let color0 = Color(red: 240/255, green: 81/255, blue: 56/255);
-    static let color1 = Color(red: 3/255, green: 169/255, blue: 244/255);
-    let gradient = Gradient(colors: [color0, color1]);
+    var apiUrl = "https://www.omarkhattab.tk/json/friendface.json"
+    var api2forTesting = "https://itunes.apple.com/search?term=taylor+swift&entity=song"
+    
+    @State private var users = [User]()
+    
+    static let color0 = Color(red: 240 / 255, green: 81 / 255, blue: 56 / 255)
+    static let color1 = Color(red: 3 / 255, green: 169 / 255, blue: 244 / 255)
+    let gradient = Gradient(colors: [color0, color1])
+    
+    let personCircle = Image(systemName: "person.crop.circle.fill")
 
+
+    
   var body: some View {
-    
-  NavigationView {
-  
-      ZStack{
+    NavigationView {
+        
+      ZStack {
+        
           Rectangle()
-                  .fill(LinearGradient(
-                    gradient: gradient,
-                    startPoint: .init(x: 0.00, y: 0.50),
-                    endPoint: .init(x: 1.00, y: 0.50)
-                  ))
-                .edgesIgnoringSafeArea(.all)
-      
-          
-          VStack{
-              Text("")
-                  .frame(width: 0, height: 0, alignment: .center)
-                  .foregroundColor(.clear)
-              
-      List(users) { user in
-        NavigationLink(destination: DetailView(userToShow: user)) {
-          HStack {
-            Image(systemName: "person.crop.circle.fill")
-              .resizable()
-              .frame(width: 40, height: 40)
-              
-            VStack(alignment: .leading) {
-              Text(user.name)
-                .font(.headline)
-              Text(user.isActive ? "Active" : "Offline")
+          .fill(
+            LinearGradient(
+              gradient: gradient,
+              startPoint: .init(x: 0.00, y: 0.50),
+              endPoint: .init(x: 1.00, y: 0.50)
+            )
+          )
+          .edgesIgnoringSafeArea(.all)
+
+        VStack {
+          Text("")
+            .frame(width: 0, height: 0, alignment: .center)
+            .foregroundColor(.clear)
+
+          List(cachedUsers) { user in
+            NavigationLink(destination: DetailView(userToShow: user)) {
+              HStack {
+                  Image(systemName: "person.crop.circle.fill")
+                  .resizable()
+                  .frame(width: 40, height: 40)
+
+                VStack(alignment: .leading) {
+                    Text(user.wrappedName)
+                    .font(.headline)
+                  Text(user.isActive ? "Active" : "Offline")
                     .foregroundColor(user.isActive ? .green : .secondary)
-            }.padding(.horizontal)
-              Spacer()
-              Image(systemName: "circle.fill")
+                }.padding(.horizontal)
+                Spacer()
+                Image(systemName: "circle.fill")
                   .foregroundColor(user.isActive ? .green : .secondary)
                   .overlay(
                     Circle()
-                        .stroke(Color.secondary, lineWidth: 1)
+                      .stroke(Color.secondary, lineWidth: 1)
                   )
-          }.padding(.vertical)
-        }
-        .listRowBackground(Color.clear)
-//        .listRowSeparator(.hidden)
-//        .background(Color.clear)
-        
-      }.task {
-          print("before parsing \(users.count)")
-          if let retrievedUsers = await loadData() {
-              users = retrievedUsers
-              print("After parsing \(users.count)")
+              }.padding(.vertical)
+            }
+            .listRowBackground(Color.clear)
+            //        .listRowSeparator(.hidden)
+            //        .background(Color.clear)
+
+          }.task {
+            print("before parsing \(users.count)")
+              if users.isEmpty {
+                  if let retrievedUsers = await loadData() {
+                    users = retrievedUsers
+                    print("After parsing \(users.count)")
+                  }
+              }else{
+                  print("alraeady loded data")
+              }
+              await MainActor.run {
+                  for user in users {
+                      let newUser = CashedUser(context: moc)
+                      newUser.name = user.name
+                      newUser.id = user.id
+                      newUser.isActive = user.isActive
+                      newUser.age = Int16(user.age)
+                      newUser.about = user.about
+                      newUser.email = user.email
+                      newUser.address = user.address
+                      newUser.company = user.company
+                      newUser.formattedDate = user.formattedDate
+                      
+                      for friend in user.friends {
+                          let newFriend = CashedFriend(context: moc)
+                          newFriend.id = friend.id
+                          newFriend.name = friend.name
+                          newFriend.user = newUser
+                      }
+                      
+                      try? moc.save()
+                  }
+            
+              }
+          }.scrollContentBackground(.hidden)
+          .onAppear {
+            UITableView.appearance().backgroundColor = UIColor.clear
+            UITableViewCell.appearance().backgroundColor = UIColor.clear
           }
-      }
-      .onAppear(){
-          UITableView.appearance().backgroundColor = UIColor.clear
-          UITableViewCell.appearance().backgroundColor = UIColor.clear
-      }
-      }// parent vstack end
-      
-  }// zend
+        }  // parent vstack end
+
+      }  // zend
       .preferredColorScheme(.dark)
       .navigationTitle("Friend Face")
-      
-  }.accentColor(.black)
+    }.accentColor(.white)
   }
 
   func loadData() async -> [User]? {
     let url = URL(string: "\(apiUrl)")!
-      var request = URLRequest(url: url)
-      request.httpMethod = "GET"
-      request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-      let decoder = JSONDecoder()
-      decoder.dateDecodingStrategy = .iso8601
-      do {
-          let (data, _) = try await URLSession.shared.data(for: request)
-          let decodedData = try decoder.decode([User].self, from: data)
-          return decodedData
-      } catch {
-          print(error)
-      }
-      return nil
+    var request = URLRequest(url: url)
+    request.httpMethod = "GET"
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .iso8601
+    do {
+        let (data, _) = try await URLSession.shared.data(for: request)
+        let decodedData = try decoder.decode([User].self, from: data)
+        return decodedData
+    } catch {
+        print(error.localizedDescription)
+    }
+    return nil
   }
-  
+
 }
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     ContentView()
   }
 }
+
 
 
 

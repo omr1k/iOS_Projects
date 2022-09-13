@@ -8,11 +8,13 @@
 import SwiftUI
 
 struct DetailView: View {
-    var userToShow : User
+    var userToShow : CashedUser
     
     static let color0 = Color(red: 240/255, green: 81/255, blue: 56/255);
     static let color1 = Color(red: 3/255, green: 169/255, blue: 244/255);
     let gradient = Gradient(colors: [color0, color1]);
+    
+
     
     var body: some View {
         ZStack{
@@ -33,7 +35,7 @@ struct DetailView: View {
                 
                 HStack{
                     Spacer()
-                    Text(userToShow.name)
+                    Text(userToShow.wrappedName)
                             .font(.title)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
@@ -45,18 +47,18 @@ struct DetailView: View {
                 
                 List{
                     Section{
-                        Text("Registered: \(userToShow.formattedDate)").fontWeight(.semibold).foregroundColor(.white)
+                        Text("Registered: \(userToShow.wrappedFormattedDate)").fontWeight(.semibold).foregroundColor(.white)
                         Text("Age: \(userToShow.age)").fontWeight(.semibold).foregroundColor(.white)
-                        Text("Email: \(userToShow.email)").fontWeight(.semibold).foregroundColor(.white)
-                        Text("Adress: \(userToShow.address)").fontWeight(.semibold).foregroundColor(.white)
-                        Text("Company: \(userToShow.company)").fontWeight(.semibold).foregroundColor(.white)
+                        Text("Email: \(userToShow.wrappedEmail)").fontWeight(.semibold).foregroundColor(.white)
+                        Text("Adress: \(userToShow.wrappedAddress)").fontWeight(.semibold).foregroundColor(.white)
+                        Text("Company: \(userToShow.wrappedCompany)").fontWeight(.semibold).foregroundColor(.white)
                     } header: {
                         Text("Info")
                             .foregroundColor(.white)
                     }.listRowBackground(Color.clear)
                     
                     Section{
-                        Text(userToShow.about)
+                        Text(userToShow.wrappedAbout)
                             .foregroundColor(.white)
                     } header: {
                         Text("About")
@@ -64,8 +66,8 @@ struct DetailView: View {
                     }.listRowBackground(Color.clear)
                     
                     Section{
-                        ForEach(userToShow.friends){Friend in
-                            Text(Friend.name).foregroundColor(.white)
+                        ForEach(userToShow.friendsArray){ friend in
+                            Text(friend.wrappedName).foregroundColor(.white)
                         }
                     }header: {
                         Text("Friends")
@@ -73,7 +75,8 @@ struct DetailView: View {
                     }
                     .listRowBackground(Color.clear)
                     
-                }.onAppear(){
+                }.scrollContentBackground(.hidden)
+                .onAppear(){
                     UITableView.appearance().backgroundColor = UIColor.clear
                     UITableViewCell.appearance().backgroundColor = UIColor.clear
                 }
@@ -85,6 +88,12 @@ struct DetailView: View {
             .foregroundColor(.black)
             .navigationBarTitleDisplayMode(.inline)
     }
+    
+    
+    
+    
+    
+    
     
     
 //    func formatedDate(registeredDate: String) -> String {
