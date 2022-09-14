@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailView: View {
-    var userToShow : CashedUser
+    let userToShow : CachedUser
     
     static let color0 = Color(red: 240/255, green: 81/255, blue: 56/255);
     static let color1 = Color(red: 3/255, green: 169/255, blue: 244/255);
@@ -88,6 +88,20 @@ struct DetailView: View {
             .foregroundColor(.black)
             .navigationBarTitleDisplayMode(.inline)
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

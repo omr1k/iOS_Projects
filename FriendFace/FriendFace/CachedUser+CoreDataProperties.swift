@@ -1,8 +1,8 @@
 //
-//  CashedUser+CoreDataProperties.swift
+//  CachedUser+CoreDataProperties.swift
 //  FriendFace
 //
-//  Created by Omar Khattab on 12/09/2022.
+//  Created by Omar Khattab on 13/09/2022.
 //
 //
 
@@ -10,24 +10,22 @@ import Foundation
 import CoreData
 
 
-extension CashedUser {
+extension CachedUser {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<CashedUser> {
-        return NSFetchRequest<CashedUser>(entityName: "CashedUser")
+    @nonobjc public class func fetchRequest() -> NSFetchRequest<CachedUser> {
+        return NSFetchRequest<CachedUser>(entityName: "CachedUser")
     }
 
-    @NSManaged public var id: UUID?
-    @NSManaged public var isActive: Bool
-    @NSManaged public var name: String?
+    @NSManaged public var about: String?
+    @NSManaged public var address: String?
     @NSManaged public var age: Int16
     @NSManaged public var company: String?
     @NSManaged public var email: String?
-    @NSManaged public var address: String?
-    @NSManaged public var about: String?
     @NSManaged public var formattedDate: String?
+    @NSManaged public var id: UUID?
+    @NSManaged public var isActive: Bool
+    @NSManaged public var name: String?
     @NSManaged public var friends: NSSet?
-
-    
     
     
     var wrappedName: String {
@@ -58,22 +56,24 @@ extension CashedUser {
             id ?? UUID()
         }
         
-        public var friendsArray: [CashedFriend] {
-            let set = friends as? Set<CashedFriend> ?? []
+        public var friendsArray: [CachedFriend] {
+            let set = friends as? Set<CachedFriend> ?? []
             return set.sorted {
                 $0.wrappedName < $1.wrappedName
             }
         }
+    
+
 }
 
 // MARK: Generated accessors for friends
-extension CashedUser {
+extension CachedUser {
 
     @objc(addFriendsObject:)
-    @NSManaged public func addToFriends(_ value: CashedFriend)
+    @NSManaged public func addToFriends(_ value: CachedFriend)
 
     @objc(removeFriendsObject:)
-    @NSManaged public func removeFromFriends(_ value: CashedFriend)
+    @NSManaged public func removeFromFriends(_ value: CachedFriend)
 
     @objc(addFriends:)
     @NSManaged public func addToFriends(_ values: NSSet)
@@ -83,6 +83,6 @@ extension CashedUser {
 
 }
 
-extension CashedUser : Identifiable {
+extension CachedUser : Identifiable {
 
 }

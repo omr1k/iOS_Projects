@@ -5,11 +5,12 @@
 //  Created by Omar Khattab on 10/09/2022.
 //
 
+import CoreData
 import SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var cachedUsers: FetchedResults<CashedUser>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.isActive)]) var cachedUsers: FetchedResults<CachedUser>
     
     var apiUrl = "https://www.omarkhattab.tk/json/friendface.json"
     var api2forTesting = "https://itunes.apple.com/search?term=taylor+swift&entity=song"
@@ -70,41 +71,8 @@ struct ContentView: View {
             //        .listRowSeparator(.hidden)
             //        .background(Color.clear)
 
-          }.task {
-            print("before parsing \(users.count)")
-              if users.isEmpty {
-                  if let retrievedUsers = await loadData() {
-                    users = retrievedUsers
-                    print("After parsing \(users.count)")
-                  }
-              }else{
-                  print("alraeady loded data")
-              }
-              await MainActor.run {
-                  for user in users {
-                      let newUser = CashedUser(context: moc)
-                      newUser.name = user.name
-                      newUser.id = user.id
-                      newUser.isActive = user.isActive
-                      newUser.age = Int16(user.age)
-                      newUser.about = user.about
-                      newUser.email = user.email
-                      newUser.address = user.address
-                      newUser.company = user.company
-                      newUser.formattedDate = user.formattedDate
-                      
-                      for friend in user.friends {
-                          let newFriend = CashedFriend(context: moc)
-                          newFriend.id = friend.id
-                          newFriend.name = friend.name
-                          newFriend.user = newUser
-                      }
-                      
-                      try? moc.save()
-                  }
-            
-              }
-          }.scrollContentBackground(.hidden)
+          }
+          .scrollContentBackground(.hidden)
           .onAppear {
             UITableView.appearance().backgroundColor = UIColor.clear
             UITableViewCell.appearance().backgroundColor = UIColor.clear
@@ -114,6 +82,40 @@ struct ContentView: View {
       }  // zend
       .preferredColorScheme(.dark)
       .navigationTitle("Friend Face")
+      .task {
+          print("before parsing \(users.count)")
+          
+          if cachedUsers.isEmpty {
+              if let retrievedUsers = await loadData() {
+                  users = retrievedUsers
+                  print(users[0])
+                  print("After parsing \(users.count)")
+              }
+          }
+          await MainActor.run {
+              for user in users {
+                  let newUser = CachedUser(context: moc)
+                  newUser.name = user.name
+                  newUser.id = user.id
+                  newUser.isActive = user.isActive
+                  newUser.age = Int16(user.age)
+                  newUser.about = user.about
+                  newUser.email = user.email
+                  newUser.address = user.address
+                  newUser.company = user.company
+                  newUser.formattedDate = user.formattedDate
+                  
+                  for friend in user.friends {
+                      let newFriend = CachedFriend(context: moc)
+                      newFriend.id = friend.id
+                      newFriend.name = friend.name
+                      newFriend.user = newUser
+                  }
+                  try? moc.save()
+              }
+        
+          }
+      }
     }.accentColor(.white)
   }
 
@@ -133,7 +135,23 @@ struct ContentView: View {
     }
     return nil
   }
+    
+    func delete(entityName: String) {
+        
+        
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: entityName)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        deleteRequest.resultType = .resultTypeObjectIDs
+        let batchDelete = try! moc.execute(deleteRequest) as? NSBatchDeleteResult
+        guard let deleteResult = batchDelete?.result as? [NSManagedObjectID] else { return }
+        let deletedObjects: [AnyHashable: Any] = [NSDeletedObjectsKey: deleteResult]
+        NSManagedObjectContext.mergeChanges(
+            fromRemoteContextSave: deletedObjects,
+            into: [moc]
+        )
+    }
 
+    
 }
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
