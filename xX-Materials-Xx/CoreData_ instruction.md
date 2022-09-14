@@ -44,7 +44,7 @@ add this line before body
 And add this line to the content view inside window Group
 
 ```swift
-  .environment(.managedObjectContext, dataController.container.viewContext)
+  .environment(\.managedObjectContext, dataController.container.viewContext)
 ```
 
 10) Add Environment and FetchRequest to your content view by adding these two lines
