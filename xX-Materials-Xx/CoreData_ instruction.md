@@ -7,7 +7,7 @@
 4) Modify relations if any "add relations, change type(to one or to many)"…this is optional step
 5) Select both entities and from the right side menu change Codegen to “Manual/None”
 6) From editor menu in the toolbar select **“Create NSManagedObject Subclass”**
-7) Create wrapped var for every property in every entity 
+7) Create swiftUI wrapped var for every property in every entity to be able to use them in your content swiftUI view
 Like this 👇🏼
 
 ```swift
