@@ -2,7 +2,7 @@
 //  DetailView.swift
 //  FriendFace
 //
-//  Created by Omar Khattab on 11/09/2022.
+//  Created by Omar Khattab on 17/09/2022.
 //
 
 import SwiftUI
@@ -14,20 +14,18 @@ struct DetailView: View {
     static let color1 = Color(red: 3/255, green: 169/255, blue: 244/255);
     let gradient = Gradient(colors: [color0, color1]);
     
-
-    
     var body: some View {
         ZStack{
             Rectangle()
-                    .fill(LinearGradient(
-                      gradient: gradient,
-                      startPoint: .init(x: 0.00, y: 0.50),
-                      endPoint: .init(x: 1.00, y: 0.50)
-                    ))
-                  .edgesIgnoringSafeArea(.all)
+                .fill(LinearGradient(
+                    gradient: gradient,
+                    startPoint: .init(x: 0.00, y: 0.50),
+                    endPoint: .init(x: 1.00, y: 0.50)
+                ))
+                .edgesIgnoringSafeArea(.all)
             
             VStack{
-            
+                
                 Image(systemName: "person.fill")
                     .resizable()
                     .frame(width: 100, height: 100, alignment: .center)
@@ -36,14 +34,14 @@ struct DetailView: View {
                 HStack{
                     Spacer()
                     Text(userToShow.wrappedName)
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
+                        .font(.title)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
                     Image(systemName: "circle.fill")
                         .foregroundColor(userToShow.isActive ? .green : .secondary)
                     Spacer()
                 }
-            
+                
                 
                 List{
                     Section{
@@ -74,65 +72,16 @@ struct DetailView: View {
                             .foregroundColor(.white)
                     }
                     .listRowBackground(Color.clear)
-                    
                 }.scrollContentBackground(.hidden)
-                .onAppear(){
-                    UITableView.appearance().backgroundColor = UIColor.clear
-                    UITableViewCell.appearance().backgroundColor = UIColor.clear
-                }
             }
         }
         
         
-            .navigationTitle("Details")
-            .foregroundColor(.black)
-            .navigationBarTitleDisplayMode(.inline)
+        .navigationTitle("Details")
+        .foregroundColor(.black)
+        .navigationBarTitleDisplayMode(.inline)
     }
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-//    func formatedDate(registeredDate: String) -> String {
-//        let str = registeredDate
-//        let formatter = ISO8601DateFormatter()
-//        formatter.formatOptions = [.withFullDate, .withFullTime, .withTimeZone]
-//        let date = formatter.date(from: str)
-//        var sd = formatter.string(from: Date.now)
-//        return sd
-//
-////        let dateFormatter = DateFormatter()
-////
-////        dateFormatter.dateFormat = "yyyy-MM-dd"
-////
-////        let updatedAtStr = registeredDate
-////        let updatedAt = dateFormatter.date(from: updatedAtStr)
-////        return updatedAtStr
-//    }
-    
-        
-    
 }
 
-//struct DetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DetailView()
-//    }
-//}

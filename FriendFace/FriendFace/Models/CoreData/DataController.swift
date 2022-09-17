@@ -2,14 +2,14 @@
 //  DataController.swift
 //  FriendFace
 //
-//  Created by Omar Khattab on 12/09/2022.
+//  Created by Omar Khattab on 14/09/2022.
 //
 
 import Foundation
 import CoreData
 
 class DataController: ObservableObject {
-    let container = NSPersistentContainer(name: "CoreDate")
+    let container = NSPersistentContainer(name: "FriendFaceDB")
     
     init() {
         container.loadPersistentStores { description, error in

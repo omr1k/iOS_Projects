@@ -1,11 +1,12 @@
 //
-//  Data.swift
+//  User.swift
 //  FriendFace
 //
-//  Created by Omar Khattab on 11/09/2022.
+//  Created by Omar Khattab on 14/09/2022.
 //
 
 import Foundation
+
 
 struct User: Codable, Identifiable {
     let id: UUID
@@ -23,9 +24,4 @@ struct User: Codable, Identifiable {
     var formattedDate: String {
         registered.formatted(date: .abbreviated, time: .omitted)
     }
-}
-
-struct Friend: Codable, Identifiable {
-    let id: UUID
-    let name: String
 }

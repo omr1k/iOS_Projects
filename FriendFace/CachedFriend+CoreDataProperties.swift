@@ -2,7 +2,7 @@
 //  CachedFriend+CoreDataProperties.swift
 //  FriendFace
 //
-//  Created by Omar Khattab on 13/09/2022.
+//  Created by Omar Khattab on 14/09/2022.
 //
 //
 
@@ -16,13 +16,13 @@ extension CachedFriend {
         return NSFetchRequest<CachedFriend>(entityName: "CachedFriend")
     }
 
-    @NSManaged public var id: UUID?
     @NSManaged public var name: String?
+    @NSManaged public var id: UUID?
     @NSManaged public var user: CachedUser?
 
     var wrappedName: String {
-            name ?? "Unknown"
-        }
+        name ?? "Unknown"
+    }
     
 }
 
