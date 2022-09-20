@@ -56,10 +56,9 @@ struct ImagePicker: UIViewControllerRepresentable {
 
 
 // Usage
-// ImagePicker(image: $inputImage)
-
-
-
+//    .sheet(isPresented: $showingImagePicker){
+//        ImagePicker(image: $inputImage)
+//    }
 
 
 
