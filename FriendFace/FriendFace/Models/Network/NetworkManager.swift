@@ -8,7 +8,7 @@
 import Foundation
 
 struct NetworkManager {
-    var apiUrl = "https://www.omarkhattab.tk/json/friendface.json"
+    var apiUrl = "https://www.omarkhattab.tk/json/friendface2.json"
     
     func getUsers() async -> [User]? {
         let url = URL(string: "\(apiUrl)")!

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.isActive)]) var cachedUsers: FetchedResults<CachedUser>
+    @FetchRequest(sortDescriptors: []) var cachedUsers: FetchedResults<CachedUser>
     
     @State private var users = [User]()
     
@@ -58,10 +58,11 @@ struct ContentView: View {
                         }.listRowBackground(Color.clear)
                     }
                     .scrollContentBackground(.hidden)
-                    .refreshable {users = await NetworkManager().getUsers()!}
+                    .refreshable { guard let users = await NetworkManager().getUsers() else {return} }
                     .task {
                         print("bfore \(users.count)")
-                        users = await NetworkManager().getUsers()!
+                        
+                        guard let users = await NetworkManager().getUsers() else {return}
                         print("after\(users.count)")
                         
                         delete(entityName1: "CachedFriend", entityName2: "CachedUser")
