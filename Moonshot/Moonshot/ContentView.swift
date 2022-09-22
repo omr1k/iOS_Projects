@@ -17,35 +17,23 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            
             ZStack{
                 if toggleView {
-                    
                     ListView()
                 } else {
-                    
                     NativeGridView()
                 }
             }
             .transition(.identity)
             .animation(Animation.easeInOut(duration: 0.5), value: toggleView)
-//            .animation(.easeInOut)
-          
-            
-            
             .navigationTitle("Moonshot")
             .background(.darkBackground)
             .preferredColorScheme(.dark)
-            
             .toolbar {
                 Button(toggleView ? "\(toggleButtontext) Grid View" : "\(toggleButtontext) List View") {
                             toggleView.toggle()
                     }
-                
-                ToolbarItem{
-                    Toggle("Any special requests?", isOn: $toggleView)
-                }
-                
+
             }
             
         }
