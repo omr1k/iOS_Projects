@@ -13,6 +13,7 @@ struct FilteredList: View {
     var body: some View {
         List(fetchRequest, id: \.self) { singer in
             Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
+                
         }
     }
     

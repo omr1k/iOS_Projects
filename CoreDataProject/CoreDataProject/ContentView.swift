@@ -19,32 +19,36 @@ struct ContentView: View {
     var attributeNames = ["firstName","lastName"]
     var filterTypes = ["BEGINSWITH","CONTAINS[c]"]
     
-
+    static let color0 = Color(red: 233/255, green: 69/255, blue: 96/255);
+    
+    static let color1 = Color(red: 39/255, green: 55/255, blue: 96/255);
+    
+    
+    let gradient = Gradient(colors: [color0, color1]);
     var body: some View {
+  
         VStack {
             // list of matching singers
-
             FilteredList(attributeName: attributeName, filterType: filterType, attributeValue: attributeValue,
                          sortDescriptors: [SortDescriptor(\.firstName)])
-            
             HStack{
-            Button("Add Examples") {
-                let taylor = Singer(context: moc)
-                taylor.firstName = "Taylor"
-                taylor.lastName = "Swift"
-
-                let ed = Singer(context: moc)
-                ed.firstName = "Ed"
-                ed.lastName = "Sheeran"
-
-                let adele = Singer(context: moc)
-                adele.firstName = "Adele"
-                adele.lastName = "Adkins"
-
-                if moc.hasChanges{
-                try? moc.save()
+                Button("Add Examples") {
+                    let taylor = Singer(context: moc)
+                    taylor.firstName = "Taylor"
+                    taylor.lastName = "Swift"
+                    
+                    let ed = Singer(context: moc)
+                    ed.firstName = "Ed"
+                    ed.lastName = "Sheeran"
+                    
+                    let adele = Singer(context: moc)
+                    adele.firstName = "Adele"
+                    adele.lastName = "Adkins"
+                    
+                    if moc.hasChanges{
+                        try? moc.save()
+                    }
                 }
-            }
                 
                 Spacer()
                 Button("Delete Examples"){
@@ -71,12 +75,15 @@ struct ContentView: View {
                     }
                 }.pickerStyle(.menu)
             }.padding(.horizontal)
-            
-            
-            
             TextField("Enter Filter Value",text: $attributeValue)
                 .padding()
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10, style: .circular).stroke(Color(uiColor: .tertiaryLabel), lineWidth: 1)
+                )
+                .padding()
+            
         }
+    
     }
     
     func delete(entityName: String) {
@@ -92,45 +99,6 @@ struct ContentView: View {
             fromRemoteContextSave: deletedObjects,
             into: [moc]
         )
-        
-        
-        
-        
-//
-//        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "Singer")
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//
-//        deleteRequest.resultType = .resultTypeObjectIDs
-//        let result = try! moc.execute(deleteRequest) as! NSBatchDeleteRequest
-//        let chenges: [AnyHashable: Any] = [
-//            NSDeletedObjectsKey: result.result as! [NSManagedObjectID]
-//        ]
-//        try moc.mergeChanges(fromContextDidSave: chenges, into:[moc])
-//
-//        do {
-////                        try DataController.execute(deleteRequest, with: moc)
-//            try moc.execute(deleteRequest)
-//            try moc.save()
-//
-//
-//        } catch let error as NSError {
-//            print (error.localizedDescription)
-//        }
-//
-//
-        
-        
-//
-//        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-//        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-//        do {
-//            try moc.execute(deleteRequest)
-//            try moc.save()
-//        } catch let error as NSError {
-//            debugPrint(error.localizedDescription)
-//        }
-
-        
     }
 }
 
