@@ -144,8 +144,8 @@ struct ContentView: View {
         Text("Worng Answers: \(worngAnswers)")
           .font(.title.bold())
 
-        Text("Counter: \(counterX)")
-          .font(.title.bold())
+//        Text("Counter: \(counterX)")
+//          .font(.title.bold())
 
       }.padding()
     }
