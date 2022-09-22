@@ -7,8 +7,10 @@
 # Moonshoot app
 An app showing all NASA Apollo missions with information and logos
 
-<img src="xX-Materials-Xx/readmeScreenShots/Moonshot.png" height="585" width="270" alt="swift logo"  />
-
+<div align="center">
+<img src="xX-Materials-Xx/readmeScreenShots/Moonshot.png" height="585" width="270" alt="swift logo"/>
+<img src="xX-Materials-Xx/readmeScreenShots/Moonshot2.png" height="585" width="270" alt="swift logo"/>
+</div>
 # Core Data app
 An app implement CoreData and using sorting from fetch request techniques
 
