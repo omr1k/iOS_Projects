@@ -10,7 +10,8 @@ import SwiftUI
 
 struct ContentView: View {
 
-    @State var toggleView = false
+    @State private var toggleView = false
+    @State private var toggleButtontext = "Switch to"
     @State private var scale = 1.0
     
 
@@ -19,9 +20,11 @@ struct ContentView: View {
             
             ZStack{
                 if toggleView {
-                    NativeGridView()
-                } else {
+                    
                     ListView()
+                } else {
+                    
+                    NativeGridView()
                 }
             }
             .transition(.identity)
@@ -35,17 +38,18 @@ struct ContentView: View {
             .preferredColorScheme(.dark)
             
             .toolbar {
-                    Button("Change View") {
-
+                Button(toggleView ? "\(toggleButtontext) Grid View" : "\(toggleButtontext) List View") {
                             toggleView.toggle()
-                              
-                        
                     }
+                
+                ToolbarItem{
+                    Toggle("Any special requests?", isOn: $toggleView)
+                }
                 
             }
             
         }
-        
+        .accentColor(Color.white)
     }
 }
 
