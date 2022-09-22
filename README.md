@@ -16,7 +16,7 @@ An app showing all NASA Apollo missions with information and logos
 
 # Core Data app
 An app implement CoreData and using sorting from fetch request techniques
-<div align="left">
+<div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/CD.png" height="585" width="270" alt="swift logo"  />
 <img src="xX-Materials-Xx/readmeScreenShots/CD2.png" height="585" width="270" alt="swift logo"  />
 </div>
@@ -34,7 +34,7 @@ Write a quick book review through this app...all the data saved using CoreData
 # FriendFace app
 Fetch data from the Internet using URLsession then cached it within the app using CoreData 
 
-<div align="left">
+<div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/FF1.png" height="585" width="270" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/FF2.png" height="585" width="270" alt="swift logo"/>
 </div>
@@ -42,7 +42,7 @@ Fetch data from the Internet using URLsession then cached it within the app usin
 # Habit Tracking app
 Track your habits with this app and how many days you did this habits...all data saved using user defaults
 
-<div align="left">
+<div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/HT1.png" height="585" width="270" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/HT2.png" height="585" width="270" alt="swift logo"/>
 </div>
