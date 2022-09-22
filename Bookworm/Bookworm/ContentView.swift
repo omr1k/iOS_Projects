@@ -44,11 +44,9 @@ struct ContentView: View {
                             HStack {
                                 EmojiRatingView(rating: book.rating)
                                     .font(.largeTitle)
-                                    
-                                
                                 VStack(alignment: .leading) {
                                     Text(book.title ?? "Unknown Title")
-                                        .font(Font.custom("Gaegu-Bold", size: 30))
+//                                        .font(Font.custom("Gaegu-Bold", size: 30))
                                         .foregroundColor(book.rating < 2 ? .yellow : .black)
                                     Text(book.author ?? "Unknown Author")
                                         .foregroundColor(.secondary)
@@ -58,7 +56,9 @@ struct ContentView: View {
                     }.onDelete(perform: deleteBooks)
                         .listRowBackground(Color.clear)
 //                        .listRowSeparator(.hidden)
-                }.onAppear(){
+                }
+                .scrollContentBackground(.hidden)
+                .onAppear(){
                     UITableView.appearance().backgroundColor = UIColor.clear
                     UITableViewCell.appearance().backgroundColor = UIColor.clear
                 }
