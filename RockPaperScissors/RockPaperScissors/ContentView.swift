@@ -50,7 +50,8 @@ struct ContentView: View {
           
           VStack{
               Text("Rock Paper Scissors Game")
-                  .font(.system(.largeTitle, design: .rounded)).foregroundColor(.white)
+                  .padding()
+                  .font(.system(.headline, design: .rounded)).foregroundColor(.white)
               
           
           
