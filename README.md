@@ -8,7 +8,7 @@
 📫 Reach me on **omr11kk@gmail.com**
 
 </p>
-<img src="xX-Materials-Xx/readmeScreenShots/RPS.png" height="200" width="100" alt="swift logo"  />
+<img src="xX-Materials-Xx/readmeScreenShots/RPS.png" height="500" width="200" alt="swift logo"  />
 <h3 align="left">Languages and Tools:</h3>
 <div align="center">
     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swift/swift-original.svg" height="40" width="52" alt="swift logo"  />
