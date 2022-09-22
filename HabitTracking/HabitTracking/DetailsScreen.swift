@@ -11,56 +11,67 @@ struct DetailsScreen: View {
     
     @Binding var habit: HabitItem
     
+    static let color0 = Color(red: 197/255, green: 0/255, blue: 255/255);
+    static let color1 = Color(red: 0/255, green: 128/255, blue: 100/255);
+    let gradient = Gradient(colors: [color0, color1]);
     
     var body: some View {
         NavigationView{
-            VStack{
-                HStack{
-                Text(habit.title)
-                    .font(.title)
-                    .fontWeight(.bold)
-                    
-                    Spacer()
-                    
-                    Text("\(habit.compCount)")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                }
-                .padding()
+            ZStack{
+                Rectangle()
+                    .fill(LinearGradient(
+                        gradient: gradient,
+                        startPoint: .init(x: 0.00, y: 0.50),
+                        endPoint: .init(x: 1.00, y: 0.50)
+                    ))
+                    .edgesIgnoringSafeArea(.all)
                 VStack{
-                    Text("\(habit.title) Description")
-                        .foregroundStyle(.secondary)
-                        .font(.subheadline.weight(.heavy))
-                        .padding()
-                        
-                    
-                    
-                    VStack{
-                        Text(habit.description)
-                            .font(.body)
+                    HStack{
+                        Text(habit.title)
+                            .font(.title)
                             .fontWeight(.bold)
-                            .foregroundColor(.white)
+            
                         Spacer()
+                        
+                        Text("\(habit.compCount)")
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
                     }
-                    .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .leading)
                     .padding()
-                    .background(Color(0x0F3460))
-                    .clipShape(RoundedRectangle(cornerRadius: 25))
+                    ZStack{
+                        Rectangle()
+                            .fill(.ultraThinMaterial)
+                            .edgesIgnoringSafeArea(.all)
+                            .clipShape(RoundedRectangle(cornerRadius: 50))
+                        VStack{
+                            Text("\(habit.title) Description")
+                                .foregroundStyle(.secondary)
+                                .font(.subheadline.weight(.heavy))
+                                .padding()
+                            Spacer()
+                            ScrollView{
+                            VStack(){
+                                Text(habit.description)
+                                    .font(.body)
+                                    .fontWeight(.bold)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                Spacer()
+                            }.padding()
+                        }
+
+                        }
+
+                    }.padding(.horizontal)
+                    Button("Mark Completed"){
+                        self.habit.incrementAmount()
+                    }
+                    .buttonStyle(RoundedRectangleWithShadowedLabelButtonStyle())
+                    .padding()
                 }
-                .frame(maxWidth: .infinity,maxHeight: .infinity)
-                .padding()
-                .background(Color(0xE94560))
-                .clipShape(RoundedRectangle(cornerRadius: 25))
-        
-                Button("Mark Completed"){
-                    self.habit.incrementAmount()
-                }
-                .buttonStyle(RoundedRectangleWithShadowedLabelButtonStyle())
-                .padding()
+                Spacer()
             }
-            Spacer()
         }
-        .padding()
         .navigationTitle(habit.title)
         .navigationBarTitleDisplayMode(.inline)
     }
@@ -88,15 +99,15 @@ struct RoundedRectangleWithShadowedLabelButtonStyle: ButtonStyle {
 
 
 public extension Color {
-  init(_ hex: UInt, alpha: Double = 1) {
-    self.init(
-      .sRGB,
-      red: Double((hex >> 16) & 0xFF) / 255,
-      green: Double((hex >> 8) & 0xFF) / 255,
-      blue: Double(hex & 0xFF) / 255,
-      opacity: alpha
-    )
-  }
+    init(_ hex: UInt, alpha: Double = 1) {
+        self.init(
+            .sRGB,
+            red: Double((hex >> 16) & 0xFF) / 255,
+            green: Double((hex >> 8) & 0xFF) / 255,
+            blue: Double(hex & 0xFF) / 255,
+            opacity: alpha
+        )
+    }
 }
 
 
@@ -207,3 +218,32 @@ public extension Color {
 //                var count = habitsInDetailsScreen.items[index].compCount
 //                count+=1
 //                habitsInDetailsScreen.items[index].compCount = count
+
+
+
+
+
+
+
+
+//
+//                            ZStack{
+//                                Rectangle()
+//                                    .fill(.ultraThinMaterial)
+//                                    .edgesIgnoringSafeArea(.all)
+//                                    .clipShape(RoundedRectangle(cornerRadius: 50))
+//
+//                                Text(habit.description)
+//                                    .font(.body)
+//                                    .fontWeight(.bold)
+//                                    .foregroundColor(.white)
+//                                Spacer()
+//                            }.padding()
+//                            .frame(maxWidth: .infinity,maxHeight: .infinity,alignment: .leading)
+//                            .padding()
+//                            .background(Color(0x0F3460))
+//                            .clipShape(RoundedRectangle(cornerRadius: 25))
+//                    .frame(maxWidth: .infinity,maxHeight: .infinity)
+//                    .padding()
+//                    .background(.secondary)
+//                    .clipShape(RoundedRectangle(cornerRadius: 25))

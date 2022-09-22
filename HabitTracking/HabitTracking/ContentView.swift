@@ -14,13 +14,25 @@ struct ContentView: View {
     
     //@StateObject var HabitsObject = Habits()
     
+    static let color0 = Color(red: 197/255, green: 0/255, blue: 255/255);
+    static let color1 = Color(red: 0/255, green: 128/255, blue: 100/255);
+    let gradient = Gradient(colors: [color0, color1]);
+    
     var body: some View {
         NavigationView {
             
+            ZStack{
+                Rectangle()
+                    .fill(LinearGradient(
+                        gradient: gradient,
+                        startPoint: .init(x: 0.00, y: 0.50),
+                        endPoint: .init(x: 1.00, y: 0.50)
+                    ))
+                    .edgesIgnoringSafeArea(.all)
             List {
                 ForEach(0..<habits.items.count, id: \.self) { index in
                     NavigationLink(destination: DetailsScreen(habit: self.$habits.items[index])) {
-                        HStack{
+                            HStack{
                                 Text(habits.items[index].title)
                                     .fontWeight(.semibold)
                                     .lineLimit(2)
@@ -30,20 +42,23 @@ struct ContentView: View {
                                     .fontWeight(.semibold)
                                     .lineLimit(2)
                                     .minimumScaleFactor(0.5)
-                            
+                                
                             }
-                            .padding(40)
-                            .frame(maxWidth: .infinity)
-                            .background(.thinMaterial)
-                            .background(Color(0xE94560))
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                        
+                        .padding(40)
+                        .frame(maxWidth: .infinity)
+                        .background(.ultraThinMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 15))
                     } // link end
                 } // foreach end
                 .onDelete(perform: reomveItem)
+                .listRowBackground(Color.clear)
             }// list end
-            
+            .scrollContentBackground(.hidden)
+        }
             
             .navigationTitle("Habit Tracking")
+            .preferredColorScheme(.dark)
             .navigationBarItems(
                 trailing:
                     Button(action: {
@@ -58,10 +73,13 @@ struct ContentView: View {
             }
             
         }
+        .accentColor(.white)
     }
+    
     func reomveItem(at offsets: IndexSet) {
         habits.items.remove(atOffsets: offsets)
     }
+    
 }
 
 
