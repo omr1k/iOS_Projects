@@ -20,7 +20,11 @@ An app implement CoreData and using sorting from fetch request techniques
 <img src="xX-Materials-Xx/readmeScreenShots/CD2.png" height="585" width="270" alt="swift logo"  />
 </div>
 
-# Core Data app
-An app implement CoreData and using sorting from fetch request techniques
+# Bookworm app
+Write a quick book review through this app..all the data saved using CoreData
 
-<img src="xX-Materials-Xx/readmeScreenShots/CD.png" height="585" width="270" alt="swift logo"  />
+<div align="left">
+<img src="xX-Materials-Xx/readmeScreenShots/BW1.png" height="585" width="270" alt="swift logo"/>
+<img src="xX-Materials-Xx/readmeScreenShots/BW2.png" height="585" width="270" alt="swift logo"/>
+<img src="xX-Materials-Xx/readmeScreenShots/BW3.png" height="585" width="270" alt="swift logo"/>
+</div>
