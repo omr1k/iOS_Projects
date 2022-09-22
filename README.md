@@ -1,13 +1,9 @@
-# Simple Rock Paper Scissors Game and Geuss the Flag Game
+# Rock Paper Scissors Game and Geuss the Flag Game
 
-<div align="left">
+<div align="Center">
 <img src="xX-Materials-Xx/readmeScreenShots/RPS.png" height="585" width="270" alt="swift logo"  />
-<h2>kfjgkdjgfkjg</h2>
 <img src="xX-Materials-Xx/readmeScreenShots/GTF.png" height="585" width="270" alt="swift logo"  />
 </div>
-
-# Simple Geuss the Flag Game
-<img src="xX-Materials-Xx/readmeScreenShots/GTF.png" height="585" width="270" alt="swift logo"  />
 
 # Moonshoot app
 An app showing all NASA Apollo missions with information and logos
