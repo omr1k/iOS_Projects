@@ -15,9 +15,10 @@ An app showing all NASA Apollo missions with information and logos
 
 # Core Data app
 An app implement CoreData and using sorting from fetch request techniques
-
+<div align="left">
 <img src="xX-Materials-Xx/readmeScreenShots/CD.png" height="585" width="270" alt="swift logo"  />
-
+<img src="xX-Materials-Xx/readmeScreenShots/CD2.png" height="585" width="270" alt="swift logo"  />
+</div>
 
 # Core Data app
 An app implement CoreData and using sorting from fetch request techniques
