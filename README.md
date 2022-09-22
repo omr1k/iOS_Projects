@@ -53,5 +53,4 @@ In this app I used CoreImage to apply diffrent filters to an image and also impl
 <img src="xX-Materials-Xx/readmeScreenShots/F1.png" height="585" width="270" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/F2.png" height="585" width="270" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/F3.png" height="585" width="270" alt="swift logo"/>
-<img src="xX-Materials-Xx/readmeScreenShots/F4.png" height="585" width="270" alt="swift logo"/>
 </div>
