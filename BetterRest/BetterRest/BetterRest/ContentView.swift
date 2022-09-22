@@ -26,68 +26,59 @@ struct ContentView: View {
             components.minute = 0
             return Calendar.current.date(from: components) ?? Date.now
         }
-        
+    
+    
+   
     var body: some View {
         
         NavigationView{
-    
+           
+                
+            
             VStack{
                 Text("\(alertStatment)").font(.title2).multilineTextAlignment(.center)
                 Text("\(calculateBedtime())").font(.largeTitle).multilineTextAlignment(.center)
-
                 Form{
                     Section{
                         Text("When do you want to wake up?")
-                                    .font(.headline)
+                            .font(.headline)
                         DatePicker("Please enter a time", selection: $wakeUp,displayedComponents: .hourAndMinute)
                             .labelsHidden()
                     }
-                    
                     Section{
                         Text("Desired amount of sleep")
                             .font(.headline)
-                    Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in:4...12,step: 0.25)
+                        Stepper("\(sleepAmount.formatted()) hours", value: $sleepAmount, in:4...12,step: 0.25)
                     }
-                    
                     Section{
                         Text("Daily coffee intake")
                             .font(.headline)
-//                    Stepper(coffeeAmount == 1 ? "1 cup" : "\(coffeeAmount) cups", value: $coffeeAmount, in: 1...20)
-                        
                         Picker("Daily coffee intake", selection: $coffeeAmount) {
-                                ForEach(1 ..< 21) {
-                                    
-                                    if $0 == 1{
-                                        Text("1 Cup")
-                                    }else{
-                                        Text("\($0) Cups")
-                                    }
-                                    
-//                                    Text("\($0) cups")
+                            ForEach(1 ..< 21) {
+                                
+                                if $0 == 1{
+                                    Text("1 Cup")
+                                }else{
+                                    Text("\($0) Cups")
                                 }
+                            }
                         }.pickerStyle(.wheel)
                         
                     }
                     
-                        
+                    
                 } // forme end
-            } .navigationTitle("Better Rest")//vstack end
-//                .toolbar {
-//                    Button("Calculate", action: calculateBedtime)
-//                }
             
+        }.navigationTitle("Better Rest")//vstack end
                 .alert(alertTitle, isPresented: $showingAlert) {
                     Button("OK") { }
                 } message: {
                     Text(alertMessage)
                 }
         } //nav end
-           
     }
     
     func getFinalUserMsg() -> String {
-//            let model = BetterRestML()
-                
             let components = Calendar.current.dateComponents([.hour, .minute], from: wakeUp)
             let hour = (components.hour ?? 0) * 60 * 60
             let minute = (components.minute ?? 0) * 60
