@@ -1,7 +1,7 @@
 # Rock Paper Scissors Game and Geuss the Flag Game
 
 <div align="Center">
-<img src="xX-Materials-Xx/readmeScreenShots/RPS.png" height="157" width="108" alt="swift logo"  />
+<img src="xX-Materials-Xx/readmeScreenShots/RPS.png" height="108" width="157" alt="swift logo"  />
 <img src="xX-Materials-Xx/readmeScreenShots/GTF.png" height="585" width="270" alt="swift logo"  />
 </div>
 
