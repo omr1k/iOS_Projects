@@ -11,7 +11,7 @@
 # Moonshoot app
 An app showing all NASA Apollo missions with information and logos, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Moonshot)
 
-<div align="left">
+<div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/Moonshot.png" height="466" width="250" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/Moonshot2.png" height="466" width="250" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/Moonshot3.png" height="466" width="250" alt="swift logo"/>
@@ -28,7 +28,7 @@ An app implement CoreData and using sorting from fetch request techniques, [Chec
 # Bookworm app
 Write a quick book review through this app...all the data saved using CoreData, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Bookworm)
 
-<div align="left">
+<div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/BW1.png" height="466" width="250" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/BW2.png" height="466" width="250" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/BW3.png" height="466" width="250" alt="swift logo"/>
@@ -54,7 +54,7 @@ Track your habits with this app and how many days you did this habits...all data
 # Filter app
 In this app I used CoreImage to apply diffrent filters to an image and also implment uiviewcontrollerrepresentable to wrap PHPhotoPicker to use it within swiftUI, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Instafilter) 
 
-<div align="left">
+<div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/F1.png" height="466" width="250" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/F2.png" height="466" width="250" alt="swift logo"/>
 <img src="xX-Materials-Xx/readmeScreenShots/F3.png" height="466" width="250" alt="swift logo"/>
