@@ -11,9 +11,10 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject private var viewModel = ViewModel()
-
     
     var body: some View {
+        
+        if viewModel.isUnlocked {
         ZStack {
             Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
                 MapAnnotation(coordinate: location.coordinate){
@@ -48,20 +49,34 @@ struct ContentView: View {
                         viewModel.addLocation()
                     } label: {
                         Image(systemName: "plus")
+                            .padding()
+                            .background(.black.opacity(0.75))
+                            .foregroundColor(.white)
+                            .font(.title)
+                            .clipShape(Circle())
+                            .padding(.trailing)
                     }
-                    .padding()
-                    .background(.black.opacity(0.75))
-                    .foregroundColor(.white)
-                    .font(.title)
-                    .clipShape(Circle())
-                    .padding(.trailing)
                 }
             }
-            
-        }.sheet(item: $viewModel.selectedPlace) { place in
+        } // zstack end
+        .sheet(item: $viewModel.selectedPlace) { place in
             EditView(location: place) {
                 viewModel.update(location: $0)
             }
+        }
+        .alert("No Biometrecs", isPresented: $viewModel.noBiometricsError) {
+                   Button("Use Passcode", role: .cancel) { }
+               }
+            
+    } else {
+            Button("Unlock Places") {
+                viewModel.authenticate()
+                
+            }
+            .padding()
+            .background(.blue)
+            .foregroundColor(.white)
+            .clipShape(Capsule())
         }
     }
 }

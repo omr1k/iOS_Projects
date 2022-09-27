@@ -6,6 +6,7 @@
 //
 
 import MapKit
+import LocalAuthentication
 import Foundation
 
 extension ContentView {
@@ -16,6 +17,9 @@ extension ContentView {
         
         @Published private(set) var locations : [Location]
         @Published var selectedPlace: Location?
+        @Published var isUnlocked = false
+        @Published var noBiometricsError = false
+
      
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
 
@@ -53,6 +57,30 @@ extension ContentView {
             }
         }
         
+        func authenticate() {
+            let context = LAContext()
+            var error: NSError?
+            
+            if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
+                let reason = "Please authenticate yourself to unlock your places."
+                
+                context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
+                    if success {
+                        Task { @MainActor in
+                                self.isUnlocked = true
+                            }
+                    } else {
+                        Task { @MainActor in
+                                self.noBiometricsError = true
+                            }
+                    }
+                }
+            } else {
+                Task { @MainActor in
+                        self.noBiometricsError = true
+                    }
+            }
+        } // authenticate method end
         
     }
 }
