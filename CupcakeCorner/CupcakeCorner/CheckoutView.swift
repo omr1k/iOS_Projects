@@ -27,6 +27,7 @@ struct CheckoutView: View {
                     ProgressView()
                 }
                 .frame(height: 250)
+                .accessibilityElement() // .accessibilityElement(children: .ignore) defult value is ignoring children
 
                 Text("Your total is \(OrderClass.orderInit.cost, format: .currency(code: "USD"))")
                     .font(.title)
