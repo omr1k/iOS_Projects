@@ -49,6 +49,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26C2AAE528EC6A2600989801 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				26F309D128C5F116001CC7EA /* ContentView.swift */,
+				261FB72D28C73D16000789D6 /* AddBookView.swift */,
+				265DD70C28C7E11B00F1F62B /* DetailView.swift */,
+				261FB72F28C74492000789D6 /* RatingView.swift */,
+				261FB73128C74D4E000789D6 /* EmojiRatingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		26C2AAE628EC6A4900989801 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				265DD70E28C7E86900F1F62B /* NavAppearanceModifier.swift */,
+				26F309E028C5FA7C001CC7EA /* DataController.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		26F309C328C5F116001CC7EA = {
 			isa = PBXGroup;
 			children = (
@@ -68,15 +89,10 @@
 		26F309CE28C5F116001CC7EA /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
-				260A8F1428CED2D7008C2EA2 /* Info.plist */,
 				26F309CF28C5F116001CC7EA /* BookwormApp.swift */,
-				26F309D128C5F116001CC7EA /* ContentView.swift */,
-				261FB72F28C74492000789D6 /* RatingView.swift */,
-				261FB73128C74D4E000789D6 /* EmojiRatingView.swift */,
-				261FB72D28C73D16000789D6 /* AddBookView.swift */,
-				265DD70C28C7E11B00F1F62B /* DetailView.swift */,
-				26F309E028C5FA7C001CC7EA /* DataController.swift */,
-				265DD70E28C7E86900F1F62B /* NavAppearanceModifier.swift */,
+				26C2AAE528EC6A2600989801 /* Views */,
+				26C2AAE628EC6A4900989801 /* Utils */,
+				260A8F1428CED2D7008C2EA2 /* Info.plist */,
 				260A8F1228CED1FA008C2EA2 /* Gaegu-Bold.ttf */,
 				26F309E228C5FAE1001CC7EA /* Bookworm.xcdatamodeld */,
 				26F309D328C5F118001CC7EA /* Assets.xcassets */,
