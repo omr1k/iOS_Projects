@@ -31,6 +31,9 @@ struct ContentView: View {
                           Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "zh-Hant-HK"))
                             .foregroundColor(item.amount < 10 ? .red : item.amount > 100 ? .blue : .orange)
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("\(item.name) \(item.amount)")
+                        .accessibilityHint(item.type)
                       }
                       .onDelete(perform: removeBusinessItems)
                     }
@@ -42,36 +45,20 @@ struct ContentView: View {
                             Text(item.name).font(.headline)
                             Text(item.type)
                           }
-
                           Spacer()
                           // Challenges 1 and 2, format and conditional coloring
                           Text(item.amount, format: .currency(code: Locale.current.currencyCode ?? "zh-Hant-HK"))
                             .foregroundColor(item.amount < 10 ? .red : item.amount > 100 ? .blue : .orange)
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("\(item.name) \(item.amount)")
+                        .accessibilityHint(item.type)
+
                       }
                       .onDelete(perform: removePersonalItems)
                     }
-
-                    
                } // list end
-                
-//                List{
-//                    ForEach(expenses.items) { item in
-//
-//                            HStack {
-//                                VStack(alignment: .leading) {
-//                                    Text(item.name)
-//                                        .font(.headline)
-//                                    Text(item.type)
-//                                }
-//                                Spacer()
-//                                Text(item.amount, format: .currency(code: "\(item.currency)"))
-//                                    .foregroundColor(item.amount < 10 ? .green : item.amount < 100 ? .yellow : .red)
-//                            }
-//
-//                    }.onDelete(perform: reomveItem)// foreach end
-//               } // list end
-//
+
             .navigationTitle("iExpense")
             .toolbar{
                 Button{
@@ -87,12 +74,6 @@ struct ContentView: View {
             }
         }
     }
-    
-    
-    
-//    func reomveItem(at offsets:IndexSet){
-//        expenses.items.remove(atOffsets: offsets)
-//    }
     
     func removePersonalItems(at offsets: IndexSet) {
 
@@ -133,3 +114,33 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+
+
+
+
+
+//                List{
+//                    ForEach(expenses.items) { item in
+//
+//                            HStack {
+//                                VStack(alignment: .leading) {
+//                                    Text(item.name)
+//                                        .font(.headline)
+//                                    Text(item.type)
+//                                }
+//                                Spacer()
+//                                Text(item.amount, format: .currency(code: "\(item.currency)"))
+//                                    .foregroundColor(item.amount < 10 ? .green : item.amount < 100 ? .yellow : .red)
+//                            }
+//
+//                    }.onDelete(perform: reomveItem)// foreach end
+//               } // list end
+//
+
+
+//    func reomveItem(at offsets:IndexSet){
+//        expenses.items.remove(atOffsets: offsets)
+//    }
+    
