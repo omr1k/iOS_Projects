@@ -10,32 +10,25 @@ import SwiftUI
 struct EditView: View {
     
     @Environment(\.dismiss) var dismiss
-    
-    var location: Location
     var onSave: (Location) -> Void
+    var location: Location
+ 
+  
     
-    @State private var name: String
-    @State private var description: String
-    @State private var loadingState = LoadingState.loading
-    
-    @State private var pages = [Page]()
-    
-    enum LoadingState {
-        case loading, loaded, failed
-    }
+    @StateObject private var EditViewViewModel = EditViewViewModel()
     
     var body: some View {
         NavigationView {
-            Form {
+            Form(content: {
                 Section {
-                    TextField("Place name", text: $name)
-                    TextField("Description", text: $description)
+                    TextField("Place name", text: $EditViewViewModel.name)
+                    TextField("Description", text: $EditViewViewModel.description)
                 }
                 
                 Section("Nearby…") {
-                    switch loadingState {
+                    switch $EditViewViewModel.loadingState {
                     case .loaded:
-                        ForEach(pages, id: \.pageid) { page in
+                        ForEach($EditViewViewModel.pages, id: \.pageid) { page in
                             Text(page.title)
                                 .font(.headline)
                             + Text(": ") +
@@ -48,31 +41,29 @@ struct EditView: View {
                         Text("Please try again later.")
                     }
                 }
-                
-            }
+            })
             .navigationTitle("Place details")
             .toolbar {
                 Button("Save") {
                     var newLocation = location
                     newLocation.id = UUID()
-                    newLocation.name = name
-                    newLocation.description = description
-                    
+                    newLocation.name = $EditViewViewModel.name
+                    newLocation.description = $EditViewViewModel.description
+
                     onSave(newLocation)
-                    
+
                     dismiss()
                 }
             }
             .task {
-                loadingState = .loading
+                $EditViewViewModel.loadingState = .loading
                 if let responseData = await NetworkManager().fetchNearbyPlaces(location: location){
-                    pages = responseData
-                    loadingState = .loaded
+                    $EditViewViewModel.pages = responseData
+                    $EditViewViewModel.loadingState = .loaded
                 }else{
-                    loadingState = .failed
+                    $EditViewViewModel.loadingState = .failed
                 }
-//              pages = await NetworkManager().fetchNearbyPlaces(location: location)!
-              print(pages)
+                print("$EditViewViewModel.pages")
             }
 
         }
@@ -81,9 +72,6 @@ struct EditView: View {
     init(location: Location, onSave: @escaping (Location) -> Void) {
         self.location = location
         self.onSave = onSave
-        
-        _name = State(initialValue: location.name)
-        _description = State(initialValue: location.description)
     }
 }
 
@@ -93,6 +81,63 @@ struct EditView2_Previews: PreviewProvider {
         EditView(location: Location.example) { newLocation in }
     }
 }
+
+
+
+//struct EditView2_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditView(location: Location.example) { newLocation in }
+//    }
+//}
+    
+    
+    
+    
+    
+    
+//    init(location: Location, onSave: @escaping (Location) -> Void) {
+//        self.location = location
+//        self.onSave = onSave
+//
+//        _name = State(initialValue: location.name)
+//        _description = State(initialValue: location.description)
+//    }
+    
+//}
+
+
+//struct EditView2_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditView(location: Location.example) { newLocation in }
+//    }
+//}
+
+
+
+//$EditViewViewModel.pages = await NetworkManager().fetchNearbyPlaces(location: location)!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

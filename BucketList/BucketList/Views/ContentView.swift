@@ -28,14 +28,12 @@ struct ContentView: View {
                         
                         Text(location.name)
                             .fixedSize()
-
                     }.onTapGesture {
                         viewModel.selectedPlace = location
                     }
                 }
             }
             .ignoresSafeArea()
-                .ignoresSafeArea()
             Circle()
                 .fill(.blue)
                 .opacity(0.3)
@@ -57,7 +55,7 @@ struct ContentView: View {
                             .padding(.trailing)
                     }
                 }
-            }
+            }// vstack end
         } // zstack end
         .sheet(item: $viewModel.selectedPlace) { place in
             EditView(location: place) {
