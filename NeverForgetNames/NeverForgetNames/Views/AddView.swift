@@ -24,6 +24,8 @@ struct AddView: View {
     
     @ObservedObject var SavePersonData : SavePersonData
     
+    @State private var showAlert = false
+    
   @Environment(\.dismiss) var dismiss
   var body: some View {
     NavigationView {
@@ -47,17 +49,19 @@ struct AddView: View {
             }
           }
         }
-        Spacer()
-          Text("Image path: \(imagePath)")
-          Text("Image file Name: \(imageFileName)")
       }
       .navigationTitle("Add New Persion")
       .toolbar {
         ToolbarItem(placement: .navigationBarTrailing) {
           Button("Save") {
-              save()
-              addjj()
-              dismiss()
+              if name != "" {
+                  save()
+                  dismiss()
+              }else{
+                  showAlert.toggle()
+              }
+              
+              
           }
         }
 
@@ -72,6 +76,9 @@ struct AddView: View {
       ImagePicker(image: $inputImage)
     }
     .onChange(of: inputImage) { _ in loadImage() }
+    .alert(isPresented: $showAlert){
+                Alert(title: Text("Ops!"),message:Text("Please input name to this picture"),dismissButton: .default(Text("OK")))
+            }
   }
 
   func loadImage() {

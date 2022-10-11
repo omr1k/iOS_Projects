@@ -14,25 +14,46 @@ class ImageUtils: NSObject {
     var successHandler: (() -> Void)?
     var errorHandler: ((Error) -> Void)?
     
+    var filesNamesArray = [String]()
     
     func getDocumentsDirectory() -> URL {
         // find all possible documents directories for this user
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         // just send back the first one, which ought to be the only one
-        print(paths[0])
+//        print(paths[0])
         return paths[0]
     }
     
     func writeToDocuments(image: UIImage) {
+//        let UUIDD = UUID()
+//        filesNamesArray.append(UUIDD.uuidString)
+//        print(filesNamesArray)
         let url = getDocumentsDirectory().appendingPathComponent(UUID().uuidString)
+        
         if let jpegData = image.jpegData(compressionQuality: 0.8) {
             try? jpegData.write(to: url, options: [.atomic, .completeFileProtection])
-            print(url.absoluteURL)
+//            print(url.absoluteURL)
             imageabsoluteURL = "\(url.absoluteURL)"
             imageFileNameString = "\(url.lastPathComponent)"
-            print("\(imageabsoluteURL) ===== \(imageFileNameString)")
+//            print("\(imageabsoluteURL) ===== \(imageFileNameString)")
         }
     }
+    
+    func deleteFromDocuments(imageFileName: String){
+//        let file = filesNamesArray[0]
+        let fileManager = FileManager.default
+        let url = getDocumentsDirectory().appendingPathComponent("\(imageFileName)")
+        do {
+            try fileManager.removeItem(at: url)
+        }
+        catch {
+            return
+            
+        }
+        
+    }
+    
+    
     
     func imagePathToShow() -> String {
         return imageabsoluteURL
@@ -76,3 +97,9 @@ class ImageUtils: NSObject {
 //    let imageSaver = ImageSaver()
 //    imageSaver.writeToPhotoAlbum(image: inputImage)
 //}
+
+
+//        let directoryURL: URL = getDocumentsDirectory().appendingPathComponent(fileName)
+//        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        try! FileManager.default.removeItem(atPath: "\(getDocumentsDirectory())33B9912F-5295-45B3-AA5C-4FE258C3CC50")
+//        let myDocuments = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!

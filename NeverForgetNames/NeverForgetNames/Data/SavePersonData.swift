@@ -27,5 +27,4 @@ class SavePersonData : ObservableObject {
         }
         self.persons  = []
     }
-    
 }
