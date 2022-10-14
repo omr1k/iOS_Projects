@@ -11,20 +11,19 @@ import CoreData
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var cachedUsers: FetchedResults<Person>
+    @FetchRequest(sortDescriptors: [ SortDescriptor(\.name)]) var persons: FetchedResults<Person>
 
     @State private var showAddView = false
-//    @ObservedObject var savedPersonData = SavePersonData()
-    @StateObject var savedPersonData = SavePersonData()
+
     
     var body: some View {
         NavigationView{
             VStack {
                 List {
-                    ForEach(savedPersonData.persons) { item in
-                        NavigationLink(destination: DetailsView(imgeFileName: item.imageFilename ,imgePath: item.imageAbslutePath,personName: item.name,locations: [item])){
+                    ForEach(persons) { person in
+                        NavigationLink(destination: DetailsView(person: [person], imgeFileName: person.wrappedimageFilename, imgePath: person.imageAbslutePath ?? "", personName: person.wrappedName)){
                             HStack{
-                                if let image = ImageUtils().loadImageFromDiskWith(fileName: item.imageFilename) {
+                                if let image = ImageUtils().loadImageFromDiskWith(fileName: person.wrappedimageFilename) {
                                     Image(uiImage: image)
                                         .resizable()
                                         .scaledToFit()
@@ -36,13 +35,14 @@ struct ContentView: View {
                                 }
                                 
 //                                Text("\(index)")
-                                Text("\(item.coordinate.latitude)")
-                                Text("\(item.coordinate.longitude)")
-                                Spacer()
-                                Text(item.name)
+//                                Text("\(person.latitude)")
+//                                Text("\(person.longitude)")
+                                
+                                Text(person.wrappedName)
                                     .fontWeight(.semibold)
                                     .lineLimit(2)
                                     .minimumScaleFactor(0.5)
+                                Spacer()
                             }// hstack end
                             .padding(.horizontal)
                             .frame(maxWidth: .infinity)
@@ -55,21 +55,13 @@ struct ContentView: View {
                 }// list end
             }
             .sheet(isPresented: $showAddView){
-                AddView(SavePersonData: savedPersonData)
+                AddView()
             }
             .navigationTitle("Never Forget")
             .navigationBarItems(
                 trailing:
                     Button(action: {
-                        
                         showAddView = true
-                        print(savedPersonData.persons.startIndex)
-                        print(savedPersonData.persons.endIndex)
-//                        print(savedPersonData.persons[0].imageFilename)
-                        //                        print(savedPersonData.persons[1].imageFilename)
-                        //                        print(Array(UserDefaults.standard.dictionaryRepresentation()))
-                        //                        print(savedPersonData.persons[1].imageFilename)
-                        
                     }) {
                         Image(systemName: "plus").imageScale(.large)
                     }
@@ -79,26 +71,46 @@ struct ContentView: View {
     
     
     func deleteRecord2(at offsets: IndexSet) {
-
-          // look at each item we are trying to delete
-          for offset in offsets {
-
-            // look in the personalItems array and get that specific item we are trying to delete. Find it's corresponding match in the expenses.items array.
-              if let index = savedPersonData.persons.firstIndex(where: {$0.id == savedPersonData.persons[offset].id}) {
-
-              // delete the item from the expenses.items array at the index you found its match
-                  savedPersonData.persons.remove(at: index)
-                  print(index)
-//                  let varr = savedPersonData.persons[index]
-//                  print(varr)
-//                  ImageUtils().deleteFromDocuments(imageFileName: "\(varr)")
-
-              }
-            }
-          }
-    
-  
+        
+        for offset in offsets {
+            // find this book in our fetch request
+            let person = persons[offset]
+            // delete it from the context
+            moc.delete(person)
+            ImageUtils().deleteFromDocuments(imageFileName: "\(person.wrappedimageFilename)")
+        }
+        // save the context
+        try? moc.save()
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    @ObservedObject var savedPersonData = SavePersonData()
+//    @StateObject var savedPersonData = SavePersonData()
+
     
 //struct ContentView_Previews: PreviewProvider {
 //    static var previews: some View {

@@ -25,24 +25,15 @@ class ImageUtils: NSObject {
     }
     
     func writeToDocuments(image: UIImage) {
-//        let UUIDD = UUID()
-//        filesNamesArray.append(UUIDD.uuidString)
-//        print(filesNamesArray)
         let url = getDocumentsDirectory().appendingPathComponent(UUID().uuidString)
-        
-        
-        
         if let jpegData = image.jpegData(compressionQuality: 0.8) {
             try? jpegData.write(to: url, options: [.atomic, .completeFileProtection])
-//            print(url.absoluteURL)
             imageabsoluteURL = "\(url.absoluteURL)"
             imageFileNameString = "\(url.lastPathComponent)"
-//            print("\(imageabsoluteURL) ===== \(imageFileNameString)")
         }
     }
     
     func deleteFromDocuments(imageFileName: String){
-//        let file = filesNamesArray[0]
         let fileManager = FileManager.default
         let url = getDocumentsDirectory().appendingPathComponent("\(imageFileName)")
         do {
@@ -50,9 +41,7 @@ class ImageUtils: NSObject {
         }
         catch {
             return
-            
         }
-        
     }
     
     
@@ -90,6 +79,9 @@ class ImageUtils: NSObject {
     }
     
 }
+
+
+
 
 
 // Usage

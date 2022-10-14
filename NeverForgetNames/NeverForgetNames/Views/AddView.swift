@@ -10,27 +10,24 @@ import SwiftUI
 struct AddView: View {
     
     @State private var showingImagePicker = false
-    @State private var inputImage: UIImage?
     
+    @State private var inputImage: UIImage?
     @State private var image: Image?
     @State private var DocImage: UIImage?
     
     let context = CIContext()
     
     @State private var name = ""
-    
     @State private var imagePath = ""
     @State private var imageFileName = ""
-    @State private var latitude = 155.5
-    @State private var longitud = -122.406417
-    
-    @ObservedObject var SavePersonData : SavePersonData
+    @State private var latitude = 2001.5
+    @State private var longitud = 2002.5
     
     @State private var showAlert = false
-    
     @Environment(\.dismiss) var dismiss
-    
     let locationFetcher = LocationFetcher()
+    
+    
     let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
     
     @Environment(\.managedObjectContext) var moc
@@ -40,29 +37,20 @@ struct AddView: View {
         NavigationView {
             VStack {
                 Form {
-                    HStack {
-                        Button("Start Tracking Location") {
-                            self.locationFetcher.start()
-                        }
-                        Spacer()
-                        Button("Save Location") {
-                            if let location = self.locationFetcher.lastKnownLocation {
-                                print("Your location is \(location)")
-                                longitud = location.longitude
-                                latitude = location.latitude
-                                print("LA: \(latitude) ==== LO: \(longitud)")
-                                
-                            } else {
-                                print("Your location is unknown")
-                            }
-                        }
-                    }
-                    
                     Section("Photo") {
                         VStack {
-                            image?
-                                .resizable()
-                                .scaledToFit()
+                            if image != nil {
+                                image?
+                                    .resizable()
+                                    .scaledToFit()
+                            }
+                            else {
+                                RoundedRectangle(cornerRadius: 15)
+                                    .stroke(Color.gray, style: StrokeStyle(lineWidth: 1,
+                                                                           lineCap: CGLineCap.round,
+                                                                           dash: [5, 5]))
+                                    .scaledToFit()
+                            }
                             Button("Pick Image") {
                                 showingImagePicker = true
                             }
@@ -81,25 +69,13 @@ struct AddView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Save") {
-                        if name != "" {
+                        if name != "" && image != nil {
                             save()
-                           
-                            
-                            try? moc.save()
-                            
                             dismiss()
                         }else{
                             showAlert.toggle()
                         }
-                        
-                        
                     }
-//                    .task {
-//                        await MainActor.run {
-//                            let newPerson = fetchPerson(context: moc)
-//                            newPerson.na
-//                        }
-//                    }
                 }
                 
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -112,12 +88,26 @@ struct AddView: View {
         .sheet(isPresented: $showingImagePicker) {
             ImagePicker(image: $inputImage)
         }
+        .onAppear() {
+            self.locationFetcher.start()
+        }
         .onChange(of: inputImage) { _ in loadImage() }
         .alert(isPresented: $showAlert){
-            Alert(title: Text("Ops!"),message:Text("Please input name to this picture"),dismissButton: .default(Text("OK")))
+            Alert(title: Text("Ops!"),message:Text("Please input all info"),dismissButton: .default(Text("OK")))
         }
     }
     
+    func getUserLocation(){
+        if let location = locationFetcher.lastKnownLocation {
+            print("Your location is \(location)")
+            longitud = location.longitude
+            latitude = location.latitude
+            print("LA: \(latitude) ==== LO: \(longitud)")
+            
+        } else {
+            print("Your location is unknown")
+        }
+    }
     
     func loadImage() {
         // swiftUI image
@@ -142,35 +132,30 @@ struct AddView: View {
     }
     
     func save() {
+        getUserLocation()
         guard let DocImage = DocImage else { return }
         let imageUtils = ImageUtils()
-        imageUtils.writeToDocuments(image: DocImage)
-        imagePath = imageUtils.imagePathToShow()
-        imageFileName = imageUtils.imageFileNameString
-        let persons = personData(id: UUID(),name: name, imageFilename: imageFileName, imageAbslutePath: imagePath, latitude: latitude,longitude: longitud)
-        SavePersonData.persons.append(persons)
-        saveDataAsJson(personData: persons)
-        
+        imageUtils.writeToDocuments(image: DocImage)  // save image to documents
+        imagePath = imageUtils.imagePathToShow()   // get image path
+        imageFileName = imageUtils.imageFileNameString // get image file name (text)
+       
+        // save all needed info to CoreData
+        let newPerson = Person(context: moc)
+        newPerson.id = UUID()
+        newPerson.imageAbslutePath = imagePath
+        newPerson.imageFilename = imageFileName
+        newPerson.name = name
+        newPerson.latitude = latitude
+        newPerson.longitude = longitud
+        try? moc.save()
     }
-    
-    func saveDataAsJson(personData : personData){
-        
-        
-        do {
-            let data = try JSONEncoder().encode(personData)
-            try data.write(to: savePath, options: [.atomic, .completeFileProtection])
-        } catch {
-            print("Unable to save data.")
-        }
-    }
-    
 }
     
     
     
     
     
-
+//@ObservedObject var SavePersonData : SavePersonData
 //struct AddView_Previews: PreviewProvider {
 //  static var previews: some View {
 //    AddView()
@@ -218,3 +203,16 @@ struct AddView: View {
 //            }
 //        }
 
+
+
+//
+//func saveDataAsJson(personData : personData){
+//    
+//    
+//    do {
+//        let data = try JSONEncoder().encode(personData)
+//        try data.write(to: savePath, options: [.atomic, .completeFileProtection])
+//    } catch {
+//        print("Unable to save data.")
+//    }
+//}
