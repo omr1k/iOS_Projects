@@ -21,6 +21,15 @@ extension ContentView {
         @Published var noBiometricsError = false
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
 
+        init() {
+            do {
+                let data = try Data(contentsOf: savePath)
+                locations = try JSONDecoder().decode([Location].self, from: data)
+            } catch {
+                locations = []
+            }
+        }
+        
         func addLocation() {
             let newLocation = Location(id: UUID(), name: "New location", description: "", latitude: mapRegion.center.latitude, longitude: mapRegion.center.longitude)
             locations.append(newLocation)
@@ -33,15 +42,6 @@ extension ContentView {
             if let index = locations.firstIndex(of: selectedPlace) {
                 locations[index] = location
                 save()
-            }
-        }
-        
-        init() {
-            do {
-                let data = try Data(contentsOf: savePath)
-                locations = try JSONDecoder().decode([Location].self, from: data)
-            } catch {
-                locations = []
             }
         }
         
