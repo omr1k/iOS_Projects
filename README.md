@@ -64,8 +64,8 @@ In this app I used CoreImage to apply diffrent filters to an image and also impl
 # Never Forget Names  app
 In this app I Implemented Mapkit, CoreData, Fetching user location, UIViewControllerRepresentable, PHPickerViewControllerDelegate, Saving and deleting files to documents directory, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/NeverForgetNames)
 <div align="center">
-<img src="xX-Materials-Xx/readmeScreenShots/nv1.png" height="432" width="230" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/nv2.png" height="432" width="230" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/nv3.png" height="432" width="230" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/nv4.png" height="432" width="230" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/nv1.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/nv2.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/nv3.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/nv4.png" height="339" width="180" alt="iPhone"/>
 </div>
