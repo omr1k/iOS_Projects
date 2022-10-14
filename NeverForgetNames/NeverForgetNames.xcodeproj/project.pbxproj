@@ -15,8 +15,14 @@
 		263E82FF28F088FA00EA9D29 /* ImageUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E82FE28F088FA00EA9D29 /* ImageUtils.swift */; };
 		263E830128F08C3B00EA9D29 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 263E830028F08C3A00EA9D29 /* AddView.swift */; };
 		2653ED5128F3114D004DEADC /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2653ED5028F3114D004DEADC /* DetailsView.swift */; };
+		2681B27B28F9A25F0019874A /* FileManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681B27A28F9A25F0019874A /* FileManger.swift */; };
+		2681B27E28F9B9330019874A /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2681B27C28F9B9320019874A /* DataModel.xcdatamodeld */; };
+		2681B28128F9BA6C0019874A /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681B27F28F9BA6C0019874A /* Person+CoreDataClass.swift */; };
+		2681B28228F9BA6C0019874A /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681B28028F9BA6C0019874A /* Person+CoreDataProperties.swift */; };
+		2681B28428F9BB1C0019874A /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681B28328F9BB1C0019874A /* DataController.swift */; };
 		268C275928F1B61E00518942 /* personData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268C275828F1B61E00518942 /* personData.swift */; };
 		268C275B28F1BE2300518942 /* SavePersonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 268C275A28F1BE2300518942 /* SavePersonData.swift */; };
+		26C926AB28F8C9F4009B1F60 /* LocationFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C926AA28F8C9F4009B1F60 /* LocationFetcher.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +36,14 @@
 		263E830028F08C3A00EA9D29 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 		263E830228F0A78000EA9D29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2653ED5028F3114D004DEADC /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		2681B27A28F9A25F0019874A /* FileManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManger.swift; sourceTree = "<group>"; };
+		2681B27D28F9B9320019874A /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		2681B27F28F9BA6C0019874A /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		2681B28028F9BA6C0019874A /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		2681B28328F9BB1C0019874A /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		268C275828F1B61E00518942 /* personData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = personData.swift; sourceTree = "<group>"; };
 		268C275A28F1BE2300518942 /* SavePersonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavePersonData.swift; sourceTree = "<group>"; };
+		26C926AA28F8C9F4009B1F60 /* LocationFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationFetcher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +110,8 @@
 			children = (
 				263E82FC28F0886C00EA9D29 /* ImagePicker.swift */,
 				263E82FE28F088FA00EA9D29 /* ImageUtils.swift */,
+				26C926AA28F8C9F4009B1F60 /* LocationFetcher.swift */,
+				2681B27A28F9A25F0019874A /* FileManger.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -107,6 +121,10 @@
 			children = (
 				268C275828F1B61E00518942 /* personData.swift */,
 				268C275A28F1BE2300518942 /* SavePersonData.swift */,
+				2681B27C28F9B9320019874A /* DataModel.xcdatamodeld */,
+				2681B28328F9BB1C0019874A /* DataController.swift */,
+				2681B27F28F9BA6C0019874A /* Person+CoreDataClass.swift */,
+				2681B28028F9BA6C0019874A /* Person+CoreDataProperties.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -181,14 +199,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2681B27E28F9B9330019874A /* DataModel.xcdatamodeld in Sources */,
 				263E82FD28F0886C00EA9D29 /* ImagePicker.swift in Sources */,
 				263E82EF28F0877D00EA9D29 /* ContentView.swift in Sources */,
 				263E830128F08C3B00EA9D29 /* AddView.swift in Sources */,
+				2681B27B28F9A25F0019874A /* FileManger.swift in Sources */,
 				268C275B28F1BE2300518942 /* SavePersonData.swift in Sources */,
 				263E82ED28F0877D00EA9D29 /* NeverForgetNamesApp.swift in Sources */,
+				2681B28428F9BB1C0019874A /* DataController.swift in Sources */,
 				2653ED5128F3114D004DEADC /* DetailsView.swift in Sources */,
+				2681B28128F9BA6C0019874A /* Person+CoreDataClass.swift in Sources */,
 				268C275928F1B61E00518942 /* personData.swift in Sources */,
+				2681B28228F9BA6C0019874A /* Person+CoreDataProperties.swift in Sources */,
 				263E82FF28F088FA00EA9D29 /* ImageUtils.swift in Sources */,
+				26C926AB28F8C9F4009B1F60 /* LocationFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,6 +346,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeverForgetNames/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App Wants to user your location";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We want To Access your photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -354,6 +379,7 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NeverForgetNames/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "App Wants to user your location";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We want To Access your photos";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -395,6 +421,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2681B27C28F9B9320019874A /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2681B27D28F9B9320019874A /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 2681B27D28F9B9320019874A /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 263E82E128F0877D00EA9D29 /* Project object */;
 }

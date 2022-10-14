@@ -30,6 +30,8 @@ class ImageUtils: NSObject {
 //        print(filesNamesArray)
         let url = getDocumentsDirectory().appendingPathComponent(UUID().uuidString)
         
+        
+        
         if let jpegData = image.jpegData(compressionQuality: 0.8) {
             try? jpegData.write(to: url, options: [.atomic, .completeFileProtection])
 //            print(url.absoluteURL)

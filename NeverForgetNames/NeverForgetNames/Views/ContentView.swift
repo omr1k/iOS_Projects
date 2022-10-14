@@ -6,21 +6,25 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
     
+    @Environment(\.managedObjectContext) var moc
+    @FetchRequest(sortDescriptors: []) var cachedUsers: FetchedResults<Person>
+
     @State private var showAddView = false
-    @ObservedObject var savedPersonData = SavePersonData()
-    
+//    @ObservedObject var savedPersonData = SavePersonData()
+    @StateObject var savedPersonData = SavePersonData()
     
     var body: some View {
         NavigationView{
             VStack {
                 List {
-                    ForEach(0..<savedPersonData.persons.count, id: \.self) { index in
-                        NavigationLink(destination: DetailsView(imgeFileName: savedPersonData.persons[index].imageFilename,imgePath: savedPersonData.persons[index].imageAbslutePath,personName: savedPersonData.persons[index].name)){
+                    ForEach(savedPersonData.persons) { item in
+                        NavigationLink(destination: DetailsView(imgeFileName: item.imageFilename ,imgePath: item.imageAbslutePath,personName: item.name,locations: [item])){
                             HStack{
-                                if let image = ImageUtils().loadImageFromDiskWith(fileName: savedPersonData.persons[index].imageFilename) {
+                                if let image = ImageUtils().loadImageFromDiskWith(fileName: item.imageFilename) {
                                     Image(uiImage: image)
                                         .resizable()
                                         .scaledToFit()
@@ -31,9 +35,11 @@ struct ContentView: View {
                                         .foregroundColor(Color.gray)
                                 }
                                 
-                                Text("\(index)")
+//                                Text("\(index)")
+                                Text("\(item.coordinate.latitude)")
+                                Text("\(item.coordinate.longitude)")
                                 Spacer()
-                                Text(savedPersonData.persons[index].name)
+                                Text(item.name)
                                     .fontWeight(.semibold)
                                     .lineLimit(2)
                                     .minimumScaleFactor(0.5)
@@ -45,7 +51,7 @@ struct ContentView: View {
                         }
                         
                         
-                    }.onDelete(perform: deleteRecord)// foreach end
+                    }.onDelete(perform: deleteRecord2)// foreach end
                 }// list end
             }
             .sheet(isPresented: $showAddView){
@@ -72,76 +78,26 @@ struct ContentView: View {
     }
     
     
-    func deleteRecord(at offsets: IndexSet) {
-        savedPersonData.persons.remove(atOffsets: offsets)
-        print(offsets)
-//        let vaar = savedPersonData.persons[0].imageFilename
-//        print("vaar \(vaar)")
-//        ImageUtils().deleteFromDocuments(imageFileName: savedPersonData.persons[0].imageFilename)
-        offsets.forEach { (index) in
-            print("normal \(index)")
-            print("-1 === \(index+1)")
-//            ImageUtils().deleteFromDocuments(imageFileName: savedPersonData.persons[index+1].imageFilename)
-            if savedPersonData.persons.indices.contains(1) {
-                print(savedPersonData.persons[1].imageFilename)
-                
-//                ImageUtils().deleteFromDocuments(imageFileName: savedPersonData.persons[index-1].imageFilename)
-            }else{
-                print("not found")
+    func deleteRecord2(at offsets: IndexSet) {
+
+          // look at each item we are trying to delete
+          for offset in offsets {
+
+            // look in the personalItems array and get that specific item we are trying to delete. Find it's corresponding match in the expenses.items array.
+              if let index = savedPersonData.persons.firstIndex(where: {$0.id == savedPersonData.persons[offset].id}) {
+
+              // delete the item from the expenses.items array at the index you found its match
+                  savedPersonData.persons.remove(at: index)
+                  print(index)
+//                  let varr = savedPersonData.persons[index]
+//                  print(varr)
+//                  ImageUtils().deleteFromDocuments(imageFileName: "\(varr)")
+
+              }
             }
-            
-            //            print(index)
-            //
-            //        }
-            
-            //        offsets.forEach { (index) in
-            //            ImageUtils().deleteFromDocuments(index: index)
-            //            print(index)
-            //            let x = savedPersonData.persons[index-1].imageFilename
-            //
-            //            print(x)
-            //        }
-            
-            //        if savedPersonData.persons.indices.contains(0) {
-            //           print(savedPersonData.persons[0])
-            //        }
-            
-            //        ImageUtils().deleteFromDocuments(fileName: <#T##String#>)
-            //        var arrayOfInts = [Int]()
-            //        arrayOfInts =
-            //
-            
-            
-            //        offsets.forEach { (index1) in
-            //            savedPersonDate.delete(index: index1)
-            //        }
-            //        savedPersonDate.persons.
-            //        print(offsets)
-            //        offsets.forEach { (index1) in
-            //            print("\(savedPersonDate.persons[1].imageFilename)")
-            //            ImageUtils().deleteFromDocuments(fileName: savedPersonDate.persons[index1].imageFilename)
-            
-            //        offsets.map { savedPersonDate.persons[$0].imageFilename }.forEach { index in
-            //            ImageUtils().deleteFromDocuments(fileName: savedPersonDate.persons.imageFilename)
-            //        }
-            
-            //        var index = Int(offsets) ?? 0
-            //        ImageUtils().deleteFromDocuments(fileName: "\(savedPersonDate.persons[index].imageFilename)")
-            
-            //        ImageUtils().deleteFromDocuments(fileName: savedPersonDate.persons[index].imageFilename)
-            
-            
-            
-            //        print("\(savedPersonDate.persons)")
-            
-            //        countt.forEach { (indexx) in
-            //            print("222222\(indexx)")
-            //            print("\(savedPersonDate.persons[indexx].imageFilename)")
-            ////            ImageUtils().deleteFromDocuments(fileName: savedPersonDate.persons[indexx].imageFilename)
-            //        }
-            
-        } // delete method end
-    }
+          }
+    
+  
 }
     
 //struct ContentView_Previews: PreviewProvider {
@@ -162,3 +118,80 @@ struct ContentView: View {
 //       // Put some placeholder image here
 //    }
 //}
+
+
+
+
+
+
+
+//    func deleteRecord(at offsets: IndexSet) {
+//        savedPersonData.persons.remove(atOffsets: offsets)
+//        print(offsets)
+////        let vaar = savedPersonData.persons[0].imageFilename
+////        print("vaar \(vaar)")
+////        ImageUtils().deleteFromDocuments(imageFileName: savedPersonData.persons[0].imageFilename)
+//        offsets.forEach { (index) in
+//            print("normal \(index)")
+//            print("-1 === \(index+1)")
+////            ImageUtils().deleteFromDocuments(imageFileName: savedPersonData.persons[index+1].imageFilename)
+//            if savedPersonData.persons.indices.contains(1) {
+//                print(savedPersonData.persons[1].imageFilename)
+//
+////                ImageUtils().deleteFromDocuments(imageFileName: savedPersonData.persons[index-1].imageFilename)
+//            }else{
+//                print("not found")
+//            }
+//
+//            //            print(index)
+//            //
+//            //        }
+//
+//            //        offsets.forEach { (index) in
+//            //            ImageUtils().deleteFromDocuments(index: index)
+//            //            print(index)
+//            //            let x = savedPersonData.persons[index-1].imageFilename
+//            //
+//            //            print(x)
+//            //        }
+//
+//            //        if savedPersonData.persons.indices.contains(0) {
+//            //           print(savedPersonData.persons[0])
+//            //        }
+//
+//            //        ImageUtils().deleteFromDocuments(fileName: <#T##String#>)
+//            //        var arrayOfInts = [Int]()
+//            //        arrayOfInts =
+//            //
+//
+//
+//            //        offsets.forEach { (index1) in
+//            //            savedPersonDate.delete(index: index1)
+//            //        }
+//            //        savedPersonDate.persons.
+//            //        print(offsets)
+//            //        offsets.forEach { (index1) in
+//            //            print("\(savedPersonDate.persons[1].imageFilename)")
+//            //            ImageUtils().deleteFromDocuments(fileName: savedPersonDate.persons[index1].imageFilename)
+//
+//            //        offsets.map { savedPersonDate.persons[$0].imageFilename }.forEach { index in
+//            //            ImageUtils().deleteFromDocuments(fileName: savedPersonDate.persons.imageFilename)
+//            //        }
+//
+//            //        var index = Int(offsets) ?? 0
+//            //        ImageUtils().deleteFromDocuments(fileName: "\(savedPersonDate.persons[index].imageFilename)")
+//
+//            //        ImageUtils().deleteFromDocuments(fileName: savedPersonDate.persons[index].imageFilename)
+//
+//
+//
+//            //        print("\(savedPersonDate.persons)")
+//
+//            //        countt.forEach { (indexx) in
+//            //            print("222222\(indexx)")
+//            //            print("\(savedPersonDate.persons[indexx].imageFilename)")
+//            ////            ImageUtils().deleteFromDocuments(fileName: savedPersonDate.persons[indexx].imageFilename)
+//            //        }
+//
+//        } // delete method end
+//    }
