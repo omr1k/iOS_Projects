@@ -16,23 +16,30 @@ class Prospect: Identifiable, Codable {
 
 
 @MainActor class Prospects: ObservableObject {
+    
     @Published private(set) var people: [Prospect]
     let saveKey = "SavedData"
+    let jsonFilePath = FileManager.documentsDirectory.appendingPathComponent("SavedPeople")
 
     init() {
-        if let data = UserDefaults.standard.data(forKey: saveKey) {
-            if let decoded = try? JSONDecoder().decode([Prospect].self, from: data) {
-                people = decoded
-                return
-            }
+        do {
+            let data = try Data(contentsOf: jsonFilePath)
+            let decoder = JSONDecoder()
+            people = try decoder.decode([Prospect].self, from: data)
+        } catch {
+            debugPrint(error.localizedDescription)
+            people = []
         }
 
-        people = []
     }
     
     private func save() {
-        if let encoded = try? JSONEncoder().encode(people) {
-            UserDefaults.standard.set(encoded, forKey: saveKey)
+        do {
+            print("save Path====>\(jsonFilePath.path)")
+            let data = try JSONEncoder().encode(people)
+            try data.write(to: jsonFilePath, options: [.atomic, .completeFileProtection])
+        } catch {
+            print("Unable to save data.")
         }
     }
     
@@ -50,4 +57,18 @@ class Prospect: Identifiable, Codable {
 }
 
 
+//=====Loading form user default=====
+//        if let data = UserDefaults.standard.data(forKey: saveKey) {
+//            if let decoded = try? JSONDecoder().decode([Prospect].self, from: data) {
+//                people = decoded
+//                return
+//            }
+//        }
+//===================================
 
+
+//===Save to user defaults=====
+//if let encoded = try? JSONEncoder().encode(people) {
+//    UserDefaults.standard.set(encoded, forKey: saveKey)
+//}
+//=============================

@@ -17,6 +17,8 @@ struct ProspectsView: View {
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
     @State private var promoteSettings = false
+    let contactedPerson = Image(systemName: "person.fill.checkmark")
+    let uncontactedPerson = Image(systemName: "person.fill.xmark")
     
     enum FilterType {
         case none, contacted, uncontacted
@@ -26,11 +28,22 @@ struct ProspectsView: View {
         NavigationView {
             List {
                 ForEach(filteredProspects) { prospect in
-                    VStack(alignment: .leading) {
-                        Text(prospect.name)
-                            .font(.headline)
-                        Text(prospect.emailAddress)
-                            .foregroundColor(.secondary)
+                    HStack{
+                        VStack(alignment: .leading) {
+                            Text(prospect.name)
+                                .font(.headline)
+                            Text(prospect.emailAddress)
+                                .foregroundColor(.secondary)
+                        }
+                        Spacer()
+                        if prospect.isContacted{
+                            Image(systemName: "person.fill.checkmark")
+                                .foregroundColor(.green)
+                        }else{
+                            Image(systemName: "person.fill.xmark")
+                                .foregroundColor(.red)
+                        }
+                        
                     }
                     .swipeActions {
                         if prospect.isContacted {
