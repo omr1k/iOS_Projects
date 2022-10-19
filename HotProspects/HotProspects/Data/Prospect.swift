@@ -12,6 +12,8 @@ class Prospect: Identifiable, Codable {
     var name = "Anonymous"
     var emailAddress = ""
     fileprivate(set) var isContacted = false
+    
+    var date = Date()
 }
 
 
@@ -53,8 +55,10 @@ class Prospect: Identifiable, Codable {
         prospect.isContacted.toggle()
         save()
     }
-    
 }
+
+
+
 
 
 //=====Loading form user default=====

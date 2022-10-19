@@ -12,22 +12,60 @@ import UserNotifications
 
 struct ProspectsView: View {
     
-    let filter: FilterType
+    enum FilterType {
+        case none, contacted, uncontacted
+    }
+    enum SortType {
+        case name, recent
+    }
     
+    let filter: FilterType
+    @State var sort: SortType = .name
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
     @State private var promoteSettings = false
     let contactedPerson = Image(systemName: "person.fill.checkmark")
     let uncontactedPerson = Image(systemName: "person.fill.xmark")
+    @State private var showFilterDialog = false
     
-    enum FilterType {
-        case none, contacted, uncontacted
+    var filteredSortedProspects: [Prospect] {
+        switch sort {
+        case .name:
+            return filteredProspects.sorted { $0.name < $1.name }
+        case .recent:
+            return filteredProspects.sorted { $0.date > $1.date }
+        }
     }
-        
+    
+    var title: String {
+        switch filter {
+        case .none:
+            return "Everyone"
+        case .contacted:
+            return "Contacted people"
+        case .uncontacted:
+            return "Uncontacted people"
+        }
+    }
+    
+    var filteredProspects: [Prospect] {
+        switch filter {
+        case .none:
+            return prospects.people
+        case .contacted:
+            return prospects.people.filter { $0.isContacted }
+        case .uncontacted:
+            return prospects.people.filter { !$0.isContacted }
+        }
+    }
+    
+    let random = ["Brittany Brown\nbrittany.brown@random.com", "Adina Woodward\nadina.woodward@random.com", "Euan Rankin\neuan.rankin@random.com", "Arman Lawrence\narman.lawrence@random.com", "Rumaysa Lang\nrumaysa.lang@random.com", "Pawel Kerr\npawel.kerr@random.com", "Ashlee Reilly\nashlee.reilly@random.com", "Tabitha Monroe\ntabitha.monroe@random.com", "Deen Key\ndeen.key@random.com", "Aasiyah Byrd\naasiyah.byrd@random.com", "Esmee Robinson\n@random.com", "Bill Archer\nbill.archer@random.com", "Umar Whitworth\numar.whitworth@random.com", "Azra Hernandez\nazra.hernandez@random.com", "Nadine Matthams\nnadine.matthams@random.com", "Mateo Pearce\nmateo.pearce@random.com", "Shelbie Santiago\nshelbie.santiago@random.com", "Md Stokes\n@md.stokesrandom.com", "Mathilde Macfarlane\nmathilde.macfarlane@random.com", "Jamila Fernandez\njamila.fernandez@random.com"]
+
+    
     var body: some View {
         NavigationView {
             List {
-                ForEach(filteredProspects) { prospect in
+                ForEach(filteredSortedProspects) { prospect in
                     HStack{
                         VStack(alignment: .leading) {
                             Text(prospect.name)
@@ -77,9 +115,14 @@ struct ProspectsView: View {
                     } label: {
                         Label("Scan", systemImage: "qrcode.viewfinder")
                     }
+                    Button {
+                        showFilterDialog = true
+                    } label: {
+                        Label("Show", systemImage: "arrow.up.arrow.down.square")
+                    }
                 }
                 .sheet(isPresented: $isShowingScanner) {
-                    CodeScannerView(codeTypes: [.qr], simulatedData: "Omar Khattab\nomar@omarkhattab.tk", completion: handleScan)
+                    CodeScannerView(codeTypes: [.qr], simulatedData: self.random.randomElement()!, completion: handleScan)
                 }
                 .alert(isPresented: $promoteSettings) {
                     Alert (title: Text("Notification permission required"),
@@ -88,6 +131,12 @@ struct ProspectsView: View {
                         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                     }),
                            secondaryButton: .default(Text("Cancel")))
+                }
+                .confirmationDialog("select a filter", isPresented: $showFilterDialog, titleVisibility: .visible){
+                    Button((self.sort == .name ? "✓ " : "") + "Name") { self.sort = .name
+                        print("Current sorting val ===> \(sort)")}
+                    Button((self.sort == .recent ? "✓ " : "") + "Most recent") { self.sort = .recent
+                        print("Current sorting val ===> \(sort)") }
                 }
         }
     }
@@ -125,40 +174,25 @@ struct ProspectsView: View {
             }
         }
     }
-
-    
-    var title: String {
-        switch filter {
-        case .none:
-            return "Everyone"
-        case .contacted:
-            return "Contacted people"
-        case .uncontacted:
-            return "Uncontacted people"
-        }
-    }
-    
-    var filteredProspects: [Prospect] {
-        switch filter {
-        case .none:
-            return prospects.people
-        case .contacted:
-            return prospects.people.filter { $0.isContacted }
-        case .uncontacted:
-            return prospects.people.filter { !$0.isContacted }
-        }
-    }
     
     func handleScan(result: Result<ScanResult, ScanError>) {
        isShowingScanner = false
         switch result {
         case .success(let result):
             let details = result.string.components(separatedBy: "\n")
-            guard details.count == 2 else { return }
+//            guard details.count == 2 else { return }
 
             let person = Prospect()
-            person.name = details[0]
-            person.emailAddress = details[1]
+            
+            if details.count == 2 {
+                person.name = details[0]
+                person.emailAddress = details[1]
+            }
+            else{
+                person.name = result.string
+            }
+            
+            
 
             prospects.add(person)
             
