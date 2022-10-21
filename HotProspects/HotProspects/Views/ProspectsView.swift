@@ -20,7 +20,7 @@ struct ProspectsView: View {
     }
     
     let filter: FilterType
-    @State var sort: SortType = .name
+    @State var sort: SortType = .recent
     @EnvironmentObject var prospects: Prospects
     @State private var isShowingScanner = false
     @State private var promoteSettings = false
@@ -64,7 +64,7 @@ struct ProspectsView: View {
     
     var body: some View {
         NavigationView {
-            List {
+            List(){
                 ForEach(filteredSortedProspects) { prospect in
                     HStack{
                         VStack(alignment: .leading) {
@@ -83,9 +83,9 @@ struct ProspectsView: View {
                         }
                         
                     }
-                    .swipeActions {
+                    .swipeActions (edge : .leading) {
                         if prospect.isContacted {
-                            Button {
+                            Button{
                                 prospects.toggle(prospect)
                             } label: {
                                 Label("Mark Uncontacted", systemImage: "person.crop.circle.badge.xmark")
@@ -95,7 +95,12 @@ struct ProspectsView: View {
                             Button {
                                 prospects.toggle(prospect)
                             } label: {
-                                Label("Mark Contacted", systemImage: "person.crop.circle.fill.badge.checkmark")
+                                VStack{
+                                    Text("sfdfs")
+                                    Label("Mark Contacted", systemImage: "person.crop.circle.fill.badge.checkmark")
+                                  
+                                }
+                                
                             }
                             .tint(.green)
                             Button {
@@ -106,7 +111,7 @@ struct ProspectsView: View {
                             .tint(.orange)
                         }
                     }
-                }
+                }.onDelete(perform: deleteRecord)
             }
                 .navigationTitle(title)
                 .toolbar {
@@ -201,13 +206,23 @@ struct ProspectsView: View {
         }
     }
     
-}
+    func deleteRecord(at offsets: IndexSet) {
+        for i in offsets.makeIterator() {
+            print("index in fl \(i)")
+            prospects.remove(index: i)
+        }
+    }
+    
+}  // end
 
 struct ProspectsView_Previews: PreviewProvider {
     static var previews: some View {
         ProspectsView(filter: .none).environmentObject(Prospects())
     }
 }
+
+
+
 
 
 //let isRegisteredForRemoteNotifications = UIApplication.shared.isRegisteredForRemoteNotifications

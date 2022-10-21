@@ -49,6 +49,14 @@ class Prospect: Identifiable, Codable {
         people.append(prospect)
         save()
     }
+    func remove(index: Int) {
+        
+        print("perople \(people.count)")
+        let elemntPostion = (people.count - index)-1
+        print("elment postion \(elemntPostion)")
+        people.remove(at: elemntPostion)
+        save()
+    }
     
     func toggle(_ prospect: Prospect) {
         objectWillChange.send()
