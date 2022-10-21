@@ -9,7 +9,7 @@
 </div>
 
 # Moonshoot app
-An app showing all NASA Apollo missions with information and logos, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Moonshot)
+An app showing all NASA Apollo missions with information and logos, in this app i implment LazyVGrid, decoding data from local json file, switch between views (list or grid) using button[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Moonshot)
 
 
 <div align="center">
@@ -19,7 +19,7 @@ An app showing all NASA Apollo missions with information and logos, [Check proje
 </div>
 
 # Core Data app
-An app implement CoreData and using sorting and feltring from fetch request techniques, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/CoreDataProject)
+In this app i implement CoreData Techniques (sorting and feltring from fetch request techniques), [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/CoreDataProject)
 
 <div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/CD.png" height="466" width="250" alt="iPhone"  />
@@ -53,7 +53,7 @@ Track your habits with this app and how many days you did this habits...all data
 </div>
 
 # Filter app
-In this app I used CoreImage to apply diffrent filters to an image and also implment uiviewcontrollerrepresentable to wrap PHPhotoPicker to use it within swiftUI, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Instafilter) 
+In this app I used CoreImage to apply diffrent filters to an image, implment CoreImage, CoreImage.CIFilterBuiltins ,uiviewcontrollerrepresentable to wrap PHPhotoPicker to use it within swiftUI, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Instafilter) 
 
 <div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/F1.png" height="466" width="250" alt="iPhone"/>
@@ -68,4 +68,14 @@ In this app I Implemented Mapkit, CoreData, Fetching user location, UIViewContro
 <img src="xX-Materials-Xx/readmeScreenShots/nv2.png" height="339" width="180" alt="iPhone"/>
 <img src="xX-Materials-Xx/readmeScreenShots/nv3.png" height="339" width="180" alt="iPhone"/>
 <img src="xX-Materials-Xx/readmeScreenShots/nv4.png" height="339" width="180" alt="iPhone"/>
+</div>
+
+# HotProspects app
+In this app I Implemented Locale Notification, Swipe Actions, contextMenu, saving data as jsonfile in documents directory, Generate QR codes usign CoreImage and CoreImage.CIFilterBuiltins, Read QR codes using @twostraws CodeScanner package [Link here](https://github.com/twostraws/CodeScanner),[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/HotProspects)
+
+<div align="center">
+<img src="xX-Materials-Xx/readmeScreenShots/hp1.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/hp2.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/hp3.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/hp4.png" height="339" width="180" alt="iPhone"/>
 </div>
