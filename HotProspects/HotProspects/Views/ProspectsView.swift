@@ -28,6 +28,14 @@ struct ProspectsView: View {
     let uncontactedPerson = Image(systemName: "person.fill.xmark")
     @State private var showFilterDialog = false
     
+    var everyOneScreenFalg : Bool{
+        if filter == .none {
+            return true
+        }else{
+            return false
+        }
+    }
+    
     var filteredSortedProspects: [Prospect] {
         switch sort {
         case .name:
@@ -111,7 +119,8 @@ struct ProspectsView: View {
                             .tint(.orange)
                         }
                     }
-                }.onDelete(perform: deleteRecord)
+                }
+                .onDelete(perform: everyOneScreenFalg ? deleteRecord : nil)
             }
                 .navigationTitle(title)
                 .toolbar {
@@ -207,11 +216,13 @@ struct ProspectsView: View {
     }
     
     func deleteRecord(at offsets: IndexSet) {
-        for i in offsets.makeIterator() {
-            print("index in fl \(i)")
-            prospects.remove(index: i)
-        }
+            for i in offsets.makeIterator() {
+                print("index in fl \(i)")
+                prospects.remove(index: i)
+            }
     }
+    
+    
     
 }  // end
 
