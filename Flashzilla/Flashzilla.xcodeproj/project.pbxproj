@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2672DDD12916BBF20018B916 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672DDD02916BBF20018B916 /* AddView.swift */; };
+		2672DDD42916C1D20018B916 /* FileManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2672DDD32916C1D20018B916 /* FileManger.swift */; };
 		26B8EFB72901958E007B616C /* FlashzillaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B8EFB62901958E007B616C /* FlashzillaApp.swift */; };
 		26B8EFB92901958E007B616C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B8EFB82901958E007B616C /* ContentView.swift */; };
 		26B8EFBB2901958F007B616C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26B8EFBA2901958F007B616C /* Assets.xcassets */; };
@@ -16,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2672DDD02916BBF20018B916 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		2672DDD32916C1D20018B916 /* FileManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManger.swift; sourceTree = "<group>"; };
 		26B8EFB32901958E007B616C /* Flashzilla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flashzilla.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B8EFB62901958E007B616C /* FlashzillaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlashzillaApp.swift; sourceTree = "<group>"; };
 		26B8EFB82901958E007B616C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -36,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2672DDD22916C1A90018B916 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				2672DDD32916C1D20018B916 /* FileManger.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		26B8EFAA2901958E007B616C = {
 			isa = PBXGroup;
 			children = (
@@ -58,6 +70,7 @@
 				26B8EFB62901958E007B616C /* FlashzillaApp.swift */,
 				26EC1E92290DA08C000DAE5B /* Views */,
 				26EC1E91290DA085000DAE5B /* Data */,
+				2672DDD22916C1A90018B916 /* Utils */,
 				26B8EFBA2901958F007B616C /* Assets.xcassets */,
 				26B8EFBC2901958F007B616C /* Preview Content */,
 			);
@@ -85,6 +98,7 @@
 			children = (
 				26B8EFB82901958E007B616C /* ContentView.swift */,
 				26EC1E95290DA100000DAE5B /* CardView.swift */,
+				2672DDD02916BBF20018B916 /* AddView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -160,7 +174,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				26B8EFB92901958E007B616C /* ContentView.swift in Sources */,
+				2672DDD42916C1D20018B916 /* FileManger.swift in Sources */,
 				26EC1E94290DA0C6000DAE5B /* Card.swift in Sources */,
+				2672DDD12916BBF20018B916 /* AddView.swift in Sources */,
 				26EC1E96290DA100000DAE5B /* CardView.swift in Sources */,
 				26B8EFB72901958E007B616C /* FlashzillaApp.swift in Sources */,
 			);

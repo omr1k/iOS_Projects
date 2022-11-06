@@ -26,11 +26,31 @@ struct ContentView: View {
     @Environment(\.scenePhase) var scenePhase
     @State private var isActive = true
 
+    @State private var showingEditScreen = false
+    
     var body: some View {
         ZStack {
             Image(decorative: "background")
                 .resizable()
                 .ignoresSafeArea()
+            
+            VStack {
+                HStack {
+                    Spacer()
+                    Button {
+                        showingEditScreen = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .padding()
+                            .background(.black.opacity(0.7))
+                            .clipShape(Circle())
+                    }
+                }
+                Spacer()
+            }
+            .foregroundColor(.white)
+            .font(.largeTitle)
+            .padding()
             
             VStack {
                 if differentiateWithoutColor || voiceOverEnabled {
@@ -122,6 +142,9 @@ struct ContentView: View {
                 isActive = false
             }
         }
+        .sheet(isPresented: $showingEditScreen, onDismiss: resetCards) {
+            AddView()
+        }
     }
     
     func removeCard(at index: Int) {
@@ -136,6 +159,7 @@ struct ContentView: View {
     }
     
     func resetCards() {
+        print(FileManager.documentsDirectory)
         cards = [Card](repeating: Card.example, count: 10)
         timeRemaining = 100
         isActive = true
