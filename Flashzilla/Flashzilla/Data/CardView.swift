@@ -17,6 +17,9 @@ struct CardView: View {
     @State private var offset = CGSize.zero
     @State private var feedback = UINotificationFeedbackGenerator()
     
+    @EnvironmentObject var cardsObject : Cards
+    let cardsClass = Cards()
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25, style: .continuous)
@@ -71,8 +74,13 @@ struct CardView: View {
                     if abs(offset.width) > 100{
                         if offset.width < 0 {
                             feedback.notificationOccurred(.error)
+                            
+                            self.isShowingAnswer = false
+                            self.offset = .zero
                         }
-                        removal?()
+                            removal?()
+                        
+                        
                     }else{
                         offset = .zero
                     }

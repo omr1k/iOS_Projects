@@ -15,18 +15,22 @@ extension View {
 }
 
 struct ContentView: View {
-    @State private var cards = [Card](repeating: Card.example, count: 10)
+    @State private var cards = [Card]()
     @Environment(\.accessibilityDifferentiateWithoutColor) var differentiateWithoutColor
     @Environment(\.accessibilityVoiceOverEnabled) var voiceOverEnabled
 
     
     @State private var timeRemaining = 100
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     @Environment(\.scenePhase) var scenePhase
     @State private var isActive = true
 
     @State private var showingEditScreen = false
+    
+    @EnvironmentObject var cardsObject : Cards
+    let cardsClass = Cards()
     
     var body: some View {
         ZStack {
@@ -101,6 +105,7 @@ struct ContentView: View {
                     .clipShape(Capsule())
                 
                 ZStack {
+                    
                     ForEach(0..<cards.count, id: \.self) { index in
                         CardView(card: cards[index]) {
                            withAnimation {
@@ -116,7 +121,7 @@ struct ContentView: View {
                
                 
                 if cards.isEmpty {
-                    Button("Start Again", action: resetCards)
+                    Button("Start Game", action: resetCards)
                         .padding()
                         .background(.white)
                         .foregroundColor(.black)
@@ -145,12 +150,32 @@ struct ContentView: View {
         .sheet(isPresented: $showingEditScreen, onDismiss: resetCards) {
             AddView()
         }
+        .onAppear(perform: loadData)
     }
     
     func removeCard(at index: Int) {
         guard index >= 0 else { return }
 
-        cards.remove(at: index)
+        print(cards.count)
+        
+        cards.remove(at: index) // right
+       
+        let cardnew = Card(prompt: "5", answer: "5")
+//        cards.insert(cardnew, at: cards.count+1)
+//        cards.append(cardnew)
+        
+        print(index)
+//        cards.insert(Card(prompt: cards[index].prompt, answer: cards[index].answer), at: 0)
+        print(cards.count)
+        
+//        print(cards[3].prompt)
+//        cards.insert(cards[index-1], at: 0)
+//        print(cards[index-1])
+//        print(cards[index])
+//        print(cards)
+//        cardsClass.add()
+
+        
         
         if cards.isEmpty {
             isActive = false
@@ -160,9 +185,21 @@ struct ContentView: View {
     
     func resetCards() {
         print(FileManager.documentsDirectory)
-        cards = [Card](repeating: Card.example, count: 10)
+        cards = [Card]()
         timeRemaining = 100
         isActive = true
+        loadData()
+    }
+    func loadData(){
+        let jsonFilePath = FileManager.documentsDirectory.appendingPathComponent("SavedCards")
+        do {
+            let data = try Data(contentsOf: jsonFilePath)
+            let decoder = JSONDecoder()
+            cards = try decoder.decode([Card].self, from: data)
+        } catch {
+            debugPrint(error.localizedDescription)
+            cards = []
+        }
     }
     
 }

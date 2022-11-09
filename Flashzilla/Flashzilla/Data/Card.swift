@@ -29,7 +29,7 @@ struct Card: Identifiable, Codable {
             cards = try decoder.decode([Card].self, from: data)
         } catch {
             debugPrint(error.localizedDescription)
-            cards = []
+            cards = [].reversed()
         }
     }
     
