@@ -12,8 +12,6 @@ struct EditView: View {
     @Environment(\.dismiss) var dismiss
     var onSave: (Location) -> Void
     var location: Location
- 
-  
     
     @StateObject private var EditViewViewModel = EditViewViewModel()
     
