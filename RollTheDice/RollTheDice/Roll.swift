@@ -10,10 +10,13 @@ import Foundation
 
 struct Roll: Codable, Identifiable {
     var id = UUID()
-    let diceSize : String
-    let diceresult : String
+    let numberOfDices : Int
+    let diceSize : Int
+    let diceResult : [Int]
+    let total : Int
     
-    static let example = Roll(diceSize: "10", diceresult: "4")
+//    static let example = Roll(diceSize: "10", diceResult: ["4"])
+    static let example = Roll(numberOfDices: 5, diceSize: 10, diceResult: [4], total: 5)
 
 }
 

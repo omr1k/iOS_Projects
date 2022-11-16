@@ -10,14 +10,14 @@ import SwiftUI
 struct ContentView: View {
     
     
-    @State private var selectedNumberOFDicesValue = "1"
-    @State private var selectedNumberOFSidesValue = "4"
+    @State private var selectedNumberOFDicesValue = 1
+    @State private var selectedNumberOFSidesValue = 4
     
     @State private var FinalValue = ""
-    var resultArray = [String]()
+   
     
-    let NumberOfDices = ["1", "2", "3", "4","5","6"]
-    let DicesSides = ["4", "6", "8", "10","12","20"]
+    let NumberOfDices = [1, 2, 3, 4,5,6]
+    let DicesSides = [4, 6, 8, 10,12,20,100]
     
     @EnvironmentObject var rollesObject : Rolles
     let rollesClass = Rolles()
@@ -29,7 +29,7 @@ struct ContentView: View {
                 Section{
                     Picker("Please choose", selection: $selectedNumberOFDicesValue) {
                         ForEach(NumberOfDices, id: \.self) {
-                            Text($0)
+                            Text("\($0)")
                         }
                     }.pickerStyle(.segmented)
                 } header: {
@@ -40,7 +40,7 @@ struct ContentView: View {
                 Section{
                     Picker("Please choose", selection: $selectedNumberOFSidesValue) {
                         ForEach(DicesSides, id: \.self) {
-                            Text($0)
+                            Text("\($0)")
                         }
                     }.pickerStyle(.segmented)
                 } header: {
@@ -54,26 +54,34 @@ struct ContentView: View {
             Button("Roll Now") {
                 RollDice()
             }
-            
-            
             HStack{
+                Text("Number of dices")
                 Spacer()
                 Text("Dice Size")
                 Spacer()
-                Text("Dice Result")
+                Text("Results")
                 Spacer()
+                Text("Sum")
             }.padding()
+            
             ScrollView(.vertical){
                 Section {
                     ForEach(rollesClass.rolles.reversed()) { roll in
                         HStack() {
+                            Text("\(roll.numberOfDices)")
+                                .font(.footnote)
                             Spacer()
-                            Text(roll.diceSize)
-                                .font(.headline)
+                            
+                            Text("\(roll.diceSize)")
+                                .font(.footnote)
                             Spacer()
-                            Text(roll.diceresult)
-                                .foregroundColor(.secondary)
+                            ForEach(roll.diceResult, id: \.self) {
+                                Text("\($0)")
+                                    .font(.footnote)
+                            }
                             Spacer()
+                            Text("\(roll.total)")
+                                .font(.footnote)
                         }
                     }
                 }.padding()
@@ -83,26 +91,20 @@ struct ContentView: View {
     }
     
     func RollDice () {
-        var arrayOfSingleDice = [String]()
-        let selectedNumberOFSidesValueINT = Int(selectedNumberOFSidesValue)!
+        var arrayOfSingleDice = [Int]()
+        var randomResult = [Int]()
         
-        for i in 1...selectedNumberOFSidesValueINT {
-            arrayOfSingleDice.append(String(i))
-        }
-        print(arrayOfSingleDice)
-        
-        
-        var xxx = [String]()
-        for _ in 1...Int(selectedNumberOFDicesValue)!{
-            var randomValue = arrayOfSingleDice.randomElement()!
-            xxx.append(randomValue)
+        for i in 1...selectedNumberOFSidesValue {
+            arrayOfSingleDice.append(i)
         }
         
-        print("resutl array \(xxx)")
-        
-        
-//        FinalValue = arrayOfSingleDice.randomElement()!
-        let roll = Roll(diceSize: selectedNumberOFSidesValue, diceresult: FinalValue)
+        for _ in 1...selectedNumberOFDicesValue {
+            let randomValue = arrayOfSingleDice.randomElement()!
+            randomResult.append(randomValue)
+        }
+
+        let total = randomResult.reduce(0, +)
+        let roll = Roll(numberOfDices: selectedNumberOFDicesValue, diceSize: selectedNumberOFSidesValue, diceResult: randomResult, total: total)
         rollesClass.add(roll)
     }
 }
