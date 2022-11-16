@@ -21,11 +21,12 @@ struct ContentView: View {
     
     @EnvironmentObject var rollesObject : Rolles
     let rollesClass = Rolles()
+    
+
+    
     var body: some View {
-        
         VStack{
             List{
-                
                 Section{
                     Picker("Please choose", selection: $selectedNumberOFDicesValue) {
                         ForEach(NumberOfDices, id: \.self) {
@@ -50,10 +51,27 @@ struct ContentView: View {
                 
             }
             
+            
+            
             Text(FinalValue)
-            Button("Roll Now") {
-                RollDice()
-            }
+            HStack{
+                Button("Roll Dice") {
+                    RollDice()
+                }.onTapGesture(perform: simpleSuccess)
+                Spacer()
+                Button("Delete all") {
+                    
+                    rollesClass.DeleteAll()
+                    
+                    selectedNumberOFDicesValue = 2
+                    selectedNumberOFSidesValue = 6
+                    
+                    selectedNumberOFSidesValue = 4
+                    selectedNumberOFDicesValue = 1
+                    print("delete done")
+                }
+            }.padding()
+            
             HStack{
                 Text("Number of dices")
                 Spacer()
@@ -90,7 +108,13 @@ struct ContentView: View {
         }
     }
     
+    func simpleSuccess() {
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+    }
+    
     func RollDice () {
+        
         var arrayOfSingleDice = [Int]()
         var randomResult = [Int]()
         
@@ -105,7 +129,15 @@ struct ContentView: View {
 
         let total = randomResult.reduce(0, +)
         let roll = Roll(numberOfDices: selectedNumberOFDicesValue, diceSize: selectedNumberOFSidesValue, diceResult: randomResult, total: total)
+        print("roll \(roll)")
         rollesClass.add(roll)
+        print(rollesClass.rolles)
+        
+        selectedNumberOFDicesValue = 2
+        selectedNumberOFSidesValue = 6
+        
+        selectedNumberOFSidesValue = 4
+        selectedNumberOFDicesValue = 1
     }
 }
 

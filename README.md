@@ -9,7 +9,7 @@
 </div>
 
 # Moonshoot app
-An app showing all NASA Apollo missions with information and logos, in this app i implment LazyVGrid, decoding data from local json file, switch between views (list or grid) using button[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Moonshot)
+An app showing all NASA Apollo missions with information and logos, in this app i implment LazyVGrid, decoding data from local json file, switch between views (list or grid) using button, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Moonshot)
 
 
 <div align="center">
@@ -71,7 +71,7 @@ In this app I Implemented Mapkit, CoreData, Fetching user location, UIViewContro
 </div>
 
 # HotProspects app
-In this app I Implemented Locale Notification, Swipe Actions, contextMenu, saving data as jsonfile in documents directory, Generate QR codes usign CoreImage and CoreImage.CIFilterBuiltins, Read QR codes using @twostraws CodeScanner package [Link here](https://github.com/twostraws/CodeScanner), [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/HotProspects)
+In this app I Implemented Locale Notification, Swipe Actions, contextMenu, saving data as jsonfile in documents directory, Generate QR codes usign CoreImage and CoreImage.CIFilterBuiltins, Read QR codes using Paul Hudson @twostraws CodeScanner package [Link here](https://github.com/twostraws/CodeScanner), [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/HotProspects)
 
 <div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/hp1.png" height="339" width="180" alt="iPhone"/>

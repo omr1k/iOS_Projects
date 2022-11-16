@@ -50,6 +50,11 @@ struct Roll: Codable, Identifiable {
             rolles.append(roll)
             save()
         }
+    
+    func DeleteAll (){
+        rolles = []
+        save()
+    }
 }
 
 
