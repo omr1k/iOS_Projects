@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		26553E7729244A4000D0F72F /* FileManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26553E7629244A4000D0F72F /* FileManger.swift */; };
 		26553E7929244A9B00D0F72F /* Roll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26553E7829244A9B00D0F72F /* Roll.swift */; };
+		2686CA132928169B00E25B82 /* textview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2686CA122928169B00E25B82 /* textview.swift */; };
 		26AE521629242D4C000AB7C0 /* RollTheDiceApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE521529242D4C000AB7C0 /* RollTheDiceApp.swift */; };
 		26AE521829242D4C000AB7C0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AE521729242D4C000AB7C0 /* ContentView.swift */; };
 		26AE521A29242D4D000AB7C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26AE521929242D4D000AB7C0 /* Assets.xcassets */; };
@@ -18,6 +19,8 @@
 /* Begin PBXFileReference section */
 		26553E7629244A4000D0F72F /* FileManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManger.swift; sourceTree = "<group>"; };
 		26553E7829244A9B00D0F72F /* Roll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Roll.swift; sourceTree = "<group>"; };
+		2686CA122928169B00E25B82 /* textview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = textview.swift; sourceTree = "<group>"; };
+		2686CA142928279B00E25B82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		26AE521229242D4C000AB7C0 /* RollTheDice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RollTheDice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26AE521529242D4C000AB7C0 /* RollTheDiceApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RollTheDiceApp.swift; sourceTree = "<group>"; };
 		26AE521729242D4C000AB7C0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,8 +58,10 @@
 		26AE521429242D4C000AB7C0 /* RollTheDice */ = {
 			isa = PBXGroup;
 			children = (
+				2686CA142928279B00E25B82 /* Info.plist */,
 				26AE521529242D4C000AB7C0 /* RollTheDiceApp.swift */,
 				26AE521729242D4C000AB7C0 /* ContentView.swift */,
+				2686CA122928169B00E25B82 /* textview.swift */,
 				26553E7629244A4000D0F72F /* FileManger.swift */,
 				26553E7829244A9B00D0F72F /* Roll.swift */,
 				26AE521929242D4D000AB7C0 /* Assets.xcassets */,
@@ -145,6 +150,7 @@
 			files = (
 				26AE521829242D4C000AB7C0 /* ContentView.swift in Sources */,
 				26553E7729244A4000D0F72F /* FileManger.swift in Sources */,
+				2686CA132928169B00E25B82 /* textview.swift in Sources */,
 				26553E7929244A9B00D0F72F /* Roll.swift in Sources */,
 				26AE521629242D4C000AB7C0 /* RollTheDiceApp.swift in Sources */,
 			);
@@ -278,6 +284,8 @@
 				DEVELOPMENT_TEAM = 2CWZ37P538;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RollTheDice/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We want to Usee Face ID";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -307,6 +315,8 @@
 				DEVELOPMENT_TEAM = 2CWZ37P538;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RollTheDice/Info.plist;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We want to Usee Face ID";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
