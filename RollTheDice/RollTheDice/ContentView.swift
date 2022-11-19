@@ -90,15 +90,9 @@ struct ContentView: View {
                         .stroke(Color.gray, style: StrokeStyle(lineWidth: 1,
                                                                lineCap: CGLineCap.round,
                                                                dash: [5, 5])).padding()
-                    HStack {
-                        ForEach(randomResultFinal, id: \.self) { result in
-                            Text("\(result)")
-                                .font(.title.bold())
-                                .foregroundColor(.white)
-                            
-                        }
-                    }
-                    
+                    Text(randomResultFinal.map(String.init).joined(separator: "-"))
+                        .font(.title.bold())
+                        .foregroundColor(.white)
                 }
                 
                 
@@ -301,7 +295,14 @@ struct ContentView_Previews: PreviewProvider {
 
 
 
-
+//                    HStack {
+//                        ForEach(randomResultFinal, id: \.self) { result in
+//                            Text("\(result)")
+//                                .font(.title.bold())
+//                                .foregroundColor(.white)
+//
+//                        }
+//                    }
 
 //        ZStack{
 //            Image("d")
