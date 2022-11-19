@@ -18,6 +18,7 @@ struct ContentView: View {
   let NumberOfDices = [1, 2, 3, 4, 5, 6]
   let DicesSides = [4, 6, 8, 10, 12, 20, 100]
 
+  @Environment(\.scenePhase) var scenePhase
   @EnvironmentObject var rollesObject: Rolles
   @StateObject private var rollesClass = Rolles()
 
@@ -28,8 +29,8 @@ struct ContentView: View {
 
   @State private var showingDeleteAlert = false
     
-    @State private var isUnlocked = false
-    @State private var noBiometricsError = false
+  @State private var isUnlocked = false
+  @State private var noBiometricsError = false
     
     
 
@@ -44,6 +45,7 @@ struct ContentView: View {
             
             NavigationView {
             VStack {
+                
                 List {
                     Section {
                         Picker("Please choose", selection: $selectedNumberOFDicesValue) {
@@ -79,7 +81,7 @@ struct ContentView: View {
                     
                 }
                 .scrollContentBackground(.hidden)
-                .listStyle(InsetGroupedListStyle())  // disable picker arrow
+                .listStyle(InsetGroupedListStyle())  // disable picker collapse arrow
                 
                 
                 
@@ -125,8 +127,6 @@ struct ContentView: View {
                                         .font(.body)
                                 }
                                 
-                                //                            Text("\(roll.total)")
-                                //                                .font(.footnote)
                                 
                             }.padding()
                         }
@@ -156,10 +156,7 @@ struct ContentView: View {
                 
             }.background(Image("dice2"))
             
-            
-            
-                
-                .alert("Delete History", isPresented: $showingDeleteAlert) {
+                .alert("Delete History!", isPresented: $showingDeleteAlert) {
                     Button("Delete", role: .destructive, action: delete)
                     Button("Cancel", role: .cancel) { }
                 } message: {
@@ -190,6 +187,7 @@ struct ContentView: View {
                     it -= 1
                     if it == 0 {
                         save()
+                       
                     }
                 } else {
                     timerRunning = false
@@ -198,25 +196,35 @@ struct ContentView: View {
                 }
             } // on recive end
             
-    }else {
-        VStack{
-            Spacer()
-            HStack(alignment: .center){
-                Spacer()
-                Button("Unlock Roll The Dice App") {
-                    authenticate()
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .active {
+                    
+                } else {
+                    isUnlocked = false
                 }
-                .padding()
-                .background(.blue)
-                .foregroundColor(.white)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
                 
-                Spacer()
             }
-        }.background(Image("diceLockScreen"))
-     
-//            .onAppear(perform: authenticate)
+            
+        }else {
+            VStack{
+                Spacer()
+                HStack(alignment: .center){
+                    Spacer()
+                    Button("Unlock Roll The Dice App") {
+                        authenticate()
+                    }
+                    .padding()
+                    .background(.blue)
+                    .foregroundColor(.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 15))
+                    
+                    Spacer()
+                }
+            }.background(Image("diceLockScreen"))
+            
+            //            .onAppear(perform: authenticate)
     }
+            
 
     
   }
