@@ -79,3 +79,30 @@ In this app I Implemented Locale Notification, Swipe Actions, contextMenu, savin
 <img src="xX-Materials-Xx/readmeScreenShots/hp3.png" height="339" width="180" alt="iPhone"/>
 <img src="xX-Materials-Xx/readmeScreenShots/hp4.png" height="339" width="180" alt="iPhone"/>
 </div>
+
+
+# Roll The Dice app
+
+[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/RollTheDice)
+
+<div align="center">
+<img src="xX-Materials-Xx/readmeScreenShots/rtd1.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/rtd2.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/rtd3.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/rtd4.png" height="339" width="180" alt="iPhone"/>
+
+</div>
+
+
+# Snow Seeker app
+
+[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/SnowSeeker)
+
+<div align="center">
+
+<img src="xX-Materials-Xx/readmeScreenShots/sk1.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/sk2.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/sk3.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/sk4.png" height="339" width="180" alt="iPhone"/>
+
+</div>

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		26045523292AB1C700A74CB7 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26045522292AB1C700A74CB7 /* Favorites.swift */; };
 		265345AB2928D89D003EE7DB /* SnowSeekerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265345AA2928D89D003EE7DB /* SnowSeekerApp.swift */; };
 		265345AD2928D89D003EE7DB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265345AC2928D89D003EE7DB /* ContentView.swift */; };
 		265345AF2928D89F003EE7DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 265345AE2928D89F003EE7DB /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		26045522292AB1C700A74CB7 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		265345A72928D89D003EE7DB /* SnowSeeker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnowSeeker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		265345AA2928D89D003EE7DB /* SnowSeekerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnowSeekerApp.swift; sourceTree = "<group>"; };
 		265345AC2928D89D003EE7DB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 				265345AC2928D89D003EE7DB /* ContentView.swift */,
 				265345BE29290FC6003EE7DB /* WelcomeView.swift */,
 				265345C0292980B6003EE7DB /* ResortView.swift */,
+				26045522292AB1C700A74CB7 /* Favorites.swift */,
 				265345BA2929090A003EE7DB /* Resort.swift */,
 				265345BC292909CB003EE7DB /* Bundle-Decodable.swift */,
 				265345B8292908AE003EE7DB /* resorts.json */,
@@ -157,6 +160,7 @@
 				265345AD2928D89D003EE7DB /* ContentView.swift in Sources */,
 				265345BB2929090A003EE7DB /* Resort.swift in Sources */,
 				265345C1292980B6003EE7DB /* ResortView.swift in Sources */,
+				26045523292AB1C700A74CB7 /* Favorites.swift in Sources */,
 				265345AB2928D89D003EE7DB /* SnowSeekerApp.swift in Sources */,
 				265345BD292909CB003EE7DB /* Bundle-Decodable.swift in Sources */,
 			);

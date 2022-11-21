@@ -14,6 +14,21 @@ struct ResortView: View {
     @State private var selectedFacility = ""
     @State private var selectedFacilityDescription = ""
     
+    
+    
+    @EnvironmentObject var favorites: Favorites
+
+    var isFave : Bool{
+        if favorites.contains(resort){
+            
+            return false
+        }else{
+            
+            return true
+        }
+    }
+    
+    
     var size: String {
         switch resort.size {
         case 1:
@@ -78,9 +93,40 @@ struct ResortView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                Image(decorative: resort.id)
-                    .resizable()
-                    .scaledToFit()
+                
+                ZStack(alignment: .bottomTrailing){
+                
+                    Image(decorative: resort.id)
+                        .resizable()
+                        .scaledToFit()
+                    
+                    HStack{
+                        Image(resort.country)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 40, height: 25)
+                            .clipShape(
+                                RoundedRectangle(cornerRadius: 5)
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 5)
+                                    .stroke(.black, lineWidth: 1)
+                            )
+                            .offset(x: 5, y: -5)
+                        Spacer()
+                        Text(resort.imageCredit)
+                            .font(.caption)
+                            .fontWeight(.black)
+                            .padding(8)
+                            .foregroundColor(.white)
+                            .background(.black.opacity(0.75))
+                            .clipShape(Capsule())
+                            .offset(x: -5, y: -5)
+
+                    }
+                    
+                }
+                
                 
                 HStack{
                     Spacer()
@@ -88,15 +134,19 @@ struct ResortView: View {
                         VStack {
                             Text("Elevation")
                                 .font(.caption.bold())
+                                .foregroundColor(.white)
                             Text("\(resort.elevation)m")
                                 .font(.title3)
+                                .foregroundColor(.white)
                         }
                         Spacer()
                         VStack {
                             Text("Snow")
                                 .font(.caption.bold())
+                                .foregroundColor(.white)
                             Text("\(resort.snowDepth)cm")
                                 .font(.title3)
+                                .foregroundColor(.white)
                         }
                     }
                     
@@ -105,15 +155,19 @@ struct ResortView: View {
                         VStack {
                             Text("Size")
                                 .font(.caption.bold())
+                                .foregroundColor(.white)
                             Text(size)
                                 .font(.title3)
+                                .foregroundColor(.white)
                         }
                         Spacer()
                         VStack {
                             Text("Price")
                                 .font(.caption.bold())
+                                .foregroundColor(.white)
                             Text(price)
                                 .font(.title3)
+                                .foregroundColor(.white)
                         }
                     }
                     
@@ -156,6 +210,18 @@ struct ResortView: View {
         
         .navigationTitle("\(resort.name), \(resort.country)")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            Button {
+                if favorites.contains(resort) {
+                        favorites.remove(resort)
+                    } else {
+                        favorites.add(resort)
+                    }
+            } label: {
+                Label("Show", systemImage: "heart.fill")
+                    .foregroundColor(favorites.contains(resort) ? .red : .secondary)
+            }
+        }
     }
 }
 
