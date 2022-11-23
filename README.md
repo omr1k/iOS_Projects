@@ -1,29 +1,57 @@
-# Rock Paper Scissors Game and Geuss the Flag Game
-[Rock Paper Scissors project files here](https://github.com/omr1k/iOS_Projects/tree/main/RockPaperScissors)
-
-[Guess The Flag project files here](https://github.com/omr1k/iOS_Projects/tree/main/GuessTheFlag)
-
-<div align="Center">
-<img src="xX-Materials-Xx/readmeScreenShots/RPS.png" height="466" width="250" alt="iPhone"  />
-<img src="xX-Materials-Xx/readmeScreenShots/GTF.png" height="466" width="250" alt="iPhone"  />
+# Never Forget Names  app
+In this app I Implemented Mapkit, CoreData, Fetching user location, UIViewControllerRepresentable, PHPickerViewControllerDelegate, Saving and deleting files to documents directory, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/NeverForgetNames)
+<div align="center">
+<img src="xX-Materials-Xx/readmeScreenShots/nv1.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/nv2.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/nv3.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/nv4.png" height="339" width="180" alt="iPhone"/>
 </div>
 
-# Moonshoot app
-An app showing all NASA Apollo missions with information and logos, in this app i implment LazyVGrid, decoding data from local json file, switch between views (list or grid) using button, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Moonshot)
-
+# HotProspects app
+In this app I Implemented Locale Notification, Swipe Actions, contextMenu, saving data as jsonfile in documents directory, Generate QR codes usign CoreImage and CoreImage.CIFilterBuiltins, Read QR codes using Paul Hudson @twostraws CodeScanner package [Link here](https://github.com/twostraws/CodeScanner), [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/HotProspects)
 
 <div align="center">
-<img src="xX-Materials-Xx/readmeScreenShots/Moonshot.png" height="466" width="250" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/Moonshot2.png" height="466" width="250" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/Moonshot3.png" height="466" width="250" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/hp1.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/hp2.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/hp3.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/hp4.png" height="339" width="180" alt="iPhone"/>
 </div>
 
-# Core Data app
-In this app i implement CoreData Techniques (sorting and feltring from fetch request techniques), [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/CoreDataProject)
+
+
+# Filter app
+In this app I used CoreImage to apply diffrent filters to an image, implment CoreImage, CoreImage.CIFilterBuiltins ,uiviewcontrollerrepresentable to wrap PHPhotoPicker to use it within swiftUI, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Instafilter) 
 
 <div align="center">
-<img src="xX-Materials-Xx/readmeScreenShots/CD.png" height="466" width="250" alt="iPhone"  />
-<img src="xX-Materials-Xx/readmeScreenShots/CD2.png" height="466" width="250" alt="iPhone"  />
+<img src="xX-Materials-Xx/readmeScreenShots/F1.png" height="466" width="250" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/F2.png" height="466" width="250" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/F3.png" height="466" width="250" alt="iPhone"/>
+</div>
+
+# Roll The Dice app
+
+[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/RollTheDice)
+
+<div align="center">
+<img src="xX-Materials-Xx/readmeScreenShots/rtd1.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/rtd2.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/rtd3.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/rtd4.png" height="339" width="180" alt="iPhone"/>
+
+</div>
+
+
+# Snow Seeker app
+
+[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/SnowSeeker)
+
+<div align="center">
+
+<img src="xX-Materials-Xx/readmeScreenShots/sk1.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/sk2.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/sk3.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/sk4.png" height="339" width="180" alt="iPhone"/>
+
 </div>
 
 # Bookworm app
@@ -52,57 +80,40 @@ Track your habits with this app and how many days you did this habits...all data
 <img src="xX-Materials-Xx/readmeScreenShots/HT2.png" height="466" width="250" alt="iPhone"/>
 </div>
 
-# Filter app
-In this app I used CoreImage to apply diffrent filters to an image, implment CoreImage, CoreImage.CIFilterBuiltins ,uiviewcontrollerrepresentable to wrap PHPhotoPicker to use it within swiftUI, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Instafilter) 
+# Rock Paper Scissors Game and Geuss the Flag Game
+[Rock Paper Scissors project files here](https://github.com/omr1k/iOS_Projects/tree/main/RockPaperScissors)
 
-<div align="center">
-<img src="xX-Materials-Xx/readmeScreenShots/F1.png" height="466" width="250" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/F2.png" height="466" width="250" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/F3.png" height="466" width="250" alt="iPhone"/>
+[Guess The Flag project files here](https://github.com/omr1k/iOS_Projects/tree/main/GuessTheFlag)
+
+<div align="Center">
+<img src="xX-Materials-Xx/readmeScreenShots/RPS.png" height="466" width="250" alt="iPhone"  />
+<img src="xX-Materials-Xx/readmeScreenShots/GTF.png" height="466" width="250" alt="iPhone"  />
 </div>
 
-# Never Forget Names  app
-In this app I Implemented Mapkit, CoreData, Fetching user location, UIViewControllerRepresentable, PHPickerViewControllerDelegate, Saving and deleting files to documents directory, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/NeverForgetNames)
+# Moonshoot app
+An app showing all NASA Apollo missions with information and logos, in this app i implment LazyVGrid, decoding data from local json file, switch between views (list or grid) using button, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/Moonshot)
+
+
 <div align="center">
-<img src="xX-Materials-Xx/readmeScreenShots/nv1.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/nv2.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/nv3.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/nv4.png" height="339" width="180" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/Moonshot.png" height="466" width="250" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/Moonshot2.png" height="466" width="250" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/Moonshot3.png" height="466" width="250" alt="iPhone"/>
 </div>
 
-# HotProspects app
-In this app I Implemented Locale Notification, Swipe Actions, contextMenu, saving data as jsonfile in documents directory, Generate QR codes usign CoreImage and CoreImage.CIFilterBuiltins, Read QR codes using Paul Hudson @twostraws CodeScanner package [Link here](https://github.com/twostraws/CodeScanner), [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/HotProspects)
+# Core Data app
+In this app i implement CoreData Techniques (sorting and feltring from fetch request techniques), [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/CoreDataProject)
 
 <div align="center">
-<img src="xX-Materials-Xx/readmeScreenShots/hp1.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/hp2.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/hp3.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/hp4.png" height="339" width="180" alt="iPhone"/>
-</div>
-
-
-# Roll The Dice app
-
-[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/RollTheDice)
-
-<div align="center">
-<img src="xX-Materials-Xx/readmeScreenShots/rtd1.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/rtd2.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/rtd3.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/rtd4.png" height="339" width="180" alt="iPhone"/>
-
+<img src="xX-Materials-Xx/readmeScreenShots/CD.png" height="466" width="250" alt="iPhone"  />
+<img src="xX-Materials-Xx/readmeScreenShots/CD2.png" height="466" width="250" alt="iPhone"  />
 </div>
 
 
-# Snow Seeker app
 
-[Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/SnowSeeker)
 
-<div align="center">
 
-<img src="xX-Materials-Xx/readmeScreenShots/sk1.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/sk2.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/sk3.png" height="339" width="180" alt="iPhone"/>
-<img src="xX-Materials-Xx/readmeScreenShots/sk4.png" height="339" width="180" alt="iPhone"/>
 
-</div>
+
+
+
+
