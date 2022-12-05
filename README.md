@@ -28,6 +28,16 @@ In this app I used CoreImage to apply diffrent filters to an image, implment Cor
 <img src="xX-Materials-Xx/readmeScreenShots/F3.png" height="466" width="250" alt="iPhone"/>
 </div>
 
+# Weather app
+Fetch Weather Data depending on user location, [Check project files here](https://github.com/omr1k/iOSWeatherApp-Swiftui) 
+
+<div align="center">
+<img src="xX-Materials-Xx/readmeScreenShots/wa1.png" height="466" width="250" alt="iPhone"/>
+<img src="xX-Materials-Xx/readmeScreenShots/wa2.png" height="466" width="250" alt="iPhone"/>
+</div>
+
+
+
 # Roll The Dice app
 
 [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/RollTheDice)
