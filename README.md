@@ -29,7 +29,7 @@ In this app I used CoreImage to apply diffrent filters to an image, implment Cor
 </div>
 
 # Weather app
-Fetch Weather Data depending on user location, [Check project files here](https://github.com/omr1k/iOSWeatherApp-Swiftui) 
+Fetch Weather Data depending on user location, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/WeatherApp) 
 
 <div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/wa1.png" height="466" width="250" alt="iPhone"/>
