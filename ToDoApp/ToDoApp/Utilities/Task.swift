@@ -10,7 +10,7 @@ import RealmSwift
 
 class Task: Object, ObjectKeyIdentifiable {
     
-    // DB vars
+    // DB Vars
     @Persisted(primaryKey: true) var id: ObjectId  // Realm id generator "same as UUID"
     @Persisted var title = ""
     @Persisted var completed = false

@@ -13,11 +13,11 @@ struct TasksView: View {
     
     var body: some View {
         NavigationView{
-            
             VStack{
                 List{
                     ForEach(realmManger.tasks, id: \.id){ task in
-                        if !task.isInvalidated {
+                        // Must wrap in an if statement because we don't want to display the task if it has been invalidated (will run into a crash otherwise)
+                        if  !task.isInvalidated {
                         TaskRow(task: task.title, completed: task.completed)
                             .onTapGesture {
                                 realmManger.updateTask(id: task.id, completed: !task.completed)
@@ -29,7 +29,7 @@ struct TasksView: View {
                                     Label("Delete", systemImage: "trash")
                                 }
                             }
-                    }
+                       }
                     }
                     .listRowSeparator(.hidden)
                 }
