@@ -15,10 +15,10 @@ struct ContentView: View {
         ZStack{
             
             Circle().foregroundColor(.green).padding()
-                .blur(radius: animate ? 20 : 100)
-                .offset(x: animate ? 50 : -130 , y: animate ? -30 : -100)
+                .blur(radius: animate ? 40 : 100)
+                .offset(x: animate ? 10 : -130 , y: animate ? -10 : -100)
                 .task {
-                    withAnimation(.easeInOut(duration: 7).repeatForever()){
+                    withAnimation(.easeInOut(duration: 2).repeatForever()){
                         animate.toggle()
                     }
                 }
