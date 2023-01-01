@@ -12,10 +12,17 @@ import SwiftUI
 
 @MainActor class HomeViewModel: ObservableObject {
     
-
-    @Published var allCoins: [CoinModel] = []
+    @Published var allFetchedCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
+    
+    var allCoins: [CoinModel] {
+        if searchText.isEmpty {
+            return allFetchedCoins
+        } else {
+            return allFetchedCoins.filter { $0.symbol.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
     
     init(){
         updateCoinData()
@@ -24,7 +31,7 @@ import SwiftUI
     func updateCoinData(){
         let CoinsEndpoint = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=24h"
         Task{
-            allCoins = await NetworkManger().getData(endPoint: CoinsEndpoint, decodingModel: [CoinModel].self)
+            allFetchedCoins = await NetworkManger().getData(endPoint: CoinsEndpoint, decodingModel: [CoinModel].self)
         }
     }
     

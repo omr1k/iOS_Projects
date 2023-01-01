@@ -35,7 +35,7 @@ struct CoinRowView: View {
                         .resizable()
                         .scaledToFit()
                         
-                } else if imageService.coinImage != nil {
+                } else if imageService.coinImage == nil {
                     Image(systemName: "questionmark.circle")
                         .resizable()
                         .scaledToFit()
@@ -45,28 +45,6 @@ struct CoinRowView: View {
                 }
             }
             .frame(width: 30, height: 30)
-            
-            
-
-//            AsyncImage(url: URL(string: coin.image), scale: 3) { CoinImage in
-//
-//                if let image = CoinImage.image {
-//                    image
-//                        .resizable()
-//                        .scaledToFit()
-//                } else if CoinImage.error != nil {
-//                    Image(systemName: "questionmark.circle")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .foregroundColor(Color.theme.accent)
-//                } else {
-//                    ProgressView()
-//                }
-//            }
-//            .frame(width: 30, height: 30)
-//
-            
-            
             
             Text(coin.symbol.uppercased())
                 .font(.headline)
@@ -115,3 +93,25 @@ struct CoinRowView_Previews: PreviewProvider {
 //            }
 //            .frame(width: 30, height: 30)
 //
+
+
+
+
+//            AsyncImage(url: URL(string: coin.image), scale: 3) { CoinImage in
+//
+//                if let image = CoinImage.image {
+//                    image
+//                        .resizable()
+//                        .scaledToFit()
+//                } else if CoinImage.error != nil {
+//                    Image(systemName: "questionmark.circle")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .foregroundColor(Color.theme.accent)
+//                } else {
+//                    ProgressView()
+//                }
+//            }
+//            .frame(width: 30, height: 30)
+//
+            

@@ -111,6 +111,8 @@
 		26F9933C295CF10A00AFD596 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				26F9935F295FCB8500AFD596 /* CustomTabBar.swift */,
+				26F99345295D1D5200AFD596 /* CoinRowView.swift */,
 				26F9933D295CF14A00AFD596 /* CircleButton */,
 				269C4CEB2961CEA5009C0143 /* SearchBarView.swift */,
 			);
@@ -148,8 +150,6 @@
 			isa = PBXGroup;
 			children = (
 				26F9933A295CEEB900AFD596 /* HomeView.swift */,
-				26F99345295D1D5200AFD596 /* CoinRowView.swift */,
-				26F9935F295FCB8500AFD596 /* CustomTabBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

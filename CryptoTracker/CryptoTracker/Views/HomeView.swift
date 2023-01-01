@@ -25,28 +25,36 @@ struct HomeView: View {
                 .ignoresSafeArea()
             VStack{
                 homeHeader
-                
                 SearchBarView(searchText: $vm.searchText)
                 
                 listTitles
                 if !showPortfolio {
                     if vm.allCoins.isEmpty {
-                        ProgressView()
+                        if !vm.searchText.isEmpty{
+                            
+                        } else {
+                            ProgressView()
+                        }
                     } else {
                         allCoinsList
                             .transition(.move(edge: .leading))
                     }
                 }
+                
                 if showPortfolio {
                     if vm.portfolioCoins.isEmpty {
-                        ProgressView()
+                        if !vm.searchText.isEmpty{
+                            
+                        } else {
+                            ProgressView()
+                        }
                     } else {
                         portfolioCoinsList
                             .transition(.move(edge: .trailing))
                     }
                 }
                 Spacer(minLength: 0)
-                CustomTabBar(selectedTab: $tabSelected)
+//                CustomTabBar(selectedTab: $tabSelected)
             }
             
         }
