@@ -15,6 +15,7 @@ import SwiftUI
 
     @Published var allCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
+    @Published var searchText: String = ""
     
     init(){
         updateCoinData()

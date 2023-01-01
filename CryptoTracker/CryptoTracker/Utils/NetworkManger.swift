@@ -13,10 +13,12 @@ import Foundation
     /// getData
     /// Generic function to fetch data form api, to use it just provide the api endpoint and Decoding Model, valid for decodable types only
     ///```
-    func getData<T: Codable>(endPoint: String, decodingModel: T.Type ) async -> T {
-        guard let url = URL(string: endPoint) else {
-            fatalError("URL Error")
-        }
+    
+    func getData<T: Codable>(endPoint: String, decodingModel: T.Type) async -> T {
+        
+        guard let url = URL(string: endPoint)
+        else { fatalError("URL Error") }
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -24,14 +26,15 @@ import Foundation
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         
-        guard let (data, _) = try? await URLSession.shared.data(for: request) else {
-            fatalError("URL Session Error")
-        }
-        guard let decodedData = try? decoder.decode(decodingModel.self, from: data) else {
-            fatalError("Decoding Error")
-        }
+        guard let (data, _) = try? await URLSession.shared.data(for: request)
+        else { fatalError("URL Session Error") }
+        
+        guard let decodedData = try? decoder.decode(decodingModel.self, from: data)
+        else { fatalError("Decoding Error") }
+        
         return decodedData
     }
+    
     
 }
 
