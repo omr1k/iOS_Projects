@@ -15,6 +15,7 @@ import SwiftUI
     @Published var allFetchedCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
     @Published var searchText: String = ""
+    @Published var statistics: [StatisticModel] = []
     
     var allCoins: [CoinModel] {
         if searchText.isEmpty {
@@ -26,6 +27,7 @@ import SwiftUI
     
     init(){
         updateCoinData()
+        getMarketData()
     }
     
     func updateCoinData(){
@@ -36,8 +38,28 @@ import SwiftUI
     }
     
     
+    func getMarketData(){
+        let marketDataEndPoint = "https://api.coingecko.com/api/v3/global"
+        Task{
+            let marketData = await NetworkManger().getData(endPoint: marketDataEndPoint, decodingModel: GlobalData.self)
+            
+            let marketCap = StatisticModel(title: "Market Cap", value: marketData.data?.marketCap ?? "" , percentageChange: marketData.data?.marketCapChangePercentage24HUsd)
+            let volume = StatisticModel(title: "24h Volume", value: marketData.data?.volume ?? "")
+            let btcDominance = StatisticModel(title: "BTC Dominance", value: marketData.data?.btcDominance ?? "")
+            let portfolio = StatisticModel(title: "Portfolio Value", value: "$0.00" , percentageChange: -25.3)
+            
+            statistics.append(contentsOf: [
+                marketCap,
+                volume,
+                btcDominance,
+                portfolio
+            ])
+        }
+    }
+    
     
 }
+
 
 
 
@@ -76,3 +98,47 @@ import SwiftUI
 //        }
 //        return []
 //    }
+
+
+
+//
+//func getMarketData(){
+//    let marketDataEndPoint = "https://api.coingecko.com/api/v3/global"
+//    Task{
+//        let marketData = await NetworkManger().getData(endPoint: marketDataEndPoint, decodingModel: GlobalData.self)
+//        print("\(marketData)")
+//    }
+
+//}
+
+
+
+//    func getMarketData(){
+//        let endPoint = "https://api.coingecko.com/api/v3/global"
+//
+//        Task{
+//            guard let url = URL(string: endPoint)
+//            else { fatalError("URL Error") }
+//
+//            var request = URLRequest(url: url)
+//            request.httpMethod = "GET"
+//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//            request.cachePolicy = .reloadIgnoringCacheData
+//            let decoder = JSONDecoder()
+//            decoder.dateDecodingStrategy = .iso8601
+//
+//            guard let (data, _) = try? await URLSession.shared.data(for: request)
+//            else { fatalError("URL Session Error") }
+//
+//            guard let decodedData = try? decoder.decode(GlobalData.self, from: data)
+//            else { fatalError("Decoding Error") }
+//
+//            print("\(decodedData)")
+//
+////            marketData = decodedData
+////            print("=============>>\(decodedData)<<=============")
+//
+////            let one = StatisticModel(title: "gfg", value: "\(marketData.MarketDataModel?.marketCap)")
+//
+//            }
+//        }

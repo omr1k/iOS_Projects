@@ -16,7 +16,6 @@ struct HomeView: View {
         
         init() {
             UITabBar.appearance().isHidden = true
-            
         }
     
     var body: some View {
@@ -25,6 +24,7 @@ struct HomeView: View {
                 .ignoresSafeArea()
             VStack{
                 homeHeader
+                HomeStatusView(showPortfolio: $showPortfolio)
                 SearchBarView(searchText: $vm.searchText)
                 
                 listTitles
@@ -78,7 +78,7 @@ struct HomeView_Previews: PreviewProvider {
 extension HomeView {
     private var homeHeader: some View {
         HStack{
-            CircleButtonView(iconName: showPortfolio ? "plus" : "info")
+            CircleButtonView(iconName: showPortfolio ? "plus" : "gear")
                 .background(
                     CircleButtonAnimationView(animate: $showPortfolio)
                 )

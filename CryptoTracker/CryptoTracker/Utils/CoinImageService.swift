@@ -24,13 +24,13 @@ class CoinImageService: ObservableObject {
     }
     private func getCoinImage(){
         if let savedImage = fileManger.getImage(imageName: imageName, folderName: folderName){
-            print("from our db")
+//            print("from our db")
             coinImage = savedImage
             
         } else {
             Task{
                await downloadImage()
-               print("download")
+//               print("download")
             }
             
         }
