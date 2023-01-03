@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		266E8DED29646184008F41A4 /* AddPortfolioCoins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E8DEC29646184008F41A4 /* AddPortfolioCoins.swift */; };
+		266E8DEF296466FB008F41A4 /* XMarkButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E8DEE296466FB008F41A4 /* XMarkButtonView.swift */; };
+		266E8DF32964A867008F41A4 /* CoinImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E8DF22964A867008F41A4 /* CoinImageView.swift */; };
+		266E8DF52964B216008F41A4 /* CoinLogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266E8DF42964B216008F41A4 /* CoinLogoView.swift */; };
 		269C4CEC2961CEA5009C0143 /* SearchBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C4CEB2961CEA5009C0143 /* SearchBarView.swift */; };
 		269C4CEE2961D84A009C0143 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C4CED2961D84A009C0143 /* UIApplication.swift */; };
 		269C4CF02962DFE3009C0143 /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269C4CEF2962DFE3009C0143 /* StatisticModel.swift */; };
@@ -31,6 +35,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		266E8DEC29646184008F41A4 /* AddPortfolioCoins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPortfolioCoins.swift; sourceTree = "<group>"; };
+		266E8DEE296466FB008F41A4 /* XMarkButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMarkButtonView.swift; sourceTree = "<group>"; };
+		266E8DF22964A867008F41A4 /* CoinImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinImageView.swift; sourceTree = "<group>"; };
+		266E8DF42964B216008F41A4 /* CoinLogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinLogoView.swift; sourceTree = "<group>"; };
 		269C4CEB2961CEA5009C0143 /* SearchBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarView.swift; sourceTree = "<group>"; };
 		269C4CED2961D84A009C0143 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		269C4CEF2962DFE3009C0143 /* StatisticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticModel.swift; sourceTree = "<group>"; };
@@ -123,6 +131,9 @@
 				26F9935F295FCB8500AFD596 /* CustomTabBar.swift */,
 				269C4CEB2961CEA5009C0143 /* SearchBarView.swift */,
 				269C4CF12962E4C2009C0143 /* StatisticView.swift */,
+				266E8DEE296466FB008F41A4 /* XMarkButtonView.swift */,
+				266E8DF22964A867008F41A4 /* CoinImageView.swift */,
+				266E8DF42964B216008F41A4 /* CoinLogoView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -162,6 +173,7 @@
 				26F9933A295CEEB900AFD596 /* HomeView.swift */,
 				269C4CF32962FCB6009C0143 /* HomeStatusView.swift */,
 				26F99345295D1D5200AFD596 /* CoinRowView.swift */,
+				266E8DEC29646184008F41A4 /* AddPortfolioCoins.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -249,6 +261,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				26F99346295D1D5200AFD596 /* CoinRowView.swift in Sources */,
+				266E8DF52964B216008F41A4 /* CoinLogoView.swift in Sources */,
 				269C4CF42962FCB6009C0143 /* HomeStatusView.swift in Sources */,
 				26F99353295F647F00AFD596 /* LocalFileManger.swift in Sources */,
 				26F99360295FCB8500AFD596 /* CustomTabBar.swift in Sources */,
@@ -258,12 +271,15 @@
 				26F99326295CDE5400AFD596 /* CryptoTrackerApp.swift in Sources */,
 				26F9933F295CF18100AFD596 /* CircleButtonView.swift in Sources */,
 				26F99351295F1F7E00AFD596 /* NetworkManger.swift in Sources */,
+				266E8DED29646184008F41A4 /* AddPortfolioCoins.swift in Sources */,
 				269C4CF02962DFE3009C0143 /* StatisticModel.swift in Sources */,
 				26F99335295CE1CB00AFD596 /* Color.swift in Sources */,
 				26F99355295F9D9700AFD596 /* CoinImageService.swift in Sources */,
 				269C4CEE2961D84A009C0143 /* UIApplication.swift in Sources */,
+				266E8DF32964A867008F41A4 /* CoinImageView.swift in Sources */,
 				269C4CEC2961CEA5009C0143 /* SearchBarView.swift in Sources */,
 				269C4CF6296369A5009C0143 /* MarketDataModel.swift in Sources */,
+				266E8DEF296466FB008F41A4 /* XMarkButtonView.swift in Sources */,
 				26F99341295CF73800AFD596 /* CircleButtonAnimationView.swift in Sources */,
 				26F9934A295D289F00AFD596 /* Double.swift in Sources */,
 				26F99344295D0A6E00AFD596 /* CoinModel.swift in Sources */,
@@ -323,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -377,7 +393,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -403,6 +419,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -415,7 +432,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -435,6 +452,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -447,7 +465,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

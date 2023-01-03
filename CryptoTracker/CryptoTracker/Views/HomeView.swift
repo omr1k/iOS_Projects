@@ -11,6 +11,7 @@ struct HomeView: View {
     
     @EnvironmentObject private var vm: HomeViewModel
     @State private var showPortfolio: Bool = false
+    @State private var showAddingSheet: Bool = false
     
     @State private var tabSelected: Tab = .house
         
@@ -22,12 +23,18 @@ struct HomeView: View {
         ZStack (alignment: .bottom) {
             Color.theme.background
                 .ignoresSafeArea()
+                .sheet(isPresented: $showAddingSheet, content: { AddPortfolioCoins()
+                        .environmentObject(vm)
+                    
+                })
+            
             VStack{
                 homeHeader
                 HomeStatusView(showPortfolio: $showPortfolio)
                 SearchBarView(searchText: $vm.searchText)
                 
                 listTitles
+                
                 if !showPortfolio {
                     if vm.allCoins.isEmpty {
                         if !vm.searchText.isEmpty{
@@ -82,6 +89,11 @@ extension HomeView {
                 .background(
                     CircleButtonAnimationView(animate: $showPortfolio)
                 )
+                .onTapGesture {
+                    if showPortfolio {
+                        showAddingSheet.toggle()
+                    }
+                }
             Spacer()
             Text(showPortfolio ? "Portfolio" : "Live Prices")
                 .font(.title2)

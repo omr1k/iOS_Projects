@@ -18,12 +18,12 @@ import SwiftUI
     @Published var statistics: [StatisticModel] = []
     
     var allCoins: [CoinModel] {
-        if searchText.isEmpty {
-            return allFetchedCoins
-        } else {
+        if !searchText.isEmpty {
             return allFetchedCoins.filter { $0.symbol.localizedCaseInsensitiveContains(searchText) }
         }
+        return allFetchedCoins
     }
+    
     
     init(){
         updateCoinData()
@@ -65,6 +65,13 @@ import SwiftUI
 
 
 
+//var allCoins: [CoinModel] {
+//    if searchText.isEmpty {
+//        return allFetchedCoins
+//    } else {
+//        return allFetchedCoins.filter { $0.symbol.localizedCaseInsensitiveContains(searchText) }
+//    }
+//}
 
 
 
@@ -142,3 +149,6 @@ import SwiftUI
 //
 //            }
 //        }
+
+
+//        let CoinsEndpoint = "https://www.omarkhattab.tk/json/data.json"

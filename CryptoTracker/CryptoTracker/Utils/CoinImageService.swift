@@ -37,7 +37,6 @@ class CoinImageService: ObservableObject {
         
     }
     
-    
     private func downloadImage() async {
         guard let url = URL(string: coin.image) else { fatalError("URL Error") }
         var request = URLRequest(url: url)

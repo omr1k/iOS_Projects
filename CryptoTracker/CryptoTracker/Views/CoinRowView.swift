@@ -10,13 +10,10 @@ import SwiftUI
 
 struct CoinRowView: View {
     
-
     let coin: CoinModel
-    @StateObject var imageService: CoinImageService
     let showHoldingColumn: Bool
 
     init(coin: CoinModel, showHoldingColumn: Bool) {
-        _imageService = StateObject(wrappedValue: CoinImageService(coin: coin))
         self.coin = coin
         self.showHoldingColumn = false
     }
@@ -29,22 +26,8 @@ struct CoinRowView: View {
                 .foregroundColor(Color.theme.SecondaryTextColor)
                 .frame(minWidth: 30)
             
-            Group{
-                if let image = imageService.coinImage{
-                    Image(uiImage: image)
-                        .resizable()
-                        .scaledToFit()
-                        
-                } else if imageService.coinImage == nil {
-                    Image(systemName: "questionmark.circle")
-                        .resizable()
-                        .scaledToFit()
-                        .foregroundColor(Color.theme.accent)
-                } else{
-                    ProgressView()
-                }
-            }
-            .frame(width: 30, height: 30)
+            CoinImageView(coin: coin)
+                .frame(width: 30, height: 30)
             
             Text(coin.symbol.uppercased())
                 .font(.headline)
@@ -115,3 +98,21 @@ struct CoinRowView_Previews: PreviewProvider {
 //            .frame(width: 30, height: 30)
 //
             
+
+//        _imageService = StateObject(wrappedValue: CoinImageService(coin: coin))
+//    @StateObject var imageService: CoinImageService
+
+
+//                if let image = imageService.coinImage{
+//                    Image(uiImage: image)
+//                        .resizable()
+//                        .scaledToFit()
+//
+//                } else if imageService.coinImage == nil {
+//                    Image(systemName: "questionmark.circle")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .foregroundColor(Color.theme.accent)
+//                } else{
+//                    ProgressView()
+//                }
