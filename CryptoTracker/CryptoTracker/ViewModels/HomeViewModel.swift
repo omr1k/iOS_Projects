@@ -14,8 +14,8 @@ import SwiftUI
     
     @Published var allFetchedCoins: [CoinModel] = []
     @Published var portfolioCoins: [CoinModel] = []
-    @Published var searchText: String = ""
     @Published var statistics: [StatisticModel] = []
+    @Published var searchText: String = ""
     
     var allCoins: [CoinModel] {
         if !searchText.isEmpty {

@@ -12,18 +12,15 @@ struct HomeView: View {
     @EnvironmentObject private var vm: HomeViewModel
     @State private var showPortfolio: Bool = false
     @State private var showAddingSheet: Bool = false
-    
     @State private var tabSelected: Tab = .house
-        
         init() {
             UITabBar.appearance().isHidden = true
         }
-    
     var body: some View {
         ZStack (alignment: .bottom) {
             Color.theme.background
                 .ignoresSafeArea()
-                .sheet(isPresented: $showAddingSheet, content: { AddPortfolioCoins()
+                .sheet(isPresented: $showAddingSheet, content: { PortfolioView()
                         .environmentObject(vm)
                     
                 })
@@ -32,7 +29,6 @@ struct HomeView: View {
                 homeHeader
                 HomeStatusView(showPortfolio: $showPortfolio)
                 SearchBarView(searchText: $vm.searchText)
-                
                 listTitles
                 
                 if !showPortfolio {
@@ -134,7 +130,6 @@ extension HomeView {
             ForEach(vm.portfolioCoins){ coin in
                 CoinRowView(coin: coin, showHoldingColumn: true)
                     .listRowInsets(.init(top: 10, leading:   0, bottom: 10, trailing: 10))
-                
             }
         }
         .refreshable {

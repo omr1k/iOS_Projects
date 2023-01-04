@@ -7,12 +7,15 @@
 
 import SwiftUI
 
-struct AddPortfolioCoins: View {
+struct PortfolioView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var vm: HomeViewModel
     @State private var selectedCoin: CoinModel? = nil
     @State private var quantityText = ""
     @State private var showCheckMark: Bool = false
+    
+    private let PortfolioService = PortfolioDataService()
+    
     var body: some View {
         NavigationView{
             ScrollView{
@@ -37,48 +40,48 @@ struct AddPortfolioCoins: View {
                     HStack{
                         Image(systemName: "checkmark")
                             .opacity(showCheckMark ? 1.0 : 0.0)
-                        
                         Button(action: {
                             saveButtonPressed()
                         }, label: {
                             Text("Save".uppercased())
                         })
                         .opacity(selectedCoin != nil && selectedCoin?.currentHoldings != Double(quantityText) ? 1.0 : 0.0)
-                        
                     }
                     .font(.headline)
                 })
-                
             })
+            .onChange(of: vm.searchText) { value in
+                if value == "" {
+                    removeSelectedCoin()
+                }
+            }
         }
     }
 }
 
 struct AddPortfolioCoins__Previews: PreviewProvider {
     static var previews: some View {
-        AddPortfolioCoins()
+        PortfolioView()
             .environmentObject(HomeViewModel())
     }
 }
 
-extension AddPortfolioCoins {
+extension PortfolioView {
     
     private func saveButtonPressed(){
         guard let coin = selectedCoin else { return }
-         
         // save to portfolio
+        PortfolioService.updatePortfolio(coin: coin, amount: 5)
+        vm.portfolioCoins.append(coin.updateHoldings(amount: 5))
         
         // show checkmark
         withAnimation(.easeIn){
             showCheckMark = true
             removeSelectedCoin()
         }
-        
         //hide keyboard
         UIApplication.shared.endEditing()
-        
         // hide checkmark
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
             withAnimation(.easeOut){
                 showCheckMark = false
@@ -89,6 +92,13 @@ extension AddPortfolioCoins {
     private func removeSelectedCoin(){
         selectedCoin = nil
         vm.searchText = ""
+    }
+    
+    private func getCurrentValue() -> Double {
+        if let quantity = Double(quantityText){
+            return quantity * (selectedCoin?.currentPrice ?? 0)
+        }
+        return 0
     }
     
     var coinLogoList: some View{
@@ -113,14 +123,6 @@ extension AddPortfolioCoins {
             .padding(.leading)
         })
     }
-    
-    private func getCurrentValue() -> Double {
-        if let quantity = Double(quantityText){
-            return quantity * (selectedCoin?.currentPrice ?? 0)
-        }
-        return 0
-    }
-    
     
     var portfolioInputSection: some View {
         VStack(spacing: 20){
