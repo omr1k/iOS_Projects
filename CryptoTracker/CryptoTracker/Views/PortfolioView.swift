@@ -70,10 +70,15 @@ extension PortfolioView {
     
     private func saveButtonPressed(){
         guard let coin = selectedCoin else { return }
-        // save to portfolio
-        PortfolioService.updatePortfolio(coin: coin, amount: 5)
-        vm.portfolioCoins.append(coin.updateHoldings(amount: 5))
         
+        // save to portfolio
+        PortfolioService.updatePortfolio(coin: coin, amount: Double(quantityText) ?? 0.0)
+//        vm.portfolioCoins.append(coin.updateHoldings(amount: Double(quantityText) ?? 0.0))
+//        vm.updatePortfolio()
+        
+        print("\(PortfolioService.savedEntities)")
+        vm.tes(coin1: PortfolioService.savedEntities)
+                
         // show checkmark
         withAnimation(.easeIn){
             showCheckMark = true

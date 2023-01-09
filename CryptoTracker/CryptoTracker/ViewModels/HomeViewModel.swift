@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 
 
@@ -17,6 +18,9 @@ import SwiftUI
     @Published var statistics: [StatisticModel] = []
     @Published var searchText: String = ""
     
+    let PortfolioServiceXX = PortfolioDataService()
+    var can = Set<AnyCancellable>()
+    
     var allCoins: [CoinModel] {
         if !searchText.isEmpty {
             return allFetchedCoins.filter { $0.symbol.localizedCaseInsensitiveContains(searchText) }
@@ -24,10 +28,43 @@ import SwiftUI
         return allFetchedCoins
     }
     
-    
     init(){
         updateCoinData()
         getMarketData()
+        tes(coin1: PortfolioServiceXX.savedEntities)
+
+    }
+
+    
+    func tes(coin1: [PortfolioEntity]){
+        for coin2 in allFetchedCoins {
+            
+            for coin3 in coin1 {
+                if coin3.coinID == coin2.id {
+                    portfolioCoins.append(coin2.updateHoldings(amount: coin3.amount))
+                }
+            }
+        }
+    }
+    
+    func updatePortfolio(coin: [PortfolioEntity]){
+//        print(PortfolioServiceXX.savedEntities)
+//        $allFetchedCoins
+//            .combineLatest(PortfolioServiceXX.$savedEntities)
+//            .map{ (coinModels,PortfolioEntities) -> [CoinModel] in
+//
+//                coinModels
+//                    .compactMap { (coin) -> CoinModel in
+//                        guard let entity = PortfolioEntities.first(where: { $0.coinID == coin.id }) else {
+//                            return CoinModel.example()
+//                        }
+//                        return coin.updateHoldings(amount: entity.amount)
+//                    }
+//            }
+//            .sink{ [weak self] (rC) in
+//                self?.portfolioCoins = rC
+//            }
+//            .store(in: &can)
     }
     
     func updateCoinData(){
@@ -60,6 +97,126 @@ import SwiftUI
     
 }
 
+
+//func test2(){
+//    if !PortfolioServiceXX.savedEntities.isEmpty {
+//        for en in PortfolioServiceXX.savedEntities {
+//            for cc in allFetchedCoins {
+//                if en.coinID == cc.id {
+//                    portfolioCoins.append(cc.updateHoldings(amount: en.amount))
+//                }
+//            }
+//        }
+//    }
+//}
+
+
+//    func getPortfolioCoinsFromCoreData(allCoinsX: [CoinModel]?) {
+//
+//        guard let allCoinsX = allCoinsX else {return}
+//        for en in PortfolioServiceXX.savedEntities {
+//            for cc in allCoinsX {
+//                if en.coinID == cc.id {
+//                    portfolioCoins.append(cc.updateHoldings(amount: en.amount))
+//                    print("======================")
+//                    print("\(en.coinID)")
+//                    print("\(cc.id)")
+//                    print("======================")
+//                }
+//            }
+//        }
+//
+////        print("============xxxxx=>\(PortfolioDataService().savedEntities[8].amount)")
+////        print("============xxxxx=>\(PortfolioDataService().savedEntities)")
+//    }
+
+//    var test: [CoinModel]{
+//        if !PortfolioServiceXX.savedEntities.isEmpty {
+//            for en in PortfolioServiceXX.savedEntities {
+//                for cc in allFetchedCoins {
+//                    if en.coinID == cc.id {
+//
+//                    }
+//                }
+//            }
+//        }
+//
+//
+//
+//        return [CoinModel.example()]
+//    }
+
+//        ForEach(PortfolioServiceXX.savedEntities){ xx in
+//
+//            ForEach(self.allFetchedCoins){ cc in
+//                if cc.id == xx.coinID {
+//
+//                }
+//            }
+//
+//        }
+
+
+//        let en = PortfolioServiceXX.savedEntities.first(where: {$0.coinID == })
+
+        
+//        ForEach(allCoinsX){ coinxx in
+//            if (PortfolioServiceXX.savedEntities.first(where: {$0.coinID == coinxx.id}) != "") {
+//                portfolioCoins.append(coinxx.updateHoldings(amount: 6.6))
+//            }
+//
+//        $allFetchedCoins
+//            .combineLatest(PortfolioServiceXX.$savedEntities)
+//            .map{ (coinModels,PortfolioEntities) -> [CoinModel] in
+//
+//                coinModels
+//                    .compactMap { (coin) -> CoinModel in
+//                        guard let entity = PortfolioEntities.first(where: { $0.coinID == coin.id }) else {
+//                            return CoinModel.example()
+//
+//                        }
+//                        return coin.updateHoldings(amount: entity.amount)
+//                    }
+//
+//
+//            }
+//            .sink{ [weak self] (rC) in
+//                self?.portfolioCoins = rC
+//
+//            }
+//            .store(in: &can)
+            
+
+
+//        let en = PortfolioServiceXX.savedEntities.first(where: {$0.coinID == })
+
+        
+//        ForEach(allCoinsX){ coinxx in
+//            if (PortfolioServiceXX.savedEntities.first(where: {$0.coinID == coinxx.id}) != "") {
+//                portfolioCoins.append(coinxx.updateHoldings(amount: 6.6))
+//            }
+//
+//        $allFetchedCoins
+//            .combineLatest(PortfolioServiceXX.$savedEntities)
+//            .map{ (coinModels,PortfolioEntities) -> [CoinModel] in
+//
+//                coinModels
+//                    .compactMap { (coin) -> CoinModel in
+//                        guard let entity = PortfolioEntities.first(where: { $0.coinID == coin.id }) else {
+//                            return CoinModel.example()
+//
+//                        }
+//                        return coin.updateHoldings(amount: entity.amount)
+//                    }
+//
+//
+//            }
+//            .sink{ [weak self] (rC) in
+//                self?.portfolioCoins = rC
+//
+//            }
+//            .store(in: &can)
+//
 
 
 

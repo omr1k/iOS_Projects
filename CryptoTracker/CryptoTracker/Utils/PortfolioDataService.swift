@@ -7,15 +7,13 @@
 
 import Foundation
 import CoreData
-class PortfolioDataService {
-    
+class PortfolioDataService: ObservableObject {
     
     let container: NSPersistentContainer
     let containerName: String = "PortfolioContainer"
     let entityName: String = "PortfolioEntity"
     
     @Published var savedEntities: [PortfolioEntity] = []
-    
     
     init(){
         container = NSPersistentContainer(name: containerName)
@@ -42,7 +40,7 @@ class PortfolioDataService {
     
     //MARK: - Private CRUD Functions
     
-    // MARK: - Add data to core data - C
+    // MARK: Add data to core data - C
     private func add(coin: CoinModel, amount: Double){
         let entity = PortfolioEntity(context: container.viewContext)
         entity.coinID = coin.id
