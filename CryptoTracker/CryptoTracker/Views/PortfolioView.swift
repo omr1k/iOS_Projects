@@ -14,8 +14,8 @@ struct PortfolioView: View {
     @State private var quantityText = ""
     @State private var showCheckMark: Bool = false
     
-    private let PortfolioService = PortfolioDataService()
-    
+    private let portfolioDBService = PortfolioDataService()
+        
     var body: some View {
         NavigationView{
             ScrollView{
@@ -67,36 +67,37 @@ struct AddPortfolioCoins__Previews: PreviewProvider {
 }
 
 extension PortfolioView {
-    
     private func saveButtonPressed(){
-        guard let coin = selectedCoin else { return }
-        
-        // save to portfolio
-        PortfolioService.updatePortfolio(coin: coin, amount: Double(quantityText) ?? 0.0)
-//        vm.portfolioCoins.append(coin.updateHoldings(amount: Double(quantityText) ?? 0.0))
-//        vm.updatePortfolio()
-        
-        print("\(PortfolioService.savedEntities)")
-        vm.tes(coin1: PortfolioService.savedEntities)
-                
-        // show checkmark
+        guard
+            let coin = selectedCoin,
+            let amount = Double(quantityText)
+            else { return }
+        // MARK: Save to portfolio
+//        portfolioDBService.updatePortfolio(coin: coin, amount: Double(quantityText) ?? 0.0)
+        vm.updatePortfolio(coin: coin, amount: amount)
+
+        // MARK: Show checkmark
         withAnimation(.easeIn){
             showCheckMark = true
             removeSelectedCoin()
         }
-        //hide keyboard
+        // MARK: Hide keyboard
         UIApplication.shared.endEditing()
-        // hide checkmark
+        // MARK: Hide checkmark
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0){
             withAnimation(.easeOut){
                 showCheckMark = false
             }
         }
+        
     }
+    //MARK: - End Function
+
     
     private func removeSelectedCoin(){
         selectedCoin = nil
         vm.searchText = ""
+        quantityText = ""
     }
     
     private func getCurrentValue() -> Double {
@@ -155,3 +156,21 @@ extension PortfolioView {
         .font(.headline)
     }
 }
+
+
+
+
+
+//    private func updateCoinWithAmount(coin: CoinModel){
+//
+//            for coinAmountData in portfolioService.savedEntities{
+//                if coin.id == coinAmountData.coinID {
+//                    let newCoin = coin.updateHoldings(amount: coinAmountData.amount)
+//                    if var row = vm.portfolioCoins.first(where: {$0.id == coin.id}) {
+//                    }
+//                }
+//            }
+//
+//    }
+
+//        vm.updatePortCoins(coin: coin)

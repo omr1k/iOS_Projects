@@ -23,7 +23,7 @@ class PortfolioDataService: ObservableObject {
             }
             self.getPortfolio()
         }
-        
+         print("=========== Current coins in codData in \(savedEntities.count) Element ===========")
     }
     
     // MARK: - Public
@@ -38,16 +38,15 @@ class PortfolioDataService: ObservableObject {
         add(coin: coin, amount: amount)
     }
     
-    //MARK: - Private CRUD Functions
-    
-    // MARK: Add data to core data - C
+    //Private CRUD Functions    
+    // MARK: - Add data to CoreData - C
     private func add(coin: CoinModel, amount: Double){
         let entity = PortfolioEntity(context: container.viewContext)
         entity.coinID = coin.id
         entity.amount = amount
         applyChanges()
     }
-    // MARK: - Get data from core data - R
+    // MARK: - Get data from CoreData - R
     private func getPortfolio(){
         let request = NSFetchRequest<PortfolioEntity>(entityName: entityName)
         do {

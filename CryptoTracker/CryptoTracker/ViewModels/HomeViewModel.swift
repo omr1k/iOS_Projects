@@ -18,7 +18,8 @@ import Combine
     @Published var statistics: [StatisticModel] = []
     @Published var searchText: String = ""
     
-    let PortfolioServiceXX = PortfolioDataService()
+    private let portfolioDBService = PortfolioDataService()
+
     var can = Set<AnyCancellable>()
     
     var allCoins: [CoinModel] {
@@ -31,42 +32,30 @@ import Combine
     init(){
         updateCoinData()
         getMarketData()
-        tes(coin1: PortfolioServiceXX.savedEntities)
-
+        subscribers()
     }
-
     
-    func tes(coin1: [PortfolioEntity]){
-        for coin2 in allFetchedCoins {
-            
-            for coin3 in coin1 {
-                if coin3.coinID == coin2.id {
-                    portfolioCoins.append(coin2.updateHoldings(amount: coin3.amount))
-                }
+    func subscribers(){
+        
+        $allFetchedCoins
+            .combineLatest(portfolioDBService.$savedEntities)
+            .map { (coinModels, portfolioEntities) -> [CoinModel] in
+                coinModels
+                    .compactMap{ (coin) -> CoinModel? in
+                        guard let entity = portfolioEntities.first(where: {$0.coinID == coin.id}) else {return nil}
+                        return coin.updateHoldings(amount: entity.amount)
+                    }
             }
-        }
+            .sink{ [weak self] (returnedCoins) in
+                self?.portfolioCoins = returnedCoins
+            }
+            .store(in: &can)
     }
     
-    func updatePortfolio(coin: [PortfolioEntity]){
-//        print(PortfolioServiceXX.savedEntities)
-//        $allFetchedCoins
-//            .combineLatest(PortfolioServiceXX.$savedEntities)
-//            .map{ (coinModels,PortfolioEntities) -> [CoinModel] in
-//
-//                coinModels
-//                    .compactMap { (coin) -> CoinModel in
-//                        guard let entity = PortfolioEntities.first(where: { $0.coinID == coin.id }) else {
-//                            return CoinModel.example()
-//                        }
-//                        return coin.updateHoldings(amount: entity.amount)
-//                    }
-//            }
-//            .sink{ [weak self] (rC) in
-//                self?.portfolioCoins = rC
-//            }
-//            .store(in: &can)
+    func updatePortfolio(coin: CoinModel, amount: Double){
+        portfolioDBService.updatePortfolio(coin: coin, amount: amount)
     }
-    
+        
     func updateCoinData(){
         let CoinsEndpoint = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=24h"
         Task{
@@ -96,6 +85,61 @@ import Combine
     
     
 }
+
+
+//    func updatePortCoins(coin: CoinModel){
+//        if let coinIN = portfolioService.savedEntities.first(where: {$0.coinID == coin.id}) {
+//            coin.updateHoldings(amount: coinIN.amount)
+//        }
+//    }
+
+
+
+//
+//func getAllCoins() -> [CoinModel] {
+//    for fullCoin in allFetchedCoins {
+//        for twoCoin in portClass.savedEntities {
+//            if twoCoin.coinID == fullCoin.id {
+//                var xxx: [CoinModel] = []
+//                xxx.append(fullCoin.updateHoldings(amount: twoCoin.amount))
+//                return xxx
+//            }
+//        }
+//
+//    }
+//    return []
+//}
+//
+//func tes(twoCoinData: [PortfolioEntity]){
+//    for fullCoin in allFetchedCoins {
+//        for twoCoin in twoCoinData {
+//            if twoCoin.coinID == fullCoin.id {
+//                portfolioCoins.append(fullCoin.updateHoldings(amount: twoCoin.amount))
+//            }
+//        }
+//
+//    }
+//}
+//
+//func updatePortfolio(coin: [PortfolioEntity]){
+////        print(PortfolioServiceXX.savedEntities)
+////        $allFetchedCoins
+////            .combineLatest(PortfolioServiceXX.$savedEntities)
+////            .map{ (coinModels,PortfolioEntities) -> [CoinModel] in
+////
+////                coinModels
+////                    .compactMap { (coin) -> CoinModel in
+////                        guard let entity = PortfolioEntities.first(where: { $0.coinID == coin.id }) else {
+////                            return CoinModel.example()
+////                        }
+////                        return coin.updateHoldings(amount: entity.amount)
+////                    }
+////            }
+////            .sink{ [weak self] (rC) in
+////                self?.portfolioCoins = rC
+////            }
+////            .store(in: &can)
+//}
 
 
 //func test2(){

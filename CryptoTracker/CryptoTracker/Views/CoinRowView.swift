@@ -11,14 +11,8 @@ import SwiftUI
 struct CoinRowView: View {
     
     let coin: CoinModel
-    let showHoldingColumn: Bool
-
-    init(coin: CoinModel, showHoldingColumn: Bool) {
-        self.coin = coin
-        self.showHoldingColumn = false
-    }
-    
-    
+    var showHoldingColumn: Bool
+        
     var body: some View {
         HStack(spacing: 0){
             Text("\(coin.rank)")
@@ -62,6 +56,15 @@ struct CoinRowView_Previews: PreviewProvider {
         CoinRowView(coin: CoinModel.example(), showHoldingColumn: true )
     }
 }
+
+
+
+
+//    init(coin: CoinModel, showHoldingColumn: Bool) {
+//        self.coin = coin
+//        self.showHoldingColumn = false
+//
+//    }
 
 
 
