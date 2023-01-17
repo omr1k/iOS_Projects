@@ -50,6 +50,9 @@ import Combine
                 self?.portfolioCoins = returnedCoins
             }
             .store(in: &can)
+        
+        
+        
     }
     
     func updatePortfolio(coin: CoinModel, amount: Double){
@@ -65,26 +68,55 @@ import Combine
     
     
     func getMarketData(){
+        
         let marketDataEndPoint = "https://api.coingecko.com/api/v3/global"
+        
         Task{
             let marketData = await NetworkManger().getData(endPoint: marketDataEndPoint, decodingModel: GlobalData.self)
             
             let marketCap = StatisticModel(title: "Market Cap", value: marketData.data?.marketCap ?? "" , percentageChange: marketData.data?.marketCapChangePercentage24HUsd)
             let volume = StatisticModel(title: "24h Volume", value: marketData.data?.volume ?? "")
             let btcDominance = StatisticModel(title: "BTC Dominance", value: marketData.data?.btcDominance ?? "")
-            let portfolio = StatisticModel(title: "Portfolio Value", value: "$0.00" , percentageChange: -25.3)
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+               
+                for i in portfolioCoins {
+                    var total = i.currentHoldingsValue
+                }
+                
+                let portfolioValue =
+                self.portfolioCoins
+                    .map({$0.currentHoldingsValue})
+                    .reduce(0, +)
+                
+                let portfolio = StatisticModel(title: "Portfolio Value", value: portfolioValue.asCurrencyWith2Decimals() , percentageChange: -25.3)
+                print(portfolio)
+                
+            }
+            
+            
+            
             
             statistics.append(contentsOf: [
                 marketCap,
                 volume,
                 btcDominance,
-                portfolio
+//                portfolio
             ])
+            
+            
         }
     }
     
     
 }
+
+
+
+
+
+
 
 
 //    func updatePortCoins(coin: CoinModel){
