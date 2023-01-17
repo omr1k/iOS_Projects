@@ -14,9 +14,11 @@ class ContentViewViewModel: ObservableObject{
     @Published var sortURL : String = ""
     let shortenApiBaseURl = "https://short-link-api.vercel.app/?query="
     var cancellables = Set<AnyCancellable>()
+    @Published var  isLoading: Bool = false
     
     func getURL(inputURL: String){
         
+        isLoading = true
         guard let url = URL(string: "\(shortenApiBaseURl)\(inputURL)") else {return}
         
         URLSession.shared.dataTaskPublisher(for: url)
@@ -34,9 +36,11 @@ class ContentViewViewModel: ObservableObject{
                 print("\(compe)")
             } receiveValue: { [weak self] (response) in
                 print(response.url)
-                self? .sortURL = response.url
+                self?.sortURL = response.url
+                self?.isLoading = false
             }
             .store(in: &cancellables)
+            
     }
 }
 
