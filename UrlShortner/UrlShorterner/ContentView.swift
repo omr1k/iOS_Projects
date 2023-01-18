@@ -14,22 +14,23 @@ struct ContentView: View {
     @State private var url = ""
     @StateObject var vm = ContentViewViewModel()
     @State private var animate: Bool = false
-    @State var showAlert: Bool = false
-    @State var showCheckMark: Bool = false
+    @State private var showAlert: Bool = false
+    @State private var showCheckMark: Bool = false
+    @State private var isShareSheetShowing: Bool = false
     
     let gradient = LinearGradient(gradient: Gradient(colors: [Color("ColorDarkAccent"), Color("ColorLightAccent")]), startPoint: .topLeading, endPoint: .bottomTrailing)
     
     
     var body: some View {
         
-        ZStack {
+        ZStack(alignment: .bottom) {
             liveBackground
             VStack {
                 VStack(alignment: .center){
                     
                     if vm.isLoading{
                         ProgressView()
-                            .padding()
+                            .padding(20)
                     } else {
                         Text(vm.sortURL)
                             .padding()
@@ -39,82 +40,31 @@ struct ContentView: View {
                         .textFieldStyle(.roundedBorder)
                         .cornerRadius(8)
                         .padding()
-                    
-                    Button(action: {
-                        if url.isEmpty{
-                            showAlert.toggle()
-                        } else {
-                            vm.getURL(inputURL: url)
-                        }
-                    }, label: {
-                        Text("Make Link Shorter")
-                            .padding()
-                    })
-                    .foregroundColor(.black)
-                    .background(RoundedRectangle(cornerRadius: 15)
-                        .opacity(0.2))
-                    .padding()
-                    
-                    
-                    HStack(){
                         
-                        Button {
-                            if !vm.sortURL.isEmpty {
-                                UIApplication.shared.endEditing()
-                                UIPasteboard.general.setValue(vm.sortURL,
-                                            forPasteboardType: UTType.plainText.identifier)
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
-                                    withAnimation(.easeOut){
-                                        showCheckMark = true
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                                            withAnimation(.easeOut){
-                                                showCheckMark = false
-                                            }
-                                        }
-                                    }
-                                }
-        
-                            }else{
-                                showAlert.toggle()
-                            }
-                            
-                        } label: {
-                            Image(systemName: "clipboard")
-                                .foregroundColor(.black)
-                                .bold()
-                                .font(.largeTitle)
-                        }
-                        .padding()
-                        
-                        Button {
-                            url = ""
-                            vm.sortURL = ""
-                        } label: {
-                            Image(systemName: "trash")
-                                .foregroundColor(.black)
-                                .bold()
-                                .font(.largeTitle)
-                        }
-                        .padding()
-
-
-                    }
                     
                     Image(systemName: "checkmark")
                         .opacity(showCheckMark ? 1.0 : 0.0)
                         .foregroundColor(.black)
                         .bold()
                         .font(.largeTitle)
+                        .padding()
                     
                 }
-                .frame(maxWidth: UIScreen.main.bounds.width / 1.3, maxHeight: UIScreen.main.bounds.width / 1)
                 .shadow(radius: 15)
                 .background(.ultraThinMaterial)
                 .cornerRadius(25)
+                .padding(.horizontal)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
+            VStack{
+                buttonsRow
+                shortButton
+            }
+            
         }
         .background(.purple)
+        
         .alert("URL Field Empty", isPresented: $showAlert) {
             Button("OK", role: .cancel) { }
         }
@@ -129,6 +79,32 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
+// Functions
+extension ContentView {
+    private func showCheck(){
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1){
+            withAnimation(.easeInOut){
+                showCheckMark = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                    withAnimation(.easeOut){
+                        showCheckMark = false
+                    }
+                }
+            }
+        }
+    }
+    
+    func shareButton() {
+        
+        isShareSheetShowing.toggle()
+        
+        let url = URL(string: vm.sortURL)
+        let av = UIActivityViewController(activityItems: [url!], applicationActivities: nil)
+        
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
+
+    }
+}
 
 extension ContentView {
     @ViewBuilder
@@ -147,4 +123,79 @@ extension ContentView {
         
     }
     
+    
+    private var buttonsRow: some View{
+        HStack {
+            Button {
+                if !vm.sortURL.isEmpty {
+                    UIApplication.shared.endEditing()
+                    UIPasteboard.general.setValue(vm.sortURL,
+                                                  forPasteboardType: UTType.plainText.identifier)
+                    showCheck()
+                    
+                    
+                }else{
+                    showAlert.toggle()
+                }
+            } label: {
+                Image(systemName: "doc.on.clipboard")
+                    .modifier(ButtonModifier())
+                
+            }
+            Button {
+                showCheck()
+                url = ""
+                vm.sortURL = ""
+            } label: {
+                Image(systemName: "trash")
+                    .modifier(ButtonModifier())
+            }
+            .padding()
+            
+            Button {
+                
+                if vm.sortURL.isEmpty{
+                    showAlert.toggle()
+                } else {
+                    shareButton()
+                }
+            } label: {
+                Image(systemName: "square.and.arrow.up")
+                    .modifier(ButtonModifier())
+            }
+            
+             
+            
+        }
+        .frame(maxWidth: .infinity)
+        .background(Color.secondary)
+        .cornerRadius(25)
+        .padding(.horizontal)
+        
+    }
+    
+    
+    private var shortButton: some View{
+        Button(action: {
+            if url.isEmpty{
+                showAlert.toggle()
+            } else {
+                vm.getURL(inputURL: url)
+            }
+        }, label: {
+            Text("Make Link Shorter")
+                .padding()
+        })
+        .foregroundColor(.white)
+        .font(.title3)
+        .bold()
+        .background(RoundedRectangle(cornerRadius: 15)
+            .opacity(0.2))
+        .padding()
+    }
+    
 }
+
+
+
+//                .frame(maxWidth: UIScreen.main.bounds.width / 1.3, maxHeight: UIScreen.main.bounds.width / 1)

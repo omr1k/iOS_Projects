@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2662D991297741E700E19D33 /* UIApplicationExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662D990297741E700E19D33 /* UIApplicationExtention.swift */; };
+		2662D99429788EF800E19D33 /* ButtonModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2662D99329788EF800E19D33 /* ButtonModifier.swift */; };
 		2681A8BF297577070051C9B4 /* UrlShorternerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A8BE297577070051C9B4 /* UrlShorternerApp.swift */; };
 		2681A8C1297577070051C9B4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2681A8C0297577070051C9B4 /* ContentView.swift */; };
 		2681A8C3297577090051C9B4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2681A8C2297577090051C9B4 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		2662D990297741E700E19D33 /* UIApplicationExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtention.swift; sourceTree = "<group>"; };
+		2662D99329788EF800E19D33 /* ButtonModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifier.swift; sourceTree = "<group>"; };
 		2681A8BB297577070051C9B4 /* UrlShorterner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrlShorterner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2681A8BE297577070051C9B4 /* UrlShorternerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlShorternerApp.swift; sourceTree = "<group>"; };
 		2681A8C0297577070051C9B4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -38,6 +40,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2662D99229788EDB00E19D33 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				2662D99329788EF800E19D33 /* ButtonModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		2681A8B2297577070051C9B4 = {
 			isa = PBXGroup;
 			children = (
@@ -57,6 +67,7 @@
 		2681A8BD297577070051C9B4 /* UrlShorterner */ = {
 			isa = PBXGroup;
 			children = (
+				2662D99229788EDB00E19D33 /* Modifiers */,
 				2681A8BE297577070051C9B4 /* UrlShorternerApp.swift */,
 				2681A8C0297577070051C9B4 /* ContentView.swift */,
 				2681A8D029757E060051C9B4 /* ResponseModel.swift */,
@@ -147,6 +158,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2681A8C1297577070051C9B4 /* ContentView.swift in Sources */,
+				2662D99429788EF800E19D33 /* ButtonModifier.swift in Sources */,
 				2681A8D129757E060051C9B4 /* ResponseModel.swift in Sources */,
 				2681A8BF297577070051C9B4 /* UrlShorternerApp.swift in Sources */,
 				2662D991297741E700E19D33 /* UIApplicationExtention.swift in Sources */,
