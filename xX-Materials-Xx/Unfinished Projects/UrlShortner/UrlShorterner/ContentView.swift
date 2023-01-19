@@ -11,8 +11,8 @@ import UniformTypeIdentifiers
 
 struct ContentView: View {
     
-    @State private var url = ""
     @StateObject var vm = ContentViewViewModel()
+    @State private var url = ""
     @State private var animate: Bool = false
     @State private var showAlert: Bool = false
     @State private var showCheckMark: Bool = false
@@ -23,50 +23,53 @@ struct ContentView: View {
     
     var body: some View {
         
-        ZStack(alignment: .bottom) {
-            liveBackground
-            VStack {
-                VStack(alignment: .center){
-                    
-                    if vm.isLoading{
-                        ProgressView()
-                            .padding(20)
-                    } else {
-                        Text(vm.sortURL)
-                            .padding()
-                    }
-                    
-                    TextField("Enter Your URl", text: $url, axis: .vertical)
-                        .textFieldStyle(.roundedBorder)
-                        .cornerRadius(8)
-                        .padding()
+        NavigationView() {
+            ZStack(alignment: .bottom) {
+                liveBackground
+                VStack {
+                    VStack(alignment: .center){
+                        if vm.isLoading{
+                            ProgressView()
+                                .padding(20)
+                        } else {
+                            Text(vm.sortURL)
+                                .padding()
+                        }
                         
-                    
-                    Image(systemName: "checkmark")
-                        .opacity(showCheckMark ? 1.0 : 0.0)
-                        .foregroundColor(.black)
-                        .bold()
-                        .font(.largeTitle)
-                        .padding()
-                    
+                        TextField("Enter Your URl", text: $url, axis: .vertical)
+                            .textFieldStyle(.roundedBorder)
+                            .cornerRadius(8)
+                            .padding()
+                        
+                        
+                        Image(systemName: "checkmark")
+                            .opacity(showCheckMark ? 1.0 : 0.0)
+                            .foregroundColor(.black)
+                            .bold()
+                            .font(.largeTitle)
+                            .padding()
+                        
+                    }
+                    .shadow(radius: 15)
+                    .background(.ultraThinMaterial)
+                    .cornerRadius(25)
+                    .padding(.horizontal)
                 }
-                .shadow(radius: 15)
-                .background(.ultraThinMaterial)
-                .cornerRadius(25)
-                .padding(.horizontal)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
+                VStack{
+                    buttonsRow
+                    shortButton
+                }
+                
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(.purple)
             
-            VStack{
-                buttonsRow
-                shortButton
+            .alert("URL Field Empty", isPresented: $showAlert) {
+                Button("OK", role: .cancel) { }
             }
+            .navigationTitle("Make your URL Shorter")
             
-        }
-        .background(.purple)
-        
-        .alert("URL Field Empty", isPresented: $showAlert) {
-            Button("OK", role: .cancel) { }
         }
         
         

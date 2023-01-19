@@ -31,13 +31,6 @@ extension EditView{
             description = location.description
             self.location = location
         }
-        
-        
-        
-        
-        
-        
-        
     } // Main actor end
     
 } // extention end

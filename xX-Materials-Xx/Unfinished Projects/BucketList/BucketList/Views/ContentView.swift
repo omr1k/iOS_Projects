@@ -13,8 +13,38 @@ struct ContentView: View {
     @StateObject private var viewModel = ViewModel()
     
     var body: some View {
-        
         if viewModel.isUnlocked {
+            mainView
+                .sheet(item: $viewModel.selectedPlace) { place in
+                    EditView(location: place) {
+                        viewModel.update(location: $0)
+                    }
+        }
+        .alert("No Biometrecs", isPresented: $viewModel.noBiometricsError) {
+                   Button("Use Passcode", role: .cancel) { }
+               }
+    } else {
+            Button("Unlock Places") {
+                viewModel.authenticate()
+            }
+            .padding()
+            .background(.blue)
+            .foregroundColor(.white)
+            .clipShape(Capsule())
+        }
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
+
+
+extension ContentView {
+    
+    private var mainView: some View {
         ZStack {
             Map(coordinateRegion: $viewModel.mapRegion, annotationItems: viewModel.locations) { location in
                 MapAnnotation(coordinate: location.coordinate){
@@ -57,30 +87,5 @@ struct ContentView: View {
                 }
             }// vstack end
         } // zstack end
-        .sheet(item: $viewModel.selectedPlace) { place in
-            EditView(location: place) {
-                viewModel.update(location: $0)
-            }
-        }
-        .alert("No Biometrecs", isPresented: $viewModel.noBiometricsError) {
-                   Button("Use Passcode", role: .cancel) { }
-               }
-            
-    } else {
-            Button("Unlock Places") {
-                viewModel.authenticate()
-                
-            }
-            .padding()
-            .background(.blue)
-            .foregroundColor(.white)
-            .clipShape(Capsule())
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }

@@ -12,15 +12,20 @@ import Foundation
 extension ContentView {
     
     @MainActor class ViewModel: ObservableObject {
-     
+        
         @Published var mapRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 50, longitude: 0), span: MKCoordinateSpan(latitudeDelta: 25, longitudeDelta: 25))
+        
         @Published private(set) var locations : [Location]
+        
         @Published var selectedPlace: Location?
         
         @Published var isUnlocked = false
+        
         @Published var noBiometricsError = false
+        
         let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
-
+        
+        
         init() {
             do {
                 let data = try Data(contentsOf: savePath)
@@ -64,18 +69,18 @@ extension ContentView {
                 context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, localizedReason: reason) { success, authenticationError in
                     if success {
                         Task { @MainActor in
-                                self.isUnlocked = true
-                            }
+                            self.isUnlocked = true
+                        }
                     } else {
                         Task { @MainActor in
-                                self.noBiometricsError = true
-                            }
+                            self.noBiometricsError = true
+                        }
                     }
                 }
             } else {
                 Task { @MainActor in
-                        self.noBiometricsError = true
-                    }
+                    self.noBiometricsError = true
+                }
             }
         } // authenticate method end
         
