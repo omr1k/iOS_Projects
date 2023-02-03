@@ -10,77 +10,86 @@ import SwiftUI
 struct AddView: View {
     
     @State private var showingImagePicker = false
-    
     @State private var inputImage: UIImage?
     @State private var image: Image?
     @State private var DocImage: UIImage?
-    
-    let context = CIContext()
-    
     @State private var name = ""
     @State private var imagePath = ""
     @State private var imageFileName = ""
     @State private var latitude = 2001.5
     @State private var longitud = 2002.5
-    
     @State private var showAlert = false
+    @FetchRequest(sortDescriptors: []) var fetchPerson: FetchedResults<Person>
     @Environment(\.dismiss) var dismiss
+    @Environment(\.managedObjectContext) var moc
+    let context = CIContext()
     let locationFetcher = LocationFetcher()
-    
-    
     let savePath = FileManager.documentsDirectory.appendingPathComponent("SavedPlaces")
     
-    @Environment(\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: []) var fetchPerson: FetchedResults<Person>
-
     var body: some View {
         NavigationView {
-            VStack {
-                Form {
-                    Section("Photo") {
-                        VStack {
-                            if image != nil {
-                                image?
-                                    .resizable()
-                                    .scaledToFit()
-                            }
-                            else {
-                                RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color.gray, style: StrokeStyle(lineWidth: 1,
-                                                                           lineCap: CGLineCap.round,
-                                                                           dash: [5, 5]))
-                                    .scaledToFit()
-                            }
-                            Button("Pick Image") {
-                                showingImagePicker = true
-                            }
-                        }
-                        
-                    }
-                    Section {
-                        if inputImage != nil {
-                            TextField("Enter name", text: $name)
-                                .padding()
-                        }
-                    }
-                }
-            }
-            .navigationTitle("Add New Persion")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Save") {
-                        if name != "" && image != nil {
-                            save()
-                            dismiss()
-                        }else{
-                            showAlert.toggle()
-                        }
-                    }
-                }
+            ZStack {
+                LiveBackgroundView()
                 
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("Cancel") {
-                        dismiss()
+                VStack{
+                    
+                    if image != nil {
+                        VStack{
+                            image?
+                                .resizable()
+                                .scaledToFit()
+                                .cornerRadius(10)
+                                .frame(maxWidth: .infinity, maxHeight: 500)
+                                
+                                .padding()
+                            
+                            if inputImage != nil {
+                                TextField("Enter name", text: $name)
+                                    .padding()
+                                    .background(.thinMaterial)
+                                    .cornerRadius(15)
+                                    .padding()
+                            }
+                        }
+                        .background(.ultraThinMaterial.opacity(0.7))
+                        .cornerRadius(15)
+                        .padding(15)
+                        
+                            
+                    }
+                    Spacer()
+                    Button{
+                        showingImagePicker = true
+                    }label: {
+                        Label("Select Photo", systemImage:"photo")
+                            .foregroundColor(.accentColor)
+                            .font(.system(.largeTitle, design: .rounded))
+                            .padding()
+                            .background(.ultraThinMaterial)
+                            .cornerRadius(15)
+                    }
+                    .padding()
+                    
+                    
+                }
+                .navigationTitle("Add New Person")
+                
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button("Save") {
+                            if name != "" && image != nil {
+                                save()
+                                dismiss()
+                            }else{
+                                showAlert.toggle()
+                            }
+                        }
+                    }
+                    
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Button("Cancel") {
+                            dismiss()
+                        }
                     }
                 }
             }
@@ -156,10 +165,11 @@ struct AddView: View {
     
     
 //@ObservedObject var SavePersonData : SavePersonData
-//struct AddView_Previews: PreviewProvider {
-//  static var previews: some View {
-//    AddView()
-//  }
+struct AddView_Previews: PreviewProvider {
+    static var previews: some View {
+        AddView()
+    }
+}
 
 
 

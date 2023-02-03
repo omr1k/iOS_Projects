@@ -15,67 +15,53 @@ struct ContentView: View {
 
     @State private var showAddView = false
 
+    var jobTitles = ["Manger", "HR", "iOS Developer", "Android Developer", "Accountant", ".Net Developer"]
     
     var body: some View {
         NavigationView{
-            VStack {
-                List {
-                    ForEach(persons) { person in
-                        NavigationLink(destination: DetailsView(person: [person], imgeFileName: person.wrappedimageFilename, imgePath: person.imageAbslutePath ?? "", personName: person.wrappedName)){
-                            HStack{
+            ZStack (alignment: .bottom) {
+                LiveBackgroundView()
+                VStack {
+                    
+                    List{
+                        ForEach(persons) { person in
+                            NavigationLink(destination: DetailsView(person: [person], imgeFileName: person.wrappedimageFilename, imgePath: person.imageAbslutePath ?? "", personName: person.wrappedName)){
                                 if let image = ImageUtils().loadImageFromDiskWith(fileName: person.wrappedimageFilename) {
-                                    Image(uiImage: image)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 100, height: 100)
-                                        .clipped()
-                                        .cornerRadius(25)
-                                    // for placeholders
-                                        .foregroundColor(Color.gray)
+                                    PersonCardView(personImage: image, personName: person.wrappedName, job: jobTitles.randomElement()!)
                                 }
-                                
-//                                Text("\(index)")
-//                                Text("\(person.latitude)")
-//                                Text("\(person.longitude)")
-                                
-                                Text(person.wrappedName)
-                                    .fontWeight(.semibold)
-                                    .lineLimit(2)
-                                    .minimumScaleFactor(0.5)
-                                Spacer()
-                            }// hstack end
-                            .padding(.horizontal)
-                            .frame(maxWidth: .infinity)
-                            .background(.ultraThinMaterial)
-                            .clipShape(RoundedRectangle(cornerRadius: 15))
+                            }
                         }
-                        
-                        
-                    }.onDelete(perform: deleteRecord2)// foreach end
-                }// list end
-            }
-            .sheet(isPresented: $showAddView){
-                AddView()
-            }
-            .navigationTitle("Never Forget")
-            .navigationBarItems(
-                trailing:
-                    Button(action: {
-                        showAddView = true
-                    }) {
-                        Image(systemName: "plus").imageScale(.large)
+                        .onDelete(perform: deleteRecord2)
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
                     }
+                    .scrollContentBackground(.hidden)
+                
+                    
+                    Spacer()
+                }
+                .sheet(isPresented: $showAddView){
+                    AddView()
+                }
+                .navigationTitle("Never Forget")
+                .navigationBarItems(
+                    trailing:
+                        Button(action: {
+                            showAddView = true
+                        }) {
+                            Image(systemName: "plus.app.fill").imageScale(.large)
+                                .bold()
+                        }
             )
+            }
         }
     }
     
     
     func deleteRecord2(at offsets: IndexSet) {
-        
         for offset in offsets {
-            // find this book in our fetch request
             let person = persons[offset]
-            // delete it from the context
             moc.delete(person)
             ImageUtils().deleteFromDocuments(imageFileName: "\(person.wrappedimageFilename)")
         }
@@ -84,7 +70,11 @@ struct ContentView: View {
     }
 }
 
-
+struct SwiftUIView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+    }
+}
 
 
 
