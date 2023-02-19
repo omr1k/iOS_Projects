@@ -9,7 +9,8 @@ import Foundation
 import MapKit
 import CoreLocation
 
-@MainActor class AddNewLocationViewModel: NSObject, CLLocationManagerDelegate, ObservableObject {
+@MainActor
+class AddNewLocationViewModel: NSObject, CLLocationManagerDelegate, ObservableObject {
     
     @Published var lastKnownLocation: CLLocationCoordinate2D?
     @Published var mapRegion = MKCoordinateRegion()
@@ -24,6 +25,7 @@ import CoreLocation
         super.init()
         manager.delegate = self
         loadSavedLocations()
+        
     }
     
     func startDetectingLocation(){
@@ -92,7 +94,6 @@ extension AddNewLocationViewModel {
             savedLocations = []
         }
     }
-    
 }
 
 

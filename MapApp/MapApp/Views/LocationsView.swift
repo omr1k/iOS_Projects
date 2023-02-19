@@ -15,8 +15,15 @@ struct LocationsView: View {
     let maxWidthForIPad: CGFloat = 700
     var body: some View {
         ZStack{
-            mapLayer
-                .ignoresSafeArea(.all)
+            Group {
+                if vm.savedLocations.isEmpty {
+                    fakeBluredMap
+                }
+                else {
+                    mapLayer
+                }
+            }
+            .ignoresSafeArea()
             VStack(spacing: 0){
                 header
                     .frame(maxWidth: maxWidthForIPad)
@@ -51,7 +58,7 @@ extension LocationsView {
                     vm.loadSavedLocations()
                     vm.toggleLocationsList()
                 }) {
-                    Text(vm.mapLocation.name)
+                    Text(vm.showLocationsList ? "Saved Locations" : (vm.mapLocation.name))
                         .font(.system(.title2, design: .rounded))
                         .bold()
                         .foregroundColor(.primary)
@@ -67,23 +74,39 @@ extension LocationsView {
                                 
                         }
                 }
+                
                 Button {
                     vm.showAddLocationSheet.toggle()
-                    withAnimation (.spring()){
-                        vm.showLocationsList = false
+                    Task { @MainActor in
+                        withAnimation(.spring()){
+                            vm.showLocationsList = false
+                        }
                     }
                 } label: {
                     Image(systemName: "plus")
                         .font(.title3)
                         .bold()
                         .foregroundColor(.primary)
+                        .frame(width: 80, height: 55)
                 }
-                .padding()
+                .offset(x: 10)
+//                .padding()
+//                .frame(width: 50, height: 50)
+//                .background(Color.red)
             }
             
             if vm.showLocationsList {
                 Divider()
-                LocationsListView()
+                if vm.savedLocations.count <= 0 {
+                    Text("No Saved Locations")
+                        .foregroundColor(.primary)
+                        .bold()
+                        .padding(25)
+                }else {
+                    innerListHeader
+                    LocationsListView()
+                }
+                
             }
         }
         .background(.ultraThinMaterial)
@@ -93,9 +116,9 @@ extension LocationsView {
     
     private var mapLayer: some View {
             Map(coordinateRegion: $vm.mapRegion,
-                annotationItems: vm.locations,
+                annotationItems: vm.savedLocations,
                 annotationContent: { location in
-                MapAnnotation(coordinate: location.coordinates){
+                MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)){
                     Image(systemName: "pin.circle.fill")
                         .background(Color.white)
                         .cornerRadius(55555)
@@ -110,7 +133,7 @@ extension LocationsView {
     }
     private var previewStack: some View {
         ZStack{
-            ForEach(vm.locations) { location in
+            ForEach(vm.savedLocations) { location in
                 if vm.mapLocation == location {
                     LocationPreviewView(location: location)
                         .padding(15)
@@ -122,5 +145,49 @@ extension LocationsView {
                 }
             }
         }
+    }
+    
+    private var innerListHeader: some View {
+        HStack{
+            Text("Saved Locations")
+                .foregroundColor(.primary.opacity(0.7))
+                .font(.system(.footnote, design: .rounded))
+            Spacer()
+            Button {
+//                withAnimation(.easeInOut){
+////                    vm.deleteAllSavedLocations()
+//                }
+                print("f")
+            } label: {
+                Text("Delete All")
+                    .foregroundColor(.red)
+                    .font(.system(.footnote, design: .rounded))
+            }
+
+        }
+        .padding()
+    }
+    
+    private var fakeBluredMap: some View {
+        
+        ZStack{
+            Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.5, longitude: -0.12), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))), interactionModes: [])
+                .blur(radius: 5)
+            VStack(spacing: 15){
+                Text("No Saved Locations!")
+                    .font(.system(.title, design: .rounded))
+                    .foregroundColor(.primary)
+                Text("Please Add from + button")
+                    .font(.system(.footnote, design: .rounded))
+                    .foregroundColor(.primary)
+            }
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(.ultraThinMaterial)
+            .cornerRadius(15)
+            .padding()
+            .zIndex(1)
+        }
+        
     }
 }

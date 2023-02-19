@@ -14,8 +14,7 @@ struct LocationsListView: View {
         List{
             ForEach(vm.savedLocations){ location in
                 Button {
-                    print("test")
-//                    vm.showNextLocation(newLocation: location)
+                    vm.showNextLocation(newLocation: location)
                 } label: {
                     HStack {
                         Image(systemName: "mappin.circle.fill")
@@ -26,7 +25,7 @@ struct LocationsListView: View {
                         VStack(alignment: .leading) {
                             Text(location.name)
                                 .font(.headline)
-                            Text(location.dateAdded)
+                            Text("Date added: \(location.dateAdded)")
                                 .font(.footnote)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -38,8 +37,6 @@ struct LocationsListView: View {
         }
         .scrollContentBackground(.hidden)
         .listStyle(PlainListStyle())
-        
-        
     }
 }
 

@@ -39,5 +39,5 @@ struct LocationModel: Codable, Identifiable, Equatable {
     let long: Double
     let dateAdded: String
     
-    static let example = LocationModel(name: "test", description: "test", lat: 51.0, long: -12.0, dateAdded: "lsldh")
+    static let example = LocationModel(name: "", description: "", lat: 51.5, long: -0.12, dateAdded: "lsldh")
 }

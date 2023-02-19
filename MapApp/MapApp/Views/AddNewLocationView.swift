@@ -62,6 +62,8 @@ extension AddNewLocationView {
     private var closeSheetButton: some View {
         Button {
             envObj.showAddLocationSheet.toggle()
+            vm.nameText = ""
+            vm.discText = ""
         } label: {
             CircleButton(iconName: "xmark")
         }
@@ -75,7 +77,9 @@ extension AddNewLocationView {
             }
             else {
                 vm.addLocation()
+                envObj.loadSavedLocations()
                 checkMarkAnimation()
+                
             }
         } label: {
             CircleButton(iconName: "plus")

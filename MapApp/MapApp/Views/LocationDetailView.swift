@@ -9,76 +9,81 @@ import SwiftUI
 import MapKit
 
 struct LocationDetailView: View {
+    
     @EnvironmentObject var vm : LocationsViewModel
-    let location: Location
+    let location: LocationModel
+    let wikiUrl = URL(string: "https://www.wikipedia.org/")
     var body: some View {
         ScrollView{
-            VStack{
-                imageSection
-//                mapOfLocation
-                    .shadow(radius: 20)
-                VStack(alignment: .leading, spacing: 16.0){
-                    titleSection
-                    Divider()
-                    descriptionSection
-                    Divider()
+            ZStack {
+//                LiveBackgroundView()
+                VStack{
                     mapOfLocation
-                        .padding(.bottom, 5)
-                    
+                        .shadow(radius: 20)
+                    VStack(alignment: .leading, spacing: 16.0){
+                        titleSection
+                        weatherSection
+                        Divider()
+                        if location.description != "" {
+                            descriptionSection
+                            Divider()
+                        }
+                        switch vm.loadingState {
+                        case .loading :
+                            HStack(spacing: 8.0) {
+                                Text("Loading")
+                                ProgressView()
+                            }
+                        case .loaded :
+                            wikiInfoSection
+                        case.failed :
+                            Text("No Available Near By Locations")
+                        }
+                    }
+                    .padding()
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
             }
         }
         .background(.ultraThinMaterial)
         .ignoresSafeArea()
         .overlay(closeButton, alignment: .topTrailing)
+        .onAppear{
+            Task{
+                await vm.getWikiData(lat: location.lat, long: location.long)
+                await vm.getWeather(lat: location.lat, long: location.long)
+            }
+        }
         
     }
 }
 
-struct LocationDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        LocationDetailView(location: LocationsDataService.locations.first!)
-    }
-}
+//struct LocationDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LocationDetailView(location: LocationsDataService.locations.first!)
+//    }
+//}
 
 extension LocationDetailView {
-    private var imageSection: some View {
-        TabView {
-            ForEach(location.imageNames, id: \.self){
-                Image($0)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: UIDevice.current.userInterfaceIdiom == .pad ? nil : UIScreen.main.bounds.width)
-                    .clipped()
-            }
-        }
-        .frame(height: 500)
-        .tabViewStyle(PageTabViewStyle())
-    }
-    
+
     private var titleSection: some View {
-        VStack(alignment: .leading, spacing: 8.0){
+        
+        HStack(){
             Text(location.name)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-            Text(location.cityName)
-                .font(.title3)
-                .foregroundColor(.secondary)
+            
+            Spacer()
+            let url = "https://www.google.com/maps/@\(location.lat),\(location.long),16z"
+            ShareLink(item: URL(string: url)!)
         }
+        .padding(.horizontal,5)
     }
-    
     private var descriptionSection: some View {
         VStack(alignment: .leading, spacing: 16.0){
-            Text(location.description)
+            Text(location.description ?? "")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
-            
-            if let url = URL(string: location.link){
-                Link("Read More", destination: url)
-                    .foregroundColor(.blue)
-            }
         }
     }
     
@@ -86,23 +91,18 @@ extension LocationDetailView {
         Map(
             coordinateRegion: .constant(
                 MKCoordinateRegion(
-                center: location.coordinates,
+                    center: CLLocationCoordinate2D(latitude: location.lat, longitude: location.long),
                 span: MKCoordinateSpan(
                     latitudeDelta: 0.01,
                     longitudeDelta: 0.01))),
             
             annotationItems: [location],
             annotationContent: { location in
-            MapAnnotation(coordinate: location.coordinates){
-                Image(systemName: "pin.fill")
-                    .scaleEffect(2.5)
-                    .padding(.bottom, 40)
-                    .foregroundColor(.red)
-            }
+                MapMarker(coordinate: CLLocationCoordinate2DMake(location.lat, location.long))
         })
         .allowsHitTesting(false)
         .aspectRatio(1, contentMode: .fit)
-        .cornerRadius(15)
+        .cornerRadius(10)
     }
     
     private var closeButton: some View {
@@ -111,5 +111,43 @@ extension LocationDetailView {
         } label: {
             CircleButton(iconName: "xmark")
         }
+    }
+    
+    private var wikiInfoSection: some View {
+        VStack(alignment: .leading){
+            HStack{
+                Text("Nearby Places")
+                Spacer()
+                Link("Powered By Wikipedia", destination: wikiUrl!)
+                    .foregroundColor(.blue)
+                    .font(.footnote)
+            }
+            
+            ForEach(vm.wikiPages, id: \.pageid) { page in
+                wikiDataRowView(page: page)
+            }
+        }
+    }
+    
+    private var weatherSection: some View {
+        
+        Group(){
+            if vm.locationWeatherData.name == nil {
+                HStack(spacing: 10){
+                    Text("Loading Location Weather")
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                    ProgressView()
+                        .tint(Color.accentColor)
+                }
+            }
+            else {
+                Text("Temperature now in \(vm.locationWeatherData.name ?? "") is \(String(vm.locationWeatherData.main?.temp ?? 0.0)) °C")
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
+            }
+            
+        }
+        .padding(.horizontal,5)
     }
 }

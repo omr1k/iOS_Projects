@@ -6,20 +6,19 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct LocationPreviewView: View {
     
     @EnvironmentObject var vm : LocationsViewModel
-    let location: Location
-    
+    let location: LocationModel
+    @State var openMapApiKey: String = "5f9ab7b28d624309bafb9b5c7a7221da"
     var body: some View {
         HStack(alignment: .bottom, spacing: 0.0) {
-            
             VStack(alignment: .leading, spacing: 16.0){
                 image
                 title
             }
-//            Spacer()
             VStack(spacing: 8.0){
                 learnMoreButton
                 nextButton
@@ -32,46 +31,60 @@ struct LocationPreviewView: View {
             .offset(y: 50)
         )
         .cornerRadius(15)
-        
-        
+        .onAppear{
+                Task {
+                    await vm.getWikiData(lat: location.lat, long: location.long)
+                    await MainActor.run {
+                        vm.locationWeatherData = WeatherModel()
+                    }
+                }
+            
+            
+//            vm.locationWeatherData = WeatherModel()
+        }
     }
 }
 
-struct LocationPreviewView_Previews: PreviewProvider {
-    static var previews: some View {
-        ZStack {
-            Color.green
-            LocationPreviewView(location: LocationsDataService.locations.first!)
-        }
-        .previewLayout(PreviewLayout.sizeThatFits)
-        .environmentObject(LocationsViewModel())
-    }
-    
-    
-    
-}
+//
+//struct LocationPreviewView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ZStack {
+//            Color.green
+//            LocationPreviewView(location: LocationsDataService.locations.first!)
+//        }
+//        .previewLayout(PreviewLayout.sizeThatFits)
+//        .environmentObject(LocationsViewModel())
+//    }
+//}
 
 
 extension LocationPreviewView {
+    
     private var image: some View {
         ZStack{
-            if let image = location.imageNames.first{
-                Image(image)
+            AsyncImage(url: URL(string: "https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=600&height=600&center=lonlat:\(location.long),\(location.lat)&zoom=13&apiKey=\(openMapApiKey)")) { image in
+                image
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
+                    .frame(width: 100, height: 100)
+                    .cornerRadius(15)
+            } placeholder: {
+                ProgressView()
+                    .tint(Color.accentColor)
                     .frame(width: 100, height: 100)
             }
         }
         .padding(6)
         .background(Color.white)
-        .cornerRadius(10)
+        .cornerRadius(15)
     }
+    
     private var title: some View {
         VStack(alignment: .leading, spacing: 2.0){
             Text(location.name)
                 .font(.title2)
                 .bold()
-            Text(location.cityName)
+//            Text(location.cityName)
         }
         .frame(maxWidth: .infinity,alignment: .leading)
         
@@ -79,7 +92,10 @@ extension LocationPreviewView {
     
     private var learnMoreButton: some View{
         Button {
-            vm.showDetailsSheet = location
+            Task { @MainActor in
+                vm.showDetailsSheet = location
+            }
+            
         } label: {
             Text("Learn More")
                 .padding(.horizontal, 5)

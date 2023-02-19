@@ -12,6 +12,9 @@
 		260744C8299D68FE00F1B6E4 /* AddNewLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260744C7299D68FE00F1B6E4 /* AddNewLocationViewModel.swift */; };
 		260744CB299D7F9300F1B6E4 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260744CA299D7F9300F1B6E4 /* CircleButton.swift */; };
 		262ECBFB299DA6E5006788BC /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262ECBFA299DA6E5006788BC /* UIApplication.swift */; };
+		265C9E4A29A0132C00033CB1 /* WikiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C9E4929A0132C00033CB1 /* WikiDataModel.swift */; };
+		265C9E4C29A03B4100033CB1 /* wikiDataRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C9E4B29A03B4100033CB1 /* wikiDataRowView.swift */; };
+		265C9E4E29A03E2100033CB1 /* LiveBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C9E4D29A03E2100033CB1 /* LiveBackgroundView.swift */; };
 		26890587299C1D4800221361 /* LocationPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26890586299C1D4800221361 /* LocationPreviewView.swift */; };
 		26AAD93B299E1A0900CB40DE /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AAD93A299E1A0900CB40DE /* TextFieldView.swift */; };
 		26B9811E29982BA300057926 /* MapAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B9811D29982BA300057926 /* MapAppApp.swift */; };
@@ -25,6 +28,7 @@
 		26B9813A299ABC6500057926 /* LocationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B98139299ABC6500057926 /* LocationsListView.swift */; };
 		26C8E027299E2772009FBD6D /* TextFieldPlaceHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8E026299E2772009FBD6D /* TextFieldPlaceHolder.swift */; };
 		26C8E029299E3469009FBD6D /* FileManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C8E028299E3469009FBD6D /* FileManger.swift */; };
+		26E3F1AE29A1834E00C40A2C /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E3F1AD29A1834E00C40A2C /* WeatherModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,9 @@
 		260744C7299D68FE00F1B6E4 /* AddNewLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLocationViewModel.swift; sourceTree = "<group>"; };
 		260744CA299D7F9300F1B6E4 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		262ECBFA299DA6E5006788BC /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		265C9E4929A0132C00033CB1 /* WikiDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiDataModel.swift; sourceTree = "<group>"; };
+		265C9E4B29A03B4100033CB1 /* wikiDataRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wikiDataRowView.swift; sourceTree = "<group>"; };
+		265C9E4D29A03E2100033CB1 /* LiveBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveBackgroundView.swift; sourceTree = "<group>"; };
 		26890586299C1D4800221361 /* LocationPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPreviewView.swift; sourceTree = "<group>"; };
 		26AAD93A299E1A0900CB40DE /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		26B9811A29982BA300057926 /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +55,7 @@
 		26B98139299ABC6500057926 /* LocationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListView.swift; sourceTree = "<group>"; };
 		26C8E026299E2772009FBD6D /* TextFieldPlaceHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldPlaceHolder.swift; sourceTree = "<group>"; };
 		26C8E028299E3469009FBD6D /* FileManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManger.swift; sourceTree = "<group>"; };
+		26E3F1AD29A1834E00C40A2C /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +72,7 @@
 		260744C9299D7F7400F1B6E4 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				265C9E4D29A03E2100033CB1 /* LiveBackgroundView.swift */,
 				260744CA299D7F9300F1B6E4 /* CircleButton.swift */,
 				26AAD93A299E1A0900CB40DE /* TextFieldView.swift */,
 			);
@@ -130,6 +139,7 @@
 				26890586299C1D4800221361 /* LocationPreviewView.swift */,
 				260744C2299C956300F1B6E4 /* LocationDetailView.swift */,
 				260744C5299D682D00F1B6E4 /* AddNewLocationView.swift */,
+				265C9E4B29A03B4100033CB1 /* wikiDataRowView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				26B9813329982C6900057926 /* Location.swift */,
+				265C9E4929A0132C00033CB1 /* WikiDataModel.swift */,
+				26E3F1AD29A1834E00C40A2C /* WeatherModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +243,7 @@
 			files = (
 				26B9812029982BA300057926 /* ContentView.swift in Sources */,
 				26B9813A299ABC6500057926 /* LocationsListView.swift in Sources */,
+				265C9E4E29A03E2100033CB1 /* LiveBackgroundView.swift in Sources */,
 				260744C3299C956300F1B6E4 /* LocationDetailView.swift in Sources */,
 				26890587299C1D4800221361 /* LocationPreviewView.swift in Sources */,
 				26B98138299847A700057926 /* LocationsViewModel.swift in Sources */,
@@ -238,11 +251,14 @@
 				26B9811E29982BA300057926 /* MapAppApp.swift in Sources */,
 				26B9813629982D7A00057926 /* LocationsView.swift in Sources */,
 				262ECBFB299DA6E5006788BC /* UIApplication.swift in Sources */,
+				265C9E4A29A0132C00033CB1 /* WikiDataModel.swift in Sources */,
 				26AAD93B299E1A0900CB40DE /* TextFieldView.swift in Sources */,
 				260744CB299D7F9300F1B6E4 /* CircleButton.swift in Sources */,
 				26B9813429982C6900057926 /* Location.swift in Sources */,
+				26E3F1AE29A1834E00C40A2C /* WeatherModel.swift in Sources */,
 				260744C8299D68FE00F1B6E4 /* AddNewLocationViewModel.swift in Sources */,
 				260744C6299D682D00F1B6E4 /* AddNewLocationView.swift in Sources */,
+				265C9E4C29A03B4100033CB1 /* wikiDataRowView.swift in Sources */,
 				26B9813229982C3000057926 /* LocationsDataService.swift in Sources */,
 				26C8E027299E2772009FBD6D /* TextFieldPlaceHolder.swift in Sources */,
 			);
@@ -377,6 +393,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MapApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hola Pins";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We Want to Know Your Location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -408,6 +425,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MapApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Hola Pins";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We Want to Know Your Location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
