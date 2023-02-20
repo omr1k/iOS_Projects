@@ -142,7 +142,7 @@ extension LocationDetailView {
                 }
             }
             else {
-                Text("Temperature now in \(vm.locationWeatherData.name ?? "") is \(String(vm.locationWeatherData.main?.temp ?? 0.0)) °C")
+                Text("Temperature now in \(vm.locationWeatherData.name ?? "") is \(String(format: "%.f", vm.locationWeatherData.main?.temp ?? 0.0)) °C")
                     .font(.footnote)
                     .foregroundColor(.secondary)
             }
