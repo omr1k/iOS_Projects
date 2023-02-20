@@ -89,6 +89,7 @@ extension AddNewLocationViewModel {
             let data = try Data(contentsOf: jsonFilePath)
             let decoder = JSONDecoder()
             savedLocations = try decoder.decode([LocationModel].self, from: data)
+            print(jsonFilePath)
         } catch {
             debugPrint(error.localizedDescription)
             savedLocations = []

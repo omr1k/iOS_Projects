@@ -83,7 +83,13 @@ extension LocationsViewModel {
             let data = try Data(contentsOf: jsonFilePath)
             let decoder = JSONDecoder()
             savedLocations = try decoder.decode([LocationModel].self, from: data).reversed()
-            mapLocation = savedLocations.first!
+            if savedLocations.count == 0 {
+                savedLocations = []
+            }
+            else {
+                mapLocation = savedLocations.first!
+            }
+            
             
         } catch {
             debugPrint(error.localizedDescription)

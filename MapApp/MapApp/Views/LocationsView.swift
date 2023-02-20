@@ -17,7 +17,7 @@ struct LocationsView: View {
         ZStack{
             Group {
                 if vm.savedLocations.isEmpty {
-                    fakeBluredMap
+                    whenNoLocationsView
                 }
                 else {
                     mapLayer
@@ -97,7 +97,7 @@ extension LocationsView {
             
             if vm.showLocationsList {
                 Divider()
-                if vm.savedLocations.count <= 0 {
+                if vm.savedLocations.count == 0 {
                     Text("No Saved Locations")
                         .foregroundColor(.primary)
                         .bold()
@@ -154,10 +154,15 @@ extension LocationsView {
                 .font(.system(.footnote, design: .rounded))
             Spacer()
             Button {
-//                withAnimation(.easeInOut){
-////                    vm.deleteAllSavedLocations()
-//                }
-                print("f")
+                withAnimation(.linear){
+                vm.showLocationsList = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                        withAnimation(.easeOut){
+                            vm.deleteAllSavedLocations()
+                        }
+                    }
+                    
+                }
             } label: {
                 Text("Delete All")
                     .foregroundColor(.red)
@@ -168,7 +173,7 @@ extension LocationsView {
         .padding()
     }
     
-    private var fakeBluredMap: some View {
+    private var whenNoLocationsView: some View {
         
         ZStack{
             Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: 51.5, longitude: -0.12), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))), interactionModes: [])
@@ -183,7 +188,8 @@ extension LocationsView {
             }
             .padding()
             .frame(maxWidth: .infinity)
-            .background(.ultraThinMaterial)
+            .background(.thinMaterial)
+            .shadow(radius: 10)
             .cornerRadius(15)
             .padding()
             .zIndex(1)
