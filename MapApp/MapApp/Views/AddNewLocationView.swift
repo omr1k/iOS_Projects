@@ -80,10 +80,10 @@ extension AddNewLocationView {
                 showNameValidationAlert.toggle()
             }
             else {
+                vm.loadSavedLocations()
                 vm.addLocation()
                 envObj.loadSavedLocations()
                 checkMarkAnimation()
-                
             }
         } label: {
             CircleButton(iconName: "plus")

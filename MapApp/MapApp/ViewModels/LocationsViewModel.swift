@@ -78,7 +78,17 @@ class LocationsViewModel: ObservableObject {
 
 extension LocationsViewModel {
     // Data
-     func loadSavedLocations() {
+    
+    private func save(){
+        do {
+            let data = try JSONEncoder().encode(savedLocations)
+            try data.write(to: jsonFilePath, options: [.atomic, .completeFileProtection])
+        } catch {
+            print("Unable to save data.")
+        }
+    }
+    
+    func loadSavedLocations() {
         do {
             let data = try Data(contentsOf: jsonFilePath)
             let decoder = JSONDecoder()
@@ -89,24 +99,24 @@ extension LocationsViewModel {
             else {
                 mapLocation = savedLocations.first!
             }
-            
-            
         } catch {
             debugPrint(error.localizedDescription)
             savedLocations = []
         }
+        save()
     }
     
     func deleteAllSavedLocations(){
         savedLocations = []
         mapLocation = LocationModel.example
-        do {
-            let data = try JSONEncoder().encode(savedLocations)
-            try data.write(to: jsonFilePath, options: [.atomic, .completeFileProtection])
-        } catch {
-            print("Unable to save data.")
-        }
+        save()
+        loadSavedLocations()
         showLocationsList = false
+    }
+    
+     func deleteOneLocation(locationId: UUID){
+        savedLocations.removeAll(where: { $0.id == locationId})
+        save()
     }
 }
 

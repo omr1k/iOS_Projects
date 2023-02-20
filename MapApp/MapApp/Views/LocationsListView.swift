@@ -9,12 +9,13 @@ import SwiftUI
 
 struct LocationsListView: View {
     @EnvironmentObject private var vm: LocationsViewModel
-    
+    @State private var currentLocationId: UUID = UUID()
     var body: some View {
         List{
             ForEach(vm.savedLocations){ location in
                 Button {
                     vm.showNextLocation(newLocation: location)
+                    
                 } label: {
                     HStack {
                         Image(systemName: "mappin.circle.fill")
@@ -34,9 +35,11 @@ struct LocationsListView: View {
             }
             .listRowBackground(Color.clear)
             .listRowSeparator(.hidden)
+            
         }
         .scrollContentBackground(.hidden)
         .listStyle(PlainListStyle())
+        
     }
 }
 
