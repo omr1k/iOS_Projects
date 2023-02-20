@@ -72,10 +72,10 @@ extension LocationDetailView {
             Text(location.name)
                 .font(.largeTitle)
                 .fontWeight(.semibold)
-            
             Spacer()
             let url = "https://www.google.com/maps/@\(location.lat),\(location.long),16z"
             ShareLink(item: URL(string: url)!)
+                .foregroundColor(.blue)
         }
         .padding(.horizontal,5)
     }

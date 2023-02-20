@@ -21,7 +21,7 @@ struct TextFieldView: View {
                         .font(.system(.footnote, design: .rounded))
                 }
                 .foregroundColor(Color.primary)
-                .autocorrectionDisabled(true)
+//                .autocorrectionDisabled(true)
                 .frame(maxWidth: .infinity)
                 .padding(.horizontal, 10)
             Image(systemName: "trash.fill")

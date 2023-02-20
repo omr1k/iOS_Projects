@@ -23,7 +23,11 @@ struct wikiDataRowView: View {
                         .foregroundColor(.secondary)
                 }
                 Spacer()
-                let url = "https://www.google.com/maps/@\(page.coordinates.first?.lat),\(page.coordinates.first?.lon),16z"
+//                let url = "https://www.google.com/maps/@\(page.coordinates.first?.lat),\(page.coordinates.first?.lon),16z"
+                
+                
+                let url = "https://www.google.com/maps/@\(page.coordinates.first?.lat ?? 0.0 ),\(page.coordinates.first?.lon ?? 0.0),16z"
+                
                 ShareLink(
                     item: URL(string: url)!) {
                         VStack(spacing: 10){
