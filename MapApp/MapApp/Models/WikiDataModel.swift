@@ -42,6 +42,10 @@ struct Thumbnail: Codable {
 }
 
 
+
+
+
+
 // MARK: - Final Used Data
 //struct ServerResponse: Decodable {
 //

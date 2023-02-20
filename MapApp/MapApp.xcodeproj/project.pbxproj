@@ -18,7 +18,6 @@
 		26890587299C1D4800221361 /* LocationPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26890586299C1D4800221361 /* LocationPreviewView.swift */; };
 		26AAD93B299E1A0900CB40DE /* TextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26AAD93A299E1A0900CB40DE /* TextFieldView.swift */; };
 		26B9811E29982BA300057926 /* MapAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B9811D29982BA300057926 /* MapAppApp.swift */; };
-		26B9812029982BA300057926 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B9811F29982BA300057926 /* ContentView.swift */; };
 		26B9812529982BA500057926 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26B9812429982BA500057926 /* Preview Assets.xcassets */; };
 		26B9812C29982BCF00057926 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 26B9812B29982BCF00057926 /* Assets.xcassets */; };
 		26B9813229982C3000057926 /* LocationsDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26B9813129982C3000057926 /* LocationsDataService.swift */; };
@@ -45,7 +44,6 @@
 		26AAD93A299E1A0900CB40DE /* TextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldView.swift; sourceTree = "<group>"; };
 		26B9811A29982BA300057926 /* MapApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		26B9811D29982BA300057926 /* MapAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapAppApp.swift; sourceTree = "<group>"; };
-		26B9811F29982BA300057926 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		26B9812429982BA500057926 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		26B9812B29982BCF00057926 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		26B9813129982C3000057926 /* LocationsDataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsDataService.swift; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 		26B9812329982BA500057926 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				26B9811F29982BA300057926 /* ContentView.swift */,
 				26B9812429982BA500057926 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -241,7 +238,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26B9812029982BA300057926 /* ContentView.swift in Sources */,
 				26B9813A299ABC6500057926 /* LocationsListView.swift in Sources */,
 				265C9E4E29A03E2100033CB1 /* LiveBackgroundView.swift in Sources */,
 				260744C3299C956300F1B6E4 /* LocationDetailView.swift in Sources */,

@@ -35,6 +35,7 @@ struct AddNewLocationView: View {
         }
         .onAppear{
             vm.startDetectingLocation()
+            vm.stopDetectingLocation()
         }
     }
 }
@@ -64,10 +65,13 @@ extension AddNewLocationView {
             envObj.showAddLocationSheet.toggle()
             vm.nameText = ""
             vm.discText = ""
+            vm.startDetectingLocation()
+            vm.stopDetectingLocation()
         } label: {
             CircleButton(iconName: "xmark")
         }
     }
+    
     
     private var addLocationButton: some View {
         

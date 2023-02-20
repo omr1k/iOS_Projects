@@ -9,24 +9,6 @@ import Foundation
 import MapKit
 
 
-struct Location : Identifiable , Equatable{
-    
-    static func == (lhs: Location, rhs: Location) -> Bool {
-        lhs.id == rhs.id
-    }
-    
-    var id: String {
-        name + cityName
-    }
-    let name : String
-    let cityName : String
-    let coordinates : CLLocationCoordinate2D
-    let description : String
-    let imageNames : [String]
-    let link : String
-}
-
-
 struct LocationModel: Codable, Identifiable, Equatable {
     
     static func == (lhs: LocationModel, rhs: LocationModel) -> Bool {
@@ -41,3 +23,26 @@ struct LocationModel: Codable, Identifiable, Equatable {
     
     static let example = LocationModel(name: "", description: "", lat: 51.5, long: -0.12, dateAdded: "lsldh")
 }
+
+
+
+
+
+
+
+//struct Location : Identifiable , Equatable{
+//    
+//    static func == (lhs: Location, rhs: Location) -> Bool {
+//        lhs.id == rhs.id
+//    }
+//    
+//    var id: String {
+//        name + cityName
+//    }
+//    let name : String
+//    let cityName : String
+//    let coordinates : CLLocationCoordinate2D
+//    let description : String
+//    let imageNames : [String]
+//    let link : String
+//}

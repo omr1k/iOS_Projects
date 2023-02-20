@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 
+// Testing Data
 class LocationsDataService {
     
     static let locations: [Location] = [
