@@ -30,7 +30,7 @@ struct LiveBackgroundView: View {
                 .offset(x: 0, y: animate ? -500 : 500)
                 .rotationEffect(.degrees(161))
                 .task {
-                    withAnimation(.easeInOut(duration: 4).repeatForever()){
+                    withAnimation(.easeInOut(duration: 1).repeatForever()){
                         animate.toggle()
                     }
                 }

@@ -12,6 +12,7 @@
 		260744C8299D68FE00F1B6E4 /* AddNewLocationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260744C7299D68FE00F1B6E4 /* AddNewLocationViewModel.swift */; };
 		260744CB299D7F9300F1B6E4 /* CircleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 260744CA299D7F9300F1B6E4 /* CircleButton.swift */; };
 		262ECBFB299DA6E5006788BC /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262ECBFA299DA6E5006788BC /* UIApplication.swift */; };
+		2640249029A453F10009A5C3 /* splashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2640248F29A453F10009A5C3 /* splashScreen.swift */; };
 		265C9E4A29A0132C00033CB1 /* WikiDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C9E4929A0132C00033CB1 /* WikiDataModel.swift */; };
 		265C9E4C29A03B4100033CB1 /* wikiDataRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C9E4B29A03B4100033CB1 /* wikiDataRowView.swift */; };
 		265C9E4E29A03E2100033CB1 /* LiveBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265C9E4D29A03E2100033CB1 /* LiveBackgroundView.swift */; };
@@ -37,6 +38,7 @@
 		260744C7299D68FE00F1B6E4 /* AddNewLocationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewLocationViewModel.swift; sourceTree = "<group>"; };
 		260744CA299D7F9300F1B6E4 /* CircleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleButton.swift; sourceTree = "<group>"; };
 		262ECBFA299DA6E5006788BC /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
+		2640248F29A453F10009A5C3 /* splashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splashScreen.swift; sourceTree = "<group>"; };
 		265C9E4929A0132C00033CB1 /* WikiDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikiDataModel.swift; sourceTree = "<group>"; };
 		265C9E4B29A03B4100033CB1 /* wikiDataRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wikiDataRowView.swift; sourceTree = "<group>"; };
 		265C9E4D29A03E2100033CB1 /* LiveBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveBackgroundView.swift; sourceTree = "<group>"; };
@@ -108,7 +110,6 @@
 			children = (
 				260744C4299CC96A00F1B6E4 /* Info.plist */,
 				26B9811D29982BA300057926 /* MapAppApp.swift */,
-				26B9813029982C1200057926 /* DataServices */,
 				26B9812D29982BEA00057926 /* Views */,
 				26B9812E29982BF200057926 /* ViewModels */,
 				26B9812F29982BFF00057926 /* Models */,
@@ -123,6 +124,7 @@
 		26B9812329982BA500057926 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				26B9813029982C1200057926 /* DataServices */,
 				26B9812429982BA500057926 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
@@ -137,6 +139,7 @@
 				260744C2299C956300F1B6E4 /* LocationDetailView.swift */,
 				260744C5299D682D00F1B6E4 /* AddNewLocationView.swift */,
 				265C9E4B29A03B4100033CB1 /* wikiDataRowView.swift */,
+				2640248F29A453F10009A5C3 /* splashScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2640249029A453F10009A5C3 /* splashScreen.swift in Sources */,
 				26B9813A299ABC6500057926 /* LocationsListView.swift in Sources */,
 				265C9E4E29A03E2100033CB1 /* LiveBackgroundView.swift in Sources */,
 				260744C3299C956300F1B6E4 /* LocationDetailView.swift in Sources */,
@@ -393,6 +397,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We Want to Know Your Location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LiveBackgroundView;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
@@ -425,6 +430,7 @@
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "We Want to Know Your Location.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LiveBackgroundView;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;

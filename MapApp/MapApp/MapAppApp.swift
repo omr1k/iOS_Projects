@@ -14,7 +14,8 @@ struct MapAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LocationsView()
+//            LocationsView()
+            splashScreen()
                 .environmentObject(vm)
         }
     }
