@@ -33,9 +33,9 @@ struct LocationsListView: View {
                     }
                 }
             }
+            .onDelete(perform: deleteElment)
             .listRowBackground(Color.clear)
             .listRowSeparator(.hidden)
-            
         }
         .scrollContentBackground(.hidden)
         .listStyle(PlainListStyle())
@@ -49,6 +49,22 @@ struct LocationsListView_Previews: PreviewProvider {
             .environmentObject(LocationsViewModel())
     }
 }
+
+
+extension LocationsListView {
+    func deleteElment(at offsets: IndexSet){
+        for index in offsets.makeIterator() {
+            print("index in fl \(index)")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                withAnimation(.easeOut){
+                    vm.deleteElement(index: index)
+                }
+            }
+        }
+    }
+}
+
+
 
 
 

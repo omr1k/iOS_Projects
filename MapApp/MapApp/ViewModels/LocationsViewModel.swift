@@ -114,8 +114,8 @@ extension LocationsViewModel {
         showLocationsList = false
     }
     
-     func deleteOneLocation(locationId: UUID){
-        savedLocations.removeAll(where: { $0.id == locationId})
+    func deleteElement(index: Int){
+        savedLocations.remove(at: index)
         save()
     }
 }

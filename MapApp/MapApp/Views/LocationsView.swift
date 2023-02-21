@@ -90,9 +90,6 @@ extension LocationsView {
                         .frame(width: 80, height: 55)
                 }
                 .offset(x: 10)
-//                .padding()
-//                .frame(width: 50, height: 50)
-//                .background(Color.red)
             }
             
             if vm.showLocationsList {
