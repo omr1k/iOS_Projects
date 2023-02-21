@@ -1,5 +1,5 @@
 # Hola Pins
-In this app I Implemented MVVM, Mapkit, Fetching user location, saving to documents directory, swifUI sheets, SwifUI ios 16 share sheet, Integrate with wikipedia nearby api, Integrate with open weather map api, Integrate with Geoapify api, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/MapApp)
+In this app I Implemented MVVM, Mapkit, Fetching user location, saving to documents directory, SwifUI sheets, iOS 16 share sheet, Integrate with wikipedia nearby api, Integrate with open weather map api, Integrate with Geoapify api, [Check project files here](https://github.com/omr1k/iOS_Projects/tree/main/MapApp)
 <div align="center">
 <img src="xX-Materials-Xx/readmeScreenShots/ma1.png" height="339" width="180" alt="iPhone"/>
 <img src="xX-Materials-Xx/readmeScreenShots/ma2.png" height="339" width="180" alt="iPhone"/>
