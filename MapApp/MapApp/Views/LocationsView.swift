@@ -11,6 +11,7 @@ import MapKit
 struct LocationsView: View {
     @EnvironmentObject private var vm : LocationsViewModel
     @StateObject private var AddLocationViewModel = AddNewLocationViewModel()
+    @State var showDialog = false
 
     let maxWidthForIPad: CGFloat = 700
     var body: some View {
@@ -37,6 +38,19 @@ struct LocationsView: View {
                     }
             }
             .padding()
+            .confirmationDialog("Are You Sure? This Action Will Erase All Data", isPresented: $showDialog, titleVisibility: .visible){
+                Button("Delete All Data 🛑") {
+                    withAnimation(.linear){
+                    vm.showLocationsList = false
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
+                            withAnimation(.easeOut){
+                                vm.deleteAllSavedLocations()
+                            }
+                        }
+                    }
+                }
+                
+            }
         }
     }
 }
@@ -151,15 +165,7 @@ extension LocationsView {
                 .font(.system(.footnote, design: .rounded))
             Spacer()
             Button {
-                withAnimation(.linear){
-                vm.showLocationsList = false
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){
-                        withAnimation(.easeOut){
-                            vm.deleteAllSavedLocations()
-                        }
-                    }
-                    
-                }
+                showDialog.toggle()
             } label: {
                 Text("Delete All")
                     .foregroundColor(.red)
