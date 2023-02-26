@@ -50,7 +50,11 @@ struct AddNewLocationView_Previews: PreviewProvider {
 extension AddNewLocationView {
     private var mapLayer: some View {
         ZStack {
-            Map(coordinateRegion: $vm.mapRegion)
+            Map(coordinateRegion: $vm.mapRegion,
+                annotationItems: envObj.savedLocations,
+                annotationContent: { location in
+                    MapMarker(coordinate: CLLocationCoordinate2DMake(location.lat, location.long))
+            })
             Image(systemName: "mappin")
                 .resizable()
                 .scaledToFill()

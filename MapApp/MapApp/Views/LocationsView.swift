@@ -116,7 +116,7 @@ extension LocationsView {
                 annotationItems: vm.savedLocations,
                 annotationContent: { location in
                 MapAnnotation(coordinate: CLLocationCoordinate2D(latitude: location.lat, longitude: location.long)){
-                    Image(systemName: "pin.circle.fill")
+                    Image(systemName: "mappin.circle.fill")
                         .background(Color.white)
                         .cornerRadius(55555)
                         .scaleEffect(vm.mapLocation == location ? 2.5 : 1.5)

@@ -52,6 +52,7 @@ extension splashScreen {
                 LiveBackgroundView().opacity(0.3)
             }.ignoresSafeArea()
             VStack{
+                Spacer()
                 VStack(spacing: 7){
                     Image("appLogo")
                         .resizable()
@@ -64,7 +65,9 @@ extension splashScreen {
                         .padding()
                     Text("Hola Pins")
                         .font(.system(.body, design: .rounded))
+                        .fontWeight(.heavy)
                         .foregroundColor(.white)
+                        .rotation3DEffect(rotateLogo ? Angle(degrees: -360) : Angle(degrees: 0.0), axis: (x:0 , y: 1, z: 0))
                         .padding()
                 }
                 Spacer()
